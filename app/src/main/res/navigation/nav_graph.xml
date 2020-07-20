@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/beranda">
+
+    <fragment
+        android:id="@+id/beranda"
+        android:name="com.example.jowoan.Beranda"
+        android:label="fragment_beranda"
+        tools:layout="@layout/fragment_beranda" />
+    <fragment
+        android:id="@+id/toko"
+        android:name="com.example.jowoan.Toko"
+        android:label="fragment_toko"
+        tools:layout="@layout/fragment_toko" />
+    <fragment
+        android:id="@+id/profil"
+        android:name="com.example.jowoan.Profil"
+        android:label="fragment_profil"
+        tools:layout="@layout/fragment_profil" />
+</navigation>
