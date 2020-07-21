@@ -4,16 +4,16 @@
     <item
         android:id="@+id/beranda"
         android:icon="@drawable/beranda"
-        android:title=""/>
+        android:title="Beranda"/>
 
     <item
         android:id="@+id/toko"
         android:icon="@drawable/shop"
-        android:title=""/>
+        android:title="Toko"/>
     <item
         android:id="@+id/profil"
         android:icon="@drawable/profil"
-        android:title=""/>
+        android:title="Profil"/>
 
 
 </menu>
