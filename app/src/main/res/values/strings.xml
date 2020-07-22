@@ -2,6 +2,7 @@
     <string name="app_name">jowoan</string>
     <string name="login">Selamat Datang di Jowoan!</string>
     <string name="logintext">Masukkan alamat email dan kata sandi untuk mendapatkan akses ke akun Anda</string>
+    <string name="singuptext">Harap masukkan informasi yang valid untuk membuat dan mengakses akun </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="LupaPasword"><u>Lupa Password</u></string>

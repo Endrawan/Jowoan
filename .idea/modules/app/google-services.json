@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "45384362776",
+    "firebase_url": "https://jowoan-2e761.firebaseio.com",
+    "project_id": "jowoan-2e761",
+    "storage_bucket": "jowoan-2e761.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45384362776:android:f4446323226674d2554c6d",
+        "android_client_info": {
+          "package_name": "com.example.jowoan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45384362776-qjf439do818nvfip3vtvirnafduoueh3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jowoan",
+            "certificate_hash": "882bc9e88fd7112afc7d73596310e525f1358c22"
+          }
+        },
+        {
+          "client_id": "45384362776-nsl2qt00dlcoe073er86ab95o53u39mp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZJjvUnXkOIkcPYWRPmAB-ZtTGPQVvFz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45384362776-nsl2qt00dlcoe073er86ab95o53u39mp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
