@@ -10,7 +10,7 @@ import com.example.jowoan.databinding.FragmentProfilBinding
 import com.google.firebase.auth.FirebaseAuth
 
 
-class Profil : Fragment() {
+class FragmentProfil : Fragment() {
     private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
@@ -18,11 +18,7 @@ class Profil : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding:FragmentProfilBinding= DataBindingUtil.inflate(inflater,R.layout.fragment_profil, container, false)
-        binding.btnLogout.setOnClickListener{
-            
 
-
-        }
 
 
 //

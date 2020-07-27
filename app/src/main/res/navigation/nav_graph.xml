@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/beranda"
-        android:name="com.example.jowoan.Beranda"
+        android:name="com.example.jowoan.FragmentBeranda"
         android:label="fragment_beranda"
         tools:layout="@layout/fragment_beranda" />
     <fragment
         android:id="@+id/toko"
-        android:name="com.example.jowoan.Toko"
+        android:name="com.example.jowoan.FragmentToko"
         android:label="fragment_toko"
         tools:layout="@layout/fragment_toko" />
     <fragment
         android:id="@+id/profil"
-        android:name="com.example.jowoan.Profil"
+        android:name="com.example.jowoan.FragmentProfil"
         android:label="fragment_profil"
         tools:layout="@layout/fragment_profil" />
 </navigation>

@@ -5,20 +5,33 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.jowoan.Intro.Intro
+import com.example.jowoan.MainActivity
 import com.example.jowoan.R
+import com.google.firebase.auth.FirebaseAuth
 
 class SplashScreen : AppCompatActivity() {
-
+    lateinit var auth : FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+
+        auth = FirebaseAuth.getInstance()
+
         var handler = Handler()
         handler.postDelayed({
-            Intent(applicationContext, Intro::class.java).also {
-                startActivity(it)
-                finish()
+            if(auth.currentUser==null){
+                Intent(applicationContext, Intro::class.java).also {
+                    startActivity(it)
+                    finishAffinity()
+                }
+            } else {
+                Intent(applicationContext, MainActivity::class.java).also {
+                    startActivity(it)
+                    finishAffinity()
+                }
             }
+
         },5000)
     }
 }
