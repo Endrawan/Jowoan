@@ -17,7 +17,12 @@
         tools:layout="@layout/fragment_toko" />
     <fragment
         android:id="@+id/profil"
-        android:name="com.example.jowoan.FragmentProfil"
+        android:name="com.example.jowoan.FragmentProfil.FragmentProfil"
         android:label="fragment_profil"
         tools:layout="@layout/fragment_profil" />
+    <fragment
+        android:id="@+id/fragmentPengaturan"
+        android:name="com.example.jowoan.pengaturan.FragmentPengaturan"
+        android:label="fragment_pengaturan"
+        tools:layout="@layout/fragment_pengaturan" />
 </navigation>

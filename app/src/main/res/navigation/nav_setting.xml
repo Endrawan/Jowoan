@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_setting"
+    app:startDestination="@id/fragmentPengaturan2">
+
+    <fragment
+        android:id="@+id/fragmentPengaturan2"
+        android:name="com.example.jowoan.pengaturan.FragmentPengaturan"
+        android:label="fragment_pengaturan"
+        tools:layout="@layout/fragment_pengaturan" >
+        <action
+            android:id="@+id/action_fragmentPengaturan2_to_namaFragment"
+            app:destination="@id/namaFragment" />
+        <action
+            android:id="@+id/action_fragmentPengaturan2_to_emailFragment"
+            app:destination="@id/emailFragment" />
+        <action
+            android:id="@+id/action_fragmentPengaturan2_to_passwordFragment"
+            app:destination="@id/passwordFragment" />
+        <action
+            android:id="@+id/action_fragmentPengaturan2_to_telponFragment"
+            app:destination="@id/telponFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/namaFragment"
+        android:name="com.example.jowoan.pengaturan.NamaFragment"
+        android:label="fragment_nama"
+        tools:layout="@layout/fragment_nama" >
+        <action
+            android:id="@+id/action_namaFragment_to_fragmentPengaturan2"
+            app:destination="@id/fragmentPengaturan2" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailFragment"
+        android:name="com.example.jowoan.pengaturan.EmailFragment"
+        android:label="fragment_email"
+        tools:layout="@layout/fragment_email" >
+        <action
+            android:id="@+id/action_emailFragment_to_fragmentPengaturan2"
+            app:destination="@id/fragmentPengaturan2" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="com.example.jowoan.pengaturan.PasswordFragment"
+        android:label="fragment_password"
+        tools:layout="@layout/fragment_password" >
+        <action
+            android:id="@+id/action_passwordFragment_to_fragmentPengaturan2"
+            app:destination="@id/fragmentPengaturan2" />
+    </fragment>
+    <fragment
+        android:id="@+id/telponFragment"
+        android:name="com.example.jowoan.pengaturan.TelponFragment"
+        android:label="fragment_telpon"
+        tools:layout="@layout/fragment_telpon" >
+        <action
+            android:id="@+id/action_telponFragment_to_fragmentPengaturan2"
+            app:destination="@id/fragmentPengaturan2" />
+    </fragment>
+</navigation>
