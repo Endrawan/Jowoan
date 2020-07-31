@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_beranda" />
     <fragment
         android:id="@+id/toko"
-        android:name="com.example.jowoan.FragmentToko"
+        android:name="com.example.jowoan.FragmentToko.FragmentToko"
         android:label="fragment_toko"
         tools:layout="@layout/fragment_toko" />
     <fragment
