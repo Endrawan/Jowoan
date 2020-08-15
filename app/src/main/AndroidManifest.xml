@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".pengaturan.PengaturanActivity"></activity>
+        <activity android:name=".Activity_P1_2"></activity>
+        <activity android:name=".pengaturan.PengaturanActivity" />
         <activity android:name=".auth.SignUpActivity" />
         <activity android:name=".auth.LoginActivity" />
         <activity android:name=".Intro.Intro" />

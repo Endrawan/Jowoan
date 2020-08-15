@@ -42,11 +42,11 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="101dp"
-                    android:layout_height="105dp"
+                    android:layout_width="134dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="39dp"
-                    android:src="#03A9F4" />
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/avatar_basic" />
             </LinearLayout>
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Nama User"
+                android:text="Zainuri Mahmud"
                 android:textColor="#000000"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,8 +88,8 @@
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
-                android:layout_width="352dp"
-                android:layout_height="49dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@color/abu"
                 app:layout_constraintEnd_toEndOf="parent"
