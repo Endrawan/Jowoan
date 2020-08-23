@@ -1,210 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".auth.LoginActivity">
 
-
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        android:layout_gravity="center_vertical"
+        android:padding="16dp"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/AppTheme.TextView.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:layout_marginBottom="@dimen/small"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/logintext"
+            android:layout_marginBottom="@dimen/normal"/>
 
         <com.google.android.material.textfield.TextInputLayout
-
-
-
             android:id="@+id/et_email_login"
-            android:layout_width="369dp"
-            android:layout_height="70dp"
-          android:layout_gravity="center"
-            android:layout_marginTop="21dp"
-
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/boxputih"
-            app:boxBackgroundColor="#ffffff"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            style="@style/AppTheme.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:startIconDrawable="@drawable/email"
-            app:startIconTint="@color/biru">
+            app:startIconTint="@color/biru"
+            android:layout_marginBottom="@dimen/small">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/boxputih"
                 android:hint="Email"
                 android:inputType="textEmailAddress" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_password_login"
-            android:layout_width="369dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-
-            android:background="@drawable/boxputih"
-            app:layout_constraintBottom_toTopOf="@+id/tvLP"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            style="@style/AppTheme.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
             app:startIconDrawable="@drawable/passwrod"
-            app:startIconTint="@color/biru">
+            app:startIconTint="@color/biru"
+            android:layout_marginBottom="@dimen/normal">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.TextInputEditText"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
-                android:background="@drawable/boxputih"
-
                 android:hint="Kata Sandi"
                 android:inputType="textPassword" />
+
         </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/normal">
+
+            <TextView
+                android:id="@+id/tvLP"
+                style="@style/AppTheme.TextView.Normal.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/LupaPasword"
+                android:textColor="#000000"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btnLogin"
+                style="@style/AppTheme.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Masuk"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/AppTheme.TextView.Normal.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atau"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/normal"/>
+
+        <Button
+            android:id="@+id/btn_login_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/boxputih"
+            android:drawableStart="@drawable/google"
+            android:text="Masuk dengan akun Google"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:paddingStart="@dimen/normal"
+            android:paddingEnd="@dimen/normal"
+            android:layout_marginBottom="@dimen/normal"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Belum punya akun?"
+            android:textSize="18sp"
+            android:layout_marginBottom="@dimen/small"/>
+
+        <TextView
+            android:id="@+id/tbBA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buat Akun"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/biru"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="invisible"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="272dp"
-        android:layout_height="89dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="120dp"
-        android:text="@string/login"
-        android:textColor="#000000"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="150dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-
-        android:background="@drawable/box_biru"
-        android:text="Masuk"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <TextView
-        android:id="@+id/tvLP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/LupaPasword"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
-        app:layout_constraintEnd_toStartOf="@+id/btnLogin"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Atau"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.458"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLP" />
-
-    <Button
-        android:id="@+id/btn_login_google"
-        android:layout_width="374dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="19dp"
-        android:background="@drawable/boxputih"
-        android:drawableStart="@drawable/google"
-        android:paddingStart="29dp"
-        android:text="Masuk dengan akun Google"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Belum punya akun?"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login_google" />
-
-    <TextView
-        android:id="@+id/tbBA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="309dp"
-        android:text="Buat Akun"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="325dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="67dp"
-        android:text="@string/logintext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="171dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginBottom="38dp"
-        android:indeterminateTintMode="src_atop"
-        android:indeterminateTint="@color/biru"
-        android:layout_gravity="center"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

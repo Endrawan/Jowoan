@@ -1,309 +1,303 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FragmentToko.FragmentToko">
-
-
-
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="46dp"
-        android:text="Toko"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearLayout8"
-        android:layout_width="119dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="36dp"
-        android:background="@drawable/box_biru"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".FragmentToko.FragmentToko">
 
-        <TextView
-            android:id="@+id/poinUser"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="27dp"
-            android:text="100"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/large"
+            android:paddingBottom="@dimen/large"
+            android:paddingStart="@dimen/normal"
+            android:paddingEnd="@dimen/normal">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textView18"
+                style="@style/AppTheme.TextView.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="Toko" />
+
+            <Button
+                android:id="@+id/poinUser"
+                style="@style/AppTheme.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100 Poin" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="4dp"
-            android:text="poin"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/normal">
 
-            />
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:cardCornerRadius="28dp"
+                android:layout_marginStart="@dimen/normal"
+                android:layout_marginEnd="@dimen/small"
+                android:layout_marginBottom="@dimen/small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/small">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintDimensionRatio="H,1:1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:src="@drawable/ava1" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Normal.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="Avatar Joko" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="Avatar" />
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Normal.Yellow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="100 poin" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:cardCornerRadius="28dp"
+                android:layout_marginStart="@dimen/small"
+                android:layout_marginEnd="@dimen/normal"
+                android:layout_marginBottom="@dimen/small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/small">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintDimensionRatio="H,1:1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:src="@drawable/ava1" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Normal.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="Avatar Joko" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="Avatar" />
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Normal.Yellow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="100 poin" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/normal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:cardCornerRadius="28dp"
+                android:layout_marginStart="@dimen/normal"
+                android:layout_marginEnd="@dimen/small"
+                android:layout_marginBottom="@dimen/small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/small">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintDimensionRatio="H,1:1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:src="@drawable/ava1" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Normal.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="Avatar Joko" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="Avatar" />
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Normal.Yellow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="100 poin" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:cardCornerRadius="28dp"
+                android:layout_marginStart="@dimen/small"
+                android:layout_marginEnd="@dimen/normal"
+                android:layout_marginBottom="@dimen/small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/small">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintDimensionRatio="H,1:1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:src="@drawable/ava1" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Normal.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="Avatar Joko" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="Avatar" />
+
+                    <TextView
+                        style="@style/AppTheme.TextView.Normal.Yellow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginEnd="@dimen/small"
+                        android:layout_marginBottom="@dimen/small"
+                        android:text="100 poin" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="72dp"/>
+
     </LinearLayout>
 
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="182.07dp"
-        android:layout_height="278dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="15dp"
-        app:cardCornerRadius="28dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv_1"
-                android:src="@drawable/ava1"
-                android:layout_width="match_parent"
-                android:layout_height="182.07dp"
-                tools:src="@tools:sample/avatars" />
-
-            <TextView
-                android:id="@+id/tv_nama_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="7dp"
-                android:text="Avatar Joko"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="5dp"
-                android:text="Avatar"
-                android:textSize="14sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="7dp"
-                android:text="100 poin"
-                android:textColor="#F59218"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="182.07dp"
-        android:layout_height="278dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv_2"
-                android:src="@drawable/ava2"
-                android:layout_width="match_parent"
-                android:layout_height="182.07dp"
-                tools:src="@tools:sample/avatars" />
-
-            <TextView
-                android:id="@+id/tv_nama_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="7dp"
-                android:text="Avatar Tono"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="5dp"
-                android:text="Avatar"
-                android:textSize="14sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="7dp"
-                android:text="100 poin"
-                android:textColor="#F59218"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
-        android:layout_width="182.07dp"
-        android:layout_height="278dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="24dp"
-        app:cardCornerRadius="28dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cardView3"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:src="@drawable/ava3"
-                android:id="@+id/iv_3"
-                android:layout_width="match_parent"
-                android:layout_height="182.07dp"
-                tools:src="@tools:sample/avatars" />
-
-            <TextView
-                android:id="@+id/tv_nama_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="7dp"
-                android:text="Avatar Sri"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="5dp"
-                android:text="Avatar"
-                android:textSize="14sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="7dp"
-                android:text="100 poin"
-                android:textColor="#F59218"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
-        android:layout_width="182.07dp"
-        android:layout_height="278dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        app:cardCornerRadius="28dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView4"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv_4"
-                android:src="@drawable/ava4"
-                android:layout_width="match_parent"
-                android:layout_height="182.07dp"
-                tools:src="@tools:sample/avatars" />
-
-            <TextView
-                android:id="@+id/tv_nama_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="7dp"
-                android:text="Avatar Ijah"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="5dp"
-                android:text="Avatar"
-                android:textSize="14sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="7dp"
-                android:text="100 poin"
-                android:textColor="#F59218"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

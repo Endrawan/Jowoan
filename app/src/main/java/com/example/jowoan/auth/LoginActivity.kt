@@ -28,17 +28,17 @@ import kotlinx.coroutines.*
 import java.lang.Exception
 
 const val REQUEST_CODE_SIGN_IN = 0
+
 class LoginActivity : AppCompatActivity() {
     private var progressBar: ProgressBar? = null
+
     //Handler
     var handler = Handler()
 
-    lateinit var auth : FirebaseAuth
+    lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
 
         //ProgressBar
         progressBar = findViewById<ProgressBar>(R.id.progressBar) as ProgressBar
@@ -58,10 +58,10 @@ class LoginActivity : AppCompatActivity() {
 
             val email: String = et_email_login.getEditText()?.getText().toString().trim()
             val password: String = et_password_login.getEditText()?.getText().toString().trim()
-            if (email.isEmpty()&&password.isEmpty()){
-            Snackbar.make(it, "Email dan Password Tidak boleh Kosong !", Snackbar.LENGTH_LONG)
-                .show()}
-            else{
+            if (email.isEmpty() && password.isEmpty()) {
+                Snackbar.make(it, "Email dan Password Tidak boleh Kosong !", Snackbar.LENGTH_LONG)
+                    .show()
+            } else {
                 signIn()
             }
         }
@@ -70,6 +70,7 @@ class LoginActivity : AppCompatActivity() {
 
         }
     }
+
     private fun signIn() {
         val email: String = et_email_login.getEditText()?.getText().toString().trim()
         val password: String = et_password_login.getEditText()?.getText().toString().trim()
@@ -94,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun loading(){
+    private fun loading() {
         //Bar ki dihapus gara2 ternyata progressDialog udh di desprate ket API 26 kalau user salah masukin ntar looping teros
         var progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Harap Menunggu Sebentar")
@@ -102,13 +103,10 @@ class LoginActivity : AppCompatActivity() {
         var handler = Handler()
         handler.postDelayed({
 
-        },3000)
+        }, 3000)
 
     }
 
 
-
-
-
-    }
+}
 

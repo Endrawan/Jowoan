@@ -31,10 +31,10 @@ class FragmentToko : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-        cardView.setOnClickListener {
-            showDialogFilter()
-
-        }
+//        cardView.setOnClickListener {
+//            showDialogFilter()
+//
+//        }
 
     }
 

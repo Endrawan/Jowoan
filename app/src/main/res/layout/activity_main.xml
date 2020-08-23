@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/abu"
         tools:context=".MainActivity">
 
         <!--        <fragment-->
@@ -20,27 +21,16 @@
 
         <FrameLayout
             android:id="@+id/layoutFragment"
-
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
+            android:layout_height="match_parent"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:background="@drawable/bottomnav"
-
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_gravity="bottom">
 
                 <ImageView
                     android:id="@+id/iv_home"
@@ -64,14 +54,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-
                     android:layout_weight="1"
                     android:src="@drawable/ic_profil_inactive" />
 
             </LinearLayout>
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </layout>

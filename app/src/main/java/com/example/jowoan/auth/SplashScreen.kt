@@ -18,7 +18,7 @@ class SplashScreen : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        var handler = Handler()
+        val handler = Handler()
         handler.postDelayed({
             if(auth.currentUser==null){
                 Intent(applicationContext, Intro::class.java).also {
@@ -32,6 +32,6 @@ class SplashScreen : AppCompatActivity() {
                 }
             }
 
-        },5000)
+        },2000)
     }
 }

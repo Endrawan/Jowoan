@@ -1,96 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".auth.SignUpActivity">
 
-
     <LinearLayout
-        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        android:padding="@dimen/normal">
 
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/AppTheme.TextView.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small"
+            android:text="Buat Akun" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/normal"
+            android:text="@string/singuptext" />
 
         <com.google.android.material.textfield.TextInputLayout
-
             android:id="@+id/et_password_lama"
-            android:layout_width="369dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="21dp"
-            android:layout_marginEnd="24dp"
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small"
             android:background="@drawable/boxputih"
             app:boxBackgroundColor="#ffffff"
             app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
             app:startIconDrawable="@drawable/ic_namapengguna"
-
             app:startIconTint="@color/biru">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/boxputih"
-                android:hint="Nama Pengguna"
-                 />
+                android:hint="Nama Pengguna" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_password"
-            android:layout_width="369dp"
-            app:errorEnabled="true"
-            android:layout_height="70dp"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small"
             android:background="@drawable/boxputih"
-            app:layout_constraintBottom_toTopOf="@+id/tvLP"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:errorEnabled="true"
             app:passwordToggleEnabled="true"
             app:startIconDrawable="@drawable/passwrod"
-            android:layout_marginBottom="15dp"
             app:startIconTint="@color/biru">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:background="@drawable/boxputih"
-
                 android:hint="Kata Sandi"
                 android:inputType="textPassword" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-
             android:id="@+id/et_email"
-            android:layout_width="369dp"
-            android:layout_height="70dp"
-
-            app:errorEnabled="true"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="22dp"
-            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small"
             android:background="@drawable/boxputih"
             app:boxBackgroundColor="#ffffff"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:errorEnabled="true"
             app:startIconDrawable="@drawable/email"
             app:startIconTint="@color/biru">
 
@@ -100,24 +86,18 @@
                 android:background="@drawable/boxputih"
                 android:hint="Email"
                 android:inputType="textEmailAddress" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-
             android:id="@+id/et_telpon"
-            android:layout_width="369dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="22dp"
-            app:errorEnabled="true"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/normal"
             android:background="@drawable/boxputih"
             app:boxBackgroundColor="#ffffff"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:errorEnabled="true"
             app:startIconDrawable="@drawable/ic_telpon"
             app:startIconTint="@color/biru">
 
@@ -127,96 +107,43 @@
                 android:background="@drawable/boxputih"
                 android:hint="Telpon"
                 android:inputType="phone" />
+
         </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnBuatAkun"
+            style="@style/AppTheme.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="@dimen/normal"
+            android:text="Buat Akun" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small"
+            android:text="Sudah punya akun?" />
+
+        <TextView
+            android:id="@+id/tvMasuk"
+            style="@style/AppTheme.TextView.Normal.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/large"
+            android:text="Masuk"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/biru"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="272dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="120dp"
-        android:text="Buat Akun"
-        android:textColor="#000000"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnBuatAkun"
-        android:layout_width="150dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-
-        android:background="@drawable/box_biru"
-        android:text="Buat Akun"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="240dp"
-        android:text="Sudah punya akun?"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <TextView
-        android:id="@+id/tvMasuk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="309dp"
-        android:text="Masuk"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="325dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="67dp"
-        android:text="@string/singuptext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="171dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginBottom="44dp"
-        android:visibility="invisible"
-        android:indeterminateTint="@color/biru"
-        android:indeterminateTintMode="src_atop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

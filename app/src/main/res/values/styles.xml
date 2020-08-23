@@ -12,5 +12,51 @@
     </style>
 
 
+    <!-- TextView -->
+    <style name="AppTheme.TextView" parent="AppTheme">
+        <item name="android:color">@color/black</item>
+    </style>
 
+    <style name="AppTheme.TextView.Title" parent="AppTheme.TextView">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme.TextView.Subtitle" parent="AppTheme.TextView">
+        <item name="android:color">#828282</item>
+    </style>
+
+    <style name="AppTheme.TextView.Normal" parent="AppTheme.TextView">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AppTheme.TextView.Normal.Bold" parent="AppTheme.TextView.Normal">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme.TextView.Normal.Yellow" parent="AppTheme.TextView.Normal">
+        <item name="android:textColor">@color/yellow</item>
+    </style>
+
+    <!-- Button -->
+    <style name="AppTheme.Button" parent="AppTheme">
+        <item name="android:background">@drawable/box_biru</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingStart">@dimen/large</item>
+        <item name="android:paddingEnd">@dimen/large</item>
+    </style>
+
+    <!-- TextInputLayout -->
+    <style name="AppTheme.TextInputLayout" parent="AppTheme">
+        <item name="android:background">@drawable/boxputih</item>
+        <item name="boxBackgroundColor">@color/white</item>
+    </style>
+
+    <!-- TextInputEditText -->
+    <style name="AppTheme.TextInputEditText" parent="AppTheme">
+        <item name="android:background">@drawable/boxputih</item>
+    </style>
 </resources>
