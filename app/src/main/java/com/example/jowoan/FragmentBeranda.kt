@@ -51,6 +51,9 @@ class FragmentBeranda : Fragment() {
             expandView(expand_pemula1)
         }
 
+        btn_arrow_pemula2.setOnClickListener {
+            expandView(expand_pemula2)
+        }
         /*btn_arrow_pemula2.setOnClickListener {
 
 
