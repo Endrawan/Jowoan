@@ -20,6 +20,7 @@ import retrofit2.Response
 
 
 class SignUpActivity : AppCompatActivity() {
+    private val TAG = "SignUpActivity"
     private lateinit var auth: FirebaseAuth
     private var user = User()
     private val jowoanService = Repository.create()
@@ -28,7 +29,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        tvMasuk.paintFlags = Paint.UNDERLINE_TEXT_FLAG;
+        tvMasuk.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
@@ -51,16 +52,15 @@ class SignUpActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.d("Succes", "createUserWithEmail:success")
+                    Log.d(TAG, "createUserWithEmail:success")
                     storeUserToBackend()
                 } else {
-                    Log.w("Fail", "createUserWithEmail:failure", task.exception)
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     hideLoading()
                     val errorMessages = task.exception?.message
                     Utils.toast(this@SignUpActivity, "Gagal melakukan daftar! $errorMessages")
                 }
             }
-
     }
 
     private fun validateForm(): Boolean {
@@ -101,7 +101,7 @@ class SignUpActivity : AppCompatActivity() {
                     Utils.toast(this@SignUpActivity, "Pendaftaran berhasil!")
 
                     val u = response.body()
-                    Log.d("SignUpActivity", u.toString())
+                    Log.d(TAG, u.toString())
                     if (u != null) user = u
 
                     Intent(applicationContext, MainActivity::class.java).also {
@@ -109,8 +109,8 @@ class SignUpActivity : AppCompatActivity() {
                         finishAffinity()
                     }
                 } else {
-                    Log.d("SignUpActivity", user.toString())
-                    Log.d("SignUpActivity", "${response.code()} ${response.message()}")
+                    Log.d(TAG, user.toString())
+                    Log.d(TAG, "${response.code()} ${response.message()}")
                     hideLoading()
                     Utils.toast(
                         this@SignUpActivity,
@@ -123,7 +123,6 @@ class SignUpActivity : AppCompatActivity() {
                 hideLoading()
                 Utils.toast(this@SignUpActivity, "Pendaftaran Gagal! ${t.message}")
             }
-
         })
     }
 

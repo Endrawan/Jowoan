@@ -17,9 +17,9 @@ interface JowoanService {
     @POST("user/emailSignIn")
     fun emailSignIn(@Body user: User): Call<User>
 
-    @POST("user/externalSignUp")
-    fun externalSignUp(@Body user: User): Call<User>
+    @POST("user/tokenSignUp")
+    fun tokenSignUp(@Body user: User): Call<User>
 
-    @POST("user/externalSignIn")
-    fun externalSignIn(@Body user: User): Call<User>
+    @POST("user/tokenSignIn")
+    fun tokenSignIn(@Body user: User): Call<User>
 }

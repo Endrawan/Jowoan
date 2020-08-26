@@ -3,39 +3,33 @@ package com.example.jowoan.auth
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.jowoan.MainActivity
 import com.example.jowoan.R
 import com.example.jowoan.internal.Utils
+import com.example.jowoan.models.User
+import com.example.jowoan.network.Repository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.view_progress.*
-
-const val REQUEST_CODE_SIGN_IN = 0
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
-    private var progressBar: ProgressBar? = null
+    private val TAG = "LoginActivity"
+    private val auth = FirebaseAuth.getInstance()
+    private var user = User()
+    private val jowoanService = Repository.create()
 
-    //Handler
-    var handler = Handler()
-
-    lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //ProgressBar
-        progressBar = findViewById<ProgressBar>(R.id.progressBar) as ProgressBar
-
-        //auth
-        auth = FirebaseAuth.getInstance()
-
-        tvLP.paintFlags = Paint.UNDERLINE_TEXT_FLAG;
-        tbBA.paintFlags = Paint.UNDERLINE_TEXT_FLAG;
+        tvLP.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        tbBA.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
         tbBA.setOnClickListener {
             Intent(applicationContext, SignUpActivity::class.java).also {
@@ -53,23 +47,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun emailSignIn() {
-        val email: String = et_email_login.editText?.text.toString().trim()
-        val password: String = et_password_login.editText?.text.toString().trim()
-
         showLoading("Melakukan autentikasi ke firebase...")
 
-        auth.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(user.email, user.password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.d("Succes", "createUserWithEmail:success")
-                    Utils.toast(this@LoginActivity, "Sign in berhasil!")
-                    hideLoading()
-                    Intent(applicationContext, MainActivity::class.java).also {
-                        startActivity(it)
-                        finishAffinity()
-                    }
+                    Log.d(TAG, "createUserWithEmail:success")
+                    loginEmailForBackend()
                 } else {
-                    Log.w("Fail", "createUserWithEmail:failure", task.exception)
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     hideLoading()
                     val errorMessages = task.exception?.message
                     Utils.toast(this@LoginActivity, "Gagal melakukan login! $errorMessages")
@@ -77,11 +63,51 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+    private fun loginEmailForBackend() {
+        showLoading("Mengambil akun dari database...")
+        jowoanService.emailSignIn(user).enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    hideLoading()
+                    Utils.toast(this@LoginActivity, "Login berhasil!")
+
+                    val u = response.body()
+                    Log.d(TAG, u.toString())
+                    if (u != null) user = u
+
+                    Intent(applicationContext, MainActivity::class.java).also {
+                        startActivity(it)
+                        finishAffinity()
+                    }
+                } else {
+                    Log.d(TAG, user.toString())
+                    Log.d(TAG, "${response.code()} ${response.message()}")
+                    hideLoading()
+                    Utils.toast(
+                        this@LoginActivity,
+                        "Login Gagal! Gagal menyimpan ke database"
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                hideLoading()
+                Utils.toast(this@LoginActivity, "Login Gagal! ${t.message}")
+            }
+        })
+    }
+
     private fun validateForm(): Boolean {
-        val email: String = et_email_login.editText?.text.toString().trim()
-        val password: String = et_password_login.editText?.text.toString().trim()
-        if (email.isEmpty() || password.isEmpty()) {
-            Utils.toast(this, "Email dan Password tidak boleh kosong!")
+        user.email = et_email_login.editText?.text.toString().trim()
+        user.password = et_password_login.editText?.text.toString().trim()
+
+        if (user.email.isEmpty()) {
+            Utils.toast(this, "Email tidak boleh kosong!")
+            return false
+        }
+
+        if (user.password.isEmpty()) {
+            Utils.toast(this, "Password tidak boleh kosong!")
             return false
         }
         return true
