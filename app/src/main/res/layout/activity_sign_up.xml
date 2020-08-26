@@ -29,13 +29,12 @@
             android:text="@string/singuptext" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_password_lama"
+            android:id="@+id/et_fullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/small"
             android:background="@drawable/boxputih"
             app:boxBackgroundColor="#ffffff"
-            app:errorEnabled="true"
             app:startIconDrawable="@drawable/ic_namapengguna"
             app:startIconTint="@color/biru">
 
@@ -54,7 +53,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/small"
             android:background="@drawable/boxputih"
-            app:errorEnabled="true"
             app:passwordToggleEnabled="true"
             app:startIconDrawable="@drawable/passwrod"
             app:startIconTint="@color/biru">
@@ -76,7 +74,6 @@
             android:layout_marginBottom="@dimen/small"
             android:background="@drawable/boxputih"
             app:boxBackgroundColor="#ffffff"
-            app:errorEnabled="true"
             app:startIconDrawable="@drawable/email"
             app:startIconTint="@color/biru">
 
@@ -91,13 +88,12 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_telpon"
+            android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/normal"
             android:background="@drawable/boxputih"
             app:boxBackgroundColor="#ffffff"
-            app:errorEnabled="true"
             app:startIconDrawable="@drawable/ic_telpon"
             app:startIconTint="@color/biru">
 
@@ -132,17 +128,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/large"
-            android:text="Masuk"/>
+            android:text="Masuk" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminateTint="@color/biru"
-            android:indeterminateTintMode="src_atop"
-            android:visibility="invisible" />
+        <include layout="@layout/view_progress" />
 
     </LinearLayout>
 

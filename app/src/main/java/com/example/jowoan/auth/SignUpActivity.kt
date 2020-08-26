@@ -1,41 +1,37 @@
 package com.example.jowoan.auth
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.jowoan.Intro.Intro
 import com.example.jowoan.MainActivity
 import com.example.jowoan.R
-import com.google.android.material.snackbar.Snackbar
+import com.example.jowoan.internal.Utils
+import com.example.jowoan.models.User
+import com.example.jowoan.network.Repository
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.lang.Exception
+import kotlinx.android.synthetic.main.view_progress.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private var user = User()
+    private val jowoanService = Repository.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        tvMasuk.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
+        tvMasuk.paintFlags = Paint.UNDERLINE_TEXT_FLAG;
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-
 
         tvMasuk.setOnClickListener {
             Intent(applicationContext, LoginActivity::class.java).also {
@@ -45,52 +41,99 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         btnBuatAkun.setOnClickListener {
-            val email: String = et_email.getEditText()?.getText().toString().trim()
-            val password: String = et_password.getEditText()?.getText().toString().trim()
-            if (email.isEmpty() && password.isEmpty()) {
-                Snackbar.make(it, "Field Tidak Boleh Kosong", Snackbar.LENGTH_LONG)
-                    .show()
-            }
-            signUp()
-            loading()
+            if (validateForm()) emailSignUp()
         }
     }
 
-    private fun signUp() {
-        val email: String = et_email.getEditText()?.getText().toString().trim()
-        val password: String = et_password.getEditText()?.getText().toString().trim()
-        auth.createUserWithEmailAndPassword(email, password)
+    private fun emailSignUp() {
+        showLoading("Melakukan pembuatan akun pada Firebase...")
+
+        auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
                     Log.d("Succes", "createUserWithEmail:success")
+                    storeUserToBackend()
+                } else {
+                    Log.w("Fail", "createUserWithEmail:failure", task.exception)
+                    hideLoading()
+                    val errorMessages = task.exception?.message
+                    Utils.toast(this@SignUpActivity, "Gagal melakukan daftar! $errorMessages")
+                }
+            }
+
+    }
+
+    private fun validateForm(): Boolean {
+        user.fullName = et_fullname.editText?.text.toString().trim()
+        user.email = et_email.editText?.text.toString().trim()
+        user.password = et_password.editText?.text.toString().trim()
+        user.phone = et_phone.editText?.text.toString().trim()
+
+        if (user.fullName.isEmpty()) {
+            Utils.toast(this, "Nama tidak boleh kosong!")
+            return false
+        }
+
+        if (user.email.isEmpty()) {
+            Utils.toast(this, "Email tidak boleh kosong!")
+            return false
+        }
+
+        if (user.password.isEmpty()) {
+            Utils.toast(this, "Password tidak boleh kosong!")
+            return false
+        }
+
+        if (user.phone.isEmpty()) {
+            Utils.toast(this, "Nomer telepon tidak boleh kosong!")
+            return false
+        }
+
+        return true
+    }
+
+    private fun storeUserToBackend() {
+        showLoading("Menyimpan akun ke database...")
+        jowoanService.emailSignUp(user).enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    hideLoading()
+                    Utils.toast(this@SignUpActivity, "Pendaftaran berhasil!")
+
+                    val u = response.body()
+                    Log.d("SignUpActivity", u.toString())
+                    if (u != null) user = u
+
                     Intent(applicationContext, MainActivity::class.java).also {
                         startActivity(it)
                         finishAffinity()
                     }
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("Fail", "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+                    Log.d("SignUpActivity", user.toString())
+                    Log.d("SignUpActivity", "${response.code()} ${response.message()}")
+                    hideLoading()
+                    Utils.toast(
+                        this@SignUpActivity,
+                        "Pendaftaran Gagal! Gagal menyimpan ke database"
+                    )
                 }
-
             }
 
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                hideLoading()
+                Utils.toast(this@SignUpActivity, "Pendaftaran Gagal! ${t.message}")
+            }
+
+        })
     }
 
-    private fun loading() {
-        //Bar ki dihapus gara2 ternyata progressDialog udh di desprate ket API 26 kalau user salah masukin ntar looping teros
-        var progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Harap Menunggu Sebentar")
-        progressDialog.show()
-        var handler = Handler()
-        handler.postDelayed({
+    private fun showLoading(message: String) {
+        progressBar?.visibility = View.VISIBLE
+        progressMessage.text = message
+    }
 
-        }, 3000)
-
+    private fun hideLoading() {
+        progressBar?.visibility = View.INVISIBLE
+        progressMessage.text = ""
     }
 }

@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CobaActivity"></activity>
         <activity android:name=".Activity_P1_2" />
         <activity android:name=".pengaturan.PengaturanActivity" />
         <activity android:name=".auth.SignUpActivity" />
