@@ -1,15 +1,12 @@
 package com.example.jowoan
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.example.jowoan.FragmentProfil.FragmentProfil
 import com.example.jowoan.FragmentToko.FragmentToko
+import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 

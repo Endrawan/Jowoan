@@ -5,9 +5,9 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.example.jowoan.MainActivity
 import com.example.jowoan.R
+import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.internal.Utils
 import com.example.jowoan.models.User
 import com.example.jowoan.network.Repository
@@ -22,7 +22,6 @@ import retrofit2.Response
 class SignUpActivity : AppCompatActivity() {
     private val TAG = "SignUpActivity"
     private lateinit var auth: FirebaseAuth
-    private var user = User()
     private val jowoanService = Repository.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,7 +101,7 @@ class SignUpActivity : AppCompatActivity() {
 
                     val u = response.body()
                     Log.d(TAG, u.toString())
-                    if (u != null) user = u
+                    if (u != null) saveUser(u)
 
                     Intent(applicationContext, MainActivity::class.java).also {
                         startActivity(it)

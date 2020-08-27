@@ -5,9 +5,9 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.example.jowoan.MainActivity
 import com.example.jowoan.R
+import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.internal.Utils
 import com.example.jowoan.models.User
 import com.example.jowoan.network.Repository
@@ -26,7 +26,6 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
     private val TAG = "LoginActivity"
     private val auth = FirebaseAuth.getInstance()
-    private var user = User()
     private val jowoanService = Repository.create()
 
     private val RC_SIGN_IN = 1
@@ -95,12 +94,13 @@ class LoginActivity : AppCompatActivity() {
                     user.externalID = u.uid
 
                     val isNew = task.result!!.additionalUserInfo!!.isNewUser
+                    Log.d(TAG, "is user new?:${isNew}")
                     if (isNew) signUpTokenForBackend()
                     else loginTokenForBackend()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    updateUI()
+                    hideLoading()
                 }
             }
     }
@@ -138,11 +138,9 @@ class LoginActivity : AppCompatActivity() {
 
                     val u = response.body()
                     Log.d(TAG, u.toString())
-                    if (u != null) user = u
-
-                    Intent(applicationContext, MainActivity::class.java).also {
-                        startActivity(it)
-                        finishAffinity()
+                    if (u != null) {
+                        user = u
+                        updateUI(user)
                     }
                 } else {
                     Log.d(TAG, user.toString())
@@ -172,12 +170,14 @@ class LoginActivity : AppCompatActivity() {
 
                     val u = response.body()
                     Log.d(TAG, u.toString())
-                    if (u != null) user = u
-
-                    updateUI()
+                    if (u != null) {
+                        user = u
+                        updateUI(user)
+                    }
                 } else {
                     Log.d(TAG, user.toString())
                     Log.d(TAG, "${response.code()} ${response.message()}")
+                    Log.d(TAG, "requestBody:${gson.toJson(user)}")
                     hideLoading()
                     Utils.toast(
                         this@LoginActivity,
@@ -203,9 +203,10 @@ class LoginActivity : AppCompatActivity() {
 
                     val u = response.body()
                     Log.d(TAG, u.toString())
-                    if (u != null) user = u
-
-                    updateUI()
+                    if (u != null) {
+                        user = u
+                        updateUI(user)
+                    }
                 } else {
                     Log.d(TAG, user.toString())
                     Log.d(TAG, "${response.code()} ${response.message()}")
@@ -250,8 +251,10 @@ class LoginActivity : AppCompatActivity() {
         progressMessage.text = ""
     }
 
-    private fun updateUI() {
+    private fun updateUI(newUser: User) {
         if (auth.currentUser != null) {
+            Log.d(TAG, newUser.toString())
+            saveUser(newUser)
             Intent(applicationContext, MainActivity::class.java).also {
                 startActivity(it)
                 finishAffinity()

@@ -59,7 +59,7 @@ class FragmentPengaturan : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_logout.setOnClickListener {
-            pengaturanActivity.signOut()
+            pengaturanActivity.logout()
             Intent(requireContext(), LoginActivity::class.java).also {
                 startActivity(it)
 
