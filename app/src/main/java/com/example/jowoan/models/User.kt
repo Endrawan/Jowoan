@@ -1,15 +1,17 @@
 package com.example.jowoan.models
 
+import com.google.gson.annotations.SerializedName
+
 data class User(
     var ID: Int,
-    var fullName: String,
-    var email: String,
-    var password: String,
-    var phone: String,
-    var avatarID: Int,
-    var avatar: Avatar?,
-    var externalType: String,
-    var externalID: String
+    @SerializedName("fullname") var fullName: String,
+    @SerializedName("email") var email: String,
+    @SerializedName("password") var password: String,
+    @SerializedName("phone") var phone: String,
+    @SerializedName("avatar_id") var avatarID: Int,
+    @SerializedName("avatar") var avatar: Avatar?,
+    @SerializedName("external_type") var externalType: String,
+    @SerializedName("external_id") var externalID: String
 ) {
     constructor() : this(0, "", "", "", "", 0, null, "", "")
 }

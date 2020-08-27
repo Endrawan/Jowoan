@@ -2,32 +2,31 @@ package com.example.jowoan.pengaturan
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.jowoan.MainActivity
 import com.example.jowoan.R
 import com.example.jowoan.auth.LoginActivity
 import com.example.jowoan.databinding.FragmentPengaturanBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_pengaturan.*
 
 
 class FragmentPengaturan : Fragment() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var pengaturanActivity: PengaturanActivity
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        pengaturanActivity = activity as PengaturanActivity
 
         val bindingPengaturan : FragmentPengaturanBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_pengaturan, container, false)
 
@@ -60,8 +59,8 @@ class FragmentPengaturan : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_logout.setOnClickListener {
-            Firebase.auth.signOut()
-            Intent(requireContext(),LoginActivity::class.java).also {
+            pengaturanActivity.signOut()
+            Intent(requireContext(), LoginActivity::class.java).also {
                 startActivity(it)
 
             }

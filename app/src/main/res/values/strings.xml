@@ -9,4 +9,6 @@
     <string name="error_null">Field Tidak boleh kosong !!</string>
     <string name="WebClientId">45384362776-qjf439do818nvfip3vtvirnafduoueh3.apps.googleusercontent.com</string>
     <string name="emailKosong">Email Tidak Boleh Kosong</string>
+    <string name="default_web_cliend_id">45384362776-nsl2qt00dlcoe073er86ab95o53u39mp.apps.googleusercontent.com</string>
+    <string name="default_web_cliend_secret">i6qIBUoucvNGDxTBQwxYL7iv</string>
 </resources>
