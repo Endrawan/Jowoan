@@ -1,6 +1,7 @@
 package com.example.jowoan.network
 
 import com.example.jowoan.models.Avatar
+import com.example.jowoan.models.Practice
 import com.example.jowoan.models.User
 import retrofit2.Call
 import retrofit2.http.Body
@@ -22,4 +23,7 @@ interface JowoanService {
 
     @POST("user/tokenSignIn")
     fun tokenSignIn(@Body user: User): Call<User>
+
+    @GET("practice")
+    fun practiceGetAll(): Call<List<Practice>>
 }

@@ -5,23 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.example.jowoan.R
+import com.example.jowoan.custom.Fragment
 import com.example.jowoan.databinding.FragmentProfilBinding
 import com.example.jowoan.pengaturan.PengaturanActivity
-
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_profil.*
 
 
 class FragmentProfil : Fragment() {
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +31,6 @@ class FragmentProfil : Fragment() {
         binding.btnPengaturan.setOnClickListener {
             val intent = Intent(requireContext(), PengaturanActivity::class.java)
             startActivity(intent)
-
         }
 //
 //        btn_logout.setOnClickListener(View.OnClickListener {
@@ -50,13 +44,16 @@ class FragmentProfil : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        textView_fullName.text = activity.user.fullName
+    }
+
     //Call onActivity Create method
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setUpViewPager(ViewPagerProfil)
-
-
-
 
         //tablayout
         tabLayoutProfil.setupWithViewPager(ViewPagerProfil)

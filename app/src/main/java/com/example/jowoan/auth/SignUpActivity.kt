@@ -10,7 +10,6 @@ import com.example.jowoan.R
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.internal.Utils
 import com.example.jowoan.models.User
-import com.example.jowoan.network.Repository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.view_progress.*
@@ -22,7 +21,6 @@ import retrofit2.Response
 class SignUpActivity : AppCompatActivity() {
     private val TAG = "SignUpActivity"
     private lateinit var auth: FirebaseAuth
-    private val jowoanService = Repository.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.jowoan.R
 import com.example.jowoan.internal.Utils
 import com.example.jowoan.models.User
+import com.example.jowoan.network.Repository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -19,6 +20,8 @@ open class AppCompatActivity : AppCompatActivity() {
     var user: User = User()
     private lateinit var googleSignInClient: GoogleSignInClient
     private val TAG = "AppCompatActivity"
+
+    val jowoanService = Repository.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

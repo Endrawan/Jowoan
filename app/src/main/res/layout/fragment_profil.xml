@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -11,55 +10,56 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="72dp"
             android:background="@color/abu"
             android:orientation="vertical"
-            tools:context=".FragmentProfil.FragmentProfil"
-            android:layout_marginBottom="72dp">
+            tools:context=".FragmentProfil.FragmentProfil">
 
             <Button
                 android:id="@+id/btn_pengaturan"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="end"
-                android:background="@drawable/ic_setting"
                 android:layout_marginTop="@dimen/large"
                 android:layout_marginEnd="@dimen/normal"
-                android:layout_marginBottom="@dimen/large"/>
+                android:layout_marginBottom="@dimen/large"
+                android:background="@drawable/ic_setting" />
 
             <FrameLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                android:background="@drawable/photobackground"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/normal">
+                android:layout_marginBottom="@dimen/normal"
+                android:background="@drawable/photobackground">
 
                 <ImageView
                     android:layout_width="128dp"
                     android:layout_height="128dp"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/text_profile_image"
                     android:src="@drawable/avatar_basic" />
 
             </FrameLayout>
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/textView_fullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Zainuri Mahmud"
+                android:layout_marginBottom="@dimen/small"
                 android:gravity="center_horizontal"
                 android:textColor="#000000"
                 android:textSize="25sp"
-                android:layout_marginBottom="@dimen/small"/>
+                tools:text="Zainuri Mahmud" />
 
             <TextView
                 android:id="@+id/tv_poin_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/large"
                 android:gravity="center_horizontal"
                 android:text="Poin User"
-                android:textSize="18sp"
-                android:layout_marginBottom="@dimen/large"/>
+                android:textSize="18sp" />
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
@@ -71,15 +71,14 @@
                     android:id="@+id/tabLayoutProfil"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@drawable/box_melengkung">
-                </com.google.android.material.tabs.TabLayout>
+                    android:background="@drawable/box_melengkung" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/ViewPagerProfil"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"/>
+                android:layout_height="400dp" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

@@ -1,164 +1,83 @@
 package com.example.jowoan
 
-import android.content.Intent
 import android.os.Bundle
-import android.transition.AutoTransition
-import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import com.example.jowoan.anim.Expandable
-import com.example.jowoan.databinding.FragmentBerandaBinding
-import com.example.jowoan.pengaturan.PengaturanActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.jowoan.adapters.PracticeAdapter
+import com.example.jowoan.custom.Fragment
+import com.example.jowoan.internal.Utils
+import com.example.jowoan.models.Practice
 import kotlinx.android.synthetic.main.fragment_beranda.*
+import kotlinx.android.synthetic.main.view_progress.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
  */
 class FragmentBeranda : Fragment() {
-    var arrowBtn: Button? = null
+
+    var practices = mutableListOf<Practice>()
+    private lateinit var adapter: PracticeAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentBerandaBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_beranda, container, false)
-
-
-//
-//        binding.ivPemula1Pelajaran2.setOnClickListener {
-//            val intent = Intent(requireContext(), Activity_P1_2::class.java)
-//            startActivity(intent)
-//
-//        }
+        adapter = PracticeAdapter(practices)
 
         return inflater.inflate(R.layout.fragment_beranda, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-//        iv_pemula1_pelajaran2.setOnClickListener {
-//            val intent = Intent(requireContext(), Activity_P1_2::class.java)
-//            startActivity(intent)
-//
-//        }
-
-        btn_arrow_pemula1.setOnClickListener {
-            expandView(expand_pemula1)
+        showLoading("Mengambil data practice...")
+        textView_fullName.text = activity.user.fullName
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = this@FragmentBeranda.adapter
         }
-
-        btn_arrow_pemula2.setOnClickListener {
-            expandView(expand_pemula2)
-        }
-        /*btn_arrow_pemula2.setOnClickListener {
-
-
-            if (expand_pemula2.getVisibility() == View.GONE) {
-                TransitionManager.beginDelayedTransition(
-                    cardview,
-                    AutoTransition()
-                )
-                expand_pemula2.setVisibility(View.VISIBLE)
-
-            } else {
-                TransitionManager.beginDelayedTransition(
-                    cardview,
-                    AutoTransition()
-                )
-                expand_pemula2.setVisibility(View.GONE)
-
-            }
-        }
-
-        btn_arrow_menengah1.setOnClickListener {
-
-
-            if (expand_menengah1.getVisibility() == View.GONE) {
-                TransitionManager.beginDelayedTransition(
-                    cardview,
-                    AutoTransition()
-                )
-                expand_menengah1.setVisibility(View.VISIBLE)
-
-            } else {
-                TransitionManager.beginDelayedTransition(
-                    cardview,
-                    AutoTransition()
-                )
-                expand_menengah1.setVisibility(View.GONE)
-
-            }
-        }
-
-        btn_arrow_menengah2.setOnClickListener {
-
-
-            if (expand_menengah2.getVisibility() == View.GONE) {
-                TransitionManager.beginDelayedTransition(
-                    cardview,
-                    AutoTransition()
-                )
-                expand_menengah2.setVisibility(View.VISIBLE)
-
-            } else {
-                TransitionManager.beginDelayedTransition(
-                    cardview,
-                    AutoTransition()
-                )
-                expand_menengah2.setVisibility(View.GONE)
-
-            }
-        }
-
-        btn_arrow_mahir1.setOnClickListener {
-
-
-            if (expand_mahir1.getVisibility() == View.GONE) {
-                TransitionManager.beginDelayedTransition(
-                    cardview,
-                    AutoTransition()
-                )
-                expand_mahir1.setVisibility(View.VISIBLE)
-
-            } else {
-                TransitionManager.beginDelayedTransition(
-                    cardview,
-                    AutoTransition()
-                )
-                expand_mahir1.setVisibility(View.GONE)
-
-            }
-        }
-
-        btn_arrow_mahir2.setOnClickListener {
-
-
-            if (expand_mahir2.getVisibility() == View.GONE) {
-                TransitionManager.beginDelayedTransition(
-                    cardview,
-                    AutoTransition()
-                )
-                expand_mahir2.setVisibility(View.VISIBLE)
-
-            } else {
-                TransitionManager.beginDelayedTransition(
-                    cardview,
-                    AutoTransition()
-                )
-                expand_mahir2.setVisibility(View.GONE)
-
-            }
-        }*/
+        loadPractice()
     }
 
-    private fun expandView(view: View) {
-        if (view.visibility == View.GONE)
-            Expandable.expand(view)
-        else
-            Expandable.collapse(view)
+    private fun loadPractice() {
+        activity.jowoanService.practiceGetAll().enqueue(object : Callback<List<Practice>> {
+            override fun onResponse(
+                call: Call<List<Practice>>,
+                response: Response<List<Practice>>
+            ) {
+                hideLoading()
+                if (response.isSuccessful) {
+                    val u = response.body()
+                    if (u != null) {
+                        practices.addAll(u)
+                        adapter.notifyDataSetChanged()
+                        Utils.toast(activity, "Accessed!")
+                    }
+                } else {
+                    Utils.toast(activity, "${response.code()} ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<Practice>>, t: Throwable) {
+                Utils.toast(activity, t.message.toString())
+                hideLoading()
+            }
+
+        })
+    }
+
+    private fun showLoading(message: String) {
+        progressBar?.visibility = View.VISIBLE
+        progressMessage.text = message
+    }
+
+    private fun hideLoading() {
+        progressBar?.visibility = View.INVISIBLE
+        progressMessage.text = ""
     }
 }

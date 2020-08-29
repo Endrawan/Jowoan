@@ -13,4 +13,5 @@
     <string name="default_web_cliend_secret">i6qIBUoucvNGDxTBQwxYL7iv</string>
     <string name="saved_user">SAVED_USER</string>
     <string name="preference_file_key">com.example.jowoan.desu</string>
+    <string name="text_profile_image">Profile Image</string>
 </resources>

@@ -49,6 +49,11 @@
         <item name="android:paddingEnd">@dimen/large</item>
     </style>
 
+    <style name="AppTheme.Button.Paddingless" parent="AppTheme.Button">
+        <item name="minWidth">0dp</item>
+        <item name="minHeight">0dp</item>
+    </style>
+
     <!-- TextInputLayout -->
     <style name="AppTheme.TextInputLayout" parent="AppTheme">
         <item name="android:background">@drawable/boxputih</item>

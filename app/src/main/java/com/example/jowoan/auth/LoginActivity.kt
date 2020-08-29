@@ -10,7 +10,6 @@ import com.example.jowoan.R
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.internal.Utils
 import com.example.jowoan.models.User
-import com.example.jowoan.network.Repository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -26,7 +25,6 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
     private val TAG = "LoginActivity"
     private val auth = FirebaseAuth.getInstance()
-    private val jowoanService = Repository.create()
 
     private val RC_SIGN_IN = 1
     private lateinit var googleSignInClient: GoogleSignInClient
