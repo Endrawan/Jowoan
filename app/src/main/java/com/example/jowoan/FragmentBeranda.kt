@@ -15,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 /**
  * A simple [Fragment] subclass.
  */
@@ -54,6 +55,7 @@ class FragmentBeranda : Fragment() {
                 if (response.isSuccessful) {
                     val u = response.body()
                     if (u != null) {
+                        practices.clear()
                         practices.addAll(u)
                         adapter.notifyDataSetChanged()
                         Utils.toast(activity, "Accessed!")
