@@ -3,6 +3,7 @@ package com.example.jowoan.custom
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.jowoan.R
 import com.example.jowoan.internal.Utils
@@ -72,5 +73,9 @@ open class AppCompatActivity : AppCompatActivity() {
         }
         Firebase.auth.signOut()
         googleSignInClient.signOut()
+    }
+
+    fun toast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

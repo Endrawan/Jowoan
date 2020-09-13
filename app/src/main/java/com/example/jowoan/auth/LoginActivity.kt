@@ -10,6 +10,7 @@ import com.example.jowoan.R
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.internal.Utils
 import com.example.jowoan.models.User
+import com.example.jowoan.network.APICallback
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -18,9 +19,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.view_progress.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private val TAG = "LoginActivity"
@@ -128,99 +126,85 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginEmailForBackend() {
         showLoading("Mengambil akun dari database...")
-        jowoanService.emailSignIn(user).enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if (response.isSuccessful) {
-                    hideLoading()
-                    Utils.toast(this@LoginActivity, "Login berhasil!")
-
-                    val u = response.body()
-                    Log.d(TAG, u.toString())
-                    if (u != null) {
-                        user = u
-                        updateUI(user)
-                    }
-                } else {
-                    Log.d(TAG, user.toString())
-                    Log.d(TAG, "${response.code()} ${response.message()}")
-                    hideLoading()
-                    Utils.toast(
-                        this@LoginActivity,
-                        "Login Gagal! Gagal menyimpan ke database"
-                    )
-                }
-            }
-
-            override fun onFailure(call: Call<User>, t: Throwable) {
+        jowoanService.emailSignIn(user).enqueue(APICallback(object : APICallback.Action<User> {
+            override fun responseSuccess(data: User) {
                 hideLoading()
-                Utils.toast(this@LoginActivity, "Login Gagal! ${t.message}")
+                toast("Login Berhasil!")
+                user = data
+                updateUI(user)
             }
-        })
+
+            override fun dataNotFound(message: String) {
+                hideLoading()
+                toast(message)
+            }
+
+            override fun responseFailed(status: String, message: String) {
+                hideLoading()
+                toast("Login gagal! status:$status, message:$message")
+            }
+
+            override fun networkFailed(t: Throwable) {
+                hideLoading()
+                toast("Login gagal! error:${t.message}")
+            }
+        }))
     }
 
     private fun loginTokenForBackend() {
         showLoading("Mengambil akun dari database...")
-        jowoanService.tokenSignIn(user).enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if (response.isSuccessful) {
-                    hideLoading()
-                    Utils.toast(this@LoginActivity, "Login berhasil!")
-
-                    val u = response.body()
-                    Log.d(TAG, u.toString())
-                    if (u != null) {
-                        user = u
-                        updateUI(user)
-                    }
-                } else {
-                    Log.d(TAG, user.toString())
-                    Log.d(TAG, "${response.code()} ${response.message()}")
-                    Log.d(TAG, "requestBody:${gson.toJson(user)}")
-                    hideLoading()
-                    Utils.toast(
-                        this@LoginActivity,
-                        "Login Gagal! Gagal mengambil ke database"
-                    )
-                }
-            }
-
-            override fun onFailure(call: Call<User>, t: Throwable) {
+        jowoanService.tokenSignIn(user).enqueue(APICallback(object : APICallback.Action<User> {
+            override fun responseSuccess(data: User) {
                 hideLoading()
-                Utils.toast(this@LoginActivity, "Login Gagal! ${t.message}")
+                toast("Login Berhasil!")
+                user = data
+                updateUI(user)
             }
-        })
+
+            override fun dataNotFound(message: String) {
+                hideLoading()
+                toast(message)
+            }
+
+            override fun responseFailed(status: String, message: String) {
+                hideLoading()
+                toast("Login gagal! status:$status, message:$message")
+            }
+
+            override fun networkFailed(t: Throwable) {
+                hideLoading()
+                toast("Login gagal! error:${t.message}")
+            }
+
+        }))
     }
 
     private fun signUpTokenForBackend() {
         showLoading("Menyimpan akun ke database...")
-        jowoanService.tokenSignUp(user).enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if (response.isSuccessful) {
-                    hideLoading()
-                    Utils.toast(this@LoginActivity, "Pendaftaran berhasil!")
-
-                    val u = response.body()
-                    Log.d(TAG, u.toString())
-                    if (u != null) {
-                        user = u
-                        updateUI(user)
-                    }
-                } else {
-                    Log.d(TAG, user.toString())
-                    Log.d(TAG, "${response.code()} ${response.message()}")
-                    hideLoading()
-                    Utils.toast(
-                        this@LoginActivity,
-                        "Pendaftaran Gagal! Gagal menyimpan ke database"
-                    )
-                }
-            }
-
-            override fun onFailure(call: Call<User>, t: Throwable) {
+        jowoanService.tokenSignUp(user).enqueue(APICallback(object : APICallback.Action<User> {
+            override fun responseSuccess(data: User) {
                 hideLoading()
-                Utils.toast(this@LoginActivity, "Pendaftaran Gagal! ${t.message}")
+                toast("Login Berhasil!")
+                user = data
+                updateUI(user)
             }
-        })
+
+            override fun dataNotFound(message: String) {
+                hideLoading()
+                toast(message)
+            }
+
+            override fun responseFailed(status: String, message: String) {
+                hideLoading()
+                toast("Login gagal! status:$status, message:$message")
+            }
+
+            override fun networkFailed(t: Throwable) {
+                hideLoading()
+                toast("Login gagal! error:${t.message}")
+            }
+
+        }))
     }
 
     private fun validateForm(): Boolean {

@@ -10,12 +10,10 @@ import com.example.jowoan.R
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.internal.Utils
 import com.example.jowoan.models.User
+import com.example.jowoan.network.APICallback
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.view_progress.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -91,36 +89,32 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun storeUserToBackend() {
         showLoading("Menyimpan akun ke database...")
-        jowoanService.emailSignUp(user).enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if (response.isSuccessful) {
-                    hideLoading()
-                    Utils.toast(this@SignUpActivity, "Pendaftaran berhasil!")
-
-                    val u = response.body()
-                    Log.d(TAG, u.toString())
-                    if (u != null) saveUser(u)
-
-                    Intent(applicationContext, MainActivity::class.java).also {
-                        startActivity(it)
-                        finishAffinity()
-                    }
-                } else {
-                    Log.d(TAG, user.toString())
-                    Log.d(TAG, "${response.code()} ${response.message()}")
-                    hideLoading()
-                    Utils.toast(
-                        this@SignUpActivity,
-                        "Pendaftaran Gagal! Gagal menyimpan ke database"
-                    )
+        jowoanService.emailSignUp(user).enqueue(APICallback(object : APICallback.Action<User> {
+            override fun responseSuccess(data: User) {
+                hideLoading()
+                toast("Pendaftaran berhasil!")
+                saveUser(data)
+                Intent(applicationContext, MainActivity::class.java).also {
+                    startActivity(it)
+                    finishAffinity()
                 }
             }
 
-            override fun onFailure(call: Call<User>, t: Throwable) {
+            override fun dataNotFound(message: String) {
                 hideLoading()
-                Utils.toast(this@SignUpActivity, "Pendaftaran Gagal! ${t.message}")
+                toast("Data not found!")
             }
-        })
+
+            override fun responseFailed(status: String, message: String) {
+                hideLoading()
+                toast("Pendaftaran Gagal! Status: $status Message: $message")
+            }
+
+            override fun networkFailed(t: Throwable) {
+                hideLoading()
+                toast("Pendaftaran Gagal! ${t.message}")
+            }
+        }))
     }
 
     private fun showLoading(message: String) {

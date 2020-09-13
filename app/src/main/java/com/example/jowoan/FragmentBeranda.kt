@@ -7,13 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jowoan.adapters.PracticeAdapter
 import com.example.jowoan.custom.Fragment
-import com.example.jowoan.internal.Utils
 import com.example.jowoan.models.Practice
+import com.example.jowoan.network.APICallback
 import kotlinx.android.synthetic.main.fragment_beranda.*
 import kotlinx.android.synthetic.main.view_progress.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 /**
@@ -46,31 +43,31 @@ class FragmentBeranda : Fragment() {
     }
 
     private fun loadPractice() {
-        activity.jowoanService.practiceGetAll().enqueue(object : Callback<List<Practice>> {
-            override fun onResponse(
-                call: Call<List<Practice>>,
-                response: Response<List<Practice>>
-            ) {
-                hideLoading()
-                if (response.isSuccessful) {
-                    val u = response.body()
-                    if (u != null) {
-                        practices.clear()
-                        practices.addAll(u)
-                        adapter.notifyDataSetChanged()
-                        Utils.toast(activity, "Accessed!")
-                    }
-                } else {
-                    Utils.toast(activity, "${response.code()} ${response.message()}")
+        activity.jowoanService.practiceGetAll(activity.user.token)
+            .enqueue(APICallback(object : APICallback.Action<List<Practice>> {
+                override fun responseSuccess(data: List<Practice>) {
+                    hideLoading()
+                    practices.clear()
+                    practices.addAll(data)
+                    adapter.notifyDataSetChanged()
                 }
-            }
 
-            override fun onFailure(call: Call<List<Practice>>, t: Throwable) {
-                Utils.toast(activity, t.message.toString())
-                hideLoading()
-            }
+                override fun dataNotFound(message: String) {
+                    hideLoading()
+                    activity.toast(message)
+                }
 
-        })
+                override fun responseFailed(status: String, message: String) {
+                    hideLoading()
+                    activity.toast("Request gagal. status:$status, message:$message")
+                }
+
+                override fun networkFailed(t: Throwable) {
+                    hideLoading()
+                    activity.toast("Request gagal. error:${t.message}")
+                }
+
+            }))
     }
 
     private fun showLoading(message: String) {

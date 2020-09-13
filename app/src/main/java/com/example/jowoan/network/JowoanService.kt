@@ -6,6 +6,7 @@ import com.example.jowoan.models.User
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface JowoanService {
@@ -13,17 +14,17 @@ interface JowoanService {
     fun listAvatars(): Call<List<Avatar>>
 
     @POST("user/emailSignUp")
-    fun emailSignUp(@Body user: User): Call<User>
+    fun emailSignUp(@Body user: User): Call<APIResponse<User>>
 
     @POST("user/emailSignIn")
-    fun emailSignIn(@Body user: User): Call<User>
+    fun emailSignIn(@Body user: User): Call<APIResponse<User>>
 
     @POST("user/tokenSignUp")
-    fun tokenSignUp(@Body user: User): Call<User>
+    fun tokenSignUp(@Body user: User): Call<APIResponse<User>>
 
     @POST("user/tokenSignIn")
-    fun tokenSignIn(@Body user: User): Call<User>
+    fun tokenSignIn(@Body user: User): Call<APIResponse<User>>
 
     @GET("practice")
-    fun practiceGetAll(): Call<List<Practice>>
+    fun practiceGetAll(@Header("Token") token: String): Call<APIResponse<List<Practice>>>
 }

@@ -11,7 +11,8 @@ data class User(
     @SerializedName("avatar_id") var avatarID: Int,
     @SerializedName("avatar") var avatar: Avatar?,
     @SerializedName("external_type") var externalType: String,
-    @SerializedName("external_id") var externalID: String
+    @SerializedName("external_id") var externalID: String,
+    @SerializedName("token") var token: String
 ) {
-    constructor() : this(0, "", "", "", "", 0, null, "", "")
+    constructor() : this(0, "", "", "", "", 0, null, "", "", "")
 }
