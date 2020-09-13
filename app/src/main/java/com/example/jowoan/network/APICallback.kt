@@ -39,7 +39,11 @@ class APICallback<T>(val action: Action<T>) : Callback<APIResponse<T>> {
             val message = "not found"
             if (errorResponse != null) {
                 if (errorResponse.message != null) {
-                    action.responseFailed(errorResponse.status, errorResponse.message)
+                    if (errorResponse.message == "Token is expired") {
+                        action.tokenExpired()
+                    } else {
+                        action.responseFailed(errorResponse.status, errorResponse.message)
+                    }
                 } else {
                     action.responseFailed(errorResponse.status, message)
                 }
@@ -60,5 +64,6 @@ class APICallback<T>(val action: Action<T>) : Callback<APIResponse<T>> {
         fun dataNotFound(message: String)
         fun responseFailed(status: String, message: String)
         fun networkFailed(t: Throwable)
+        fun tokenExpired()
     }
 }

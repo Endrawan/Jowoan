@@ -1,11 +1,13 @@
 package com.example.jowoan
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jowoan.adapters.PracticeAdapter
+import com.example.jowoan.auth.LoginActivity
 import com.example.jowoan.custom.Fragment
 import com.example.jowoan.models.Practice
 import com.example.jowoan.network.APICallback
@@ -26,7 +28,6 @@ class FragmentBeranda : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         adapter = PracticeAdapter(practices)
-
         return inflater.inflate(R.layout.fragment_beranda, container, false)
     }
 
@@ -65,6 +66,15 @@ class FragmentBeranda : Fragment() {
                 override fun networkFailed(t: Throwable) {
                     hideLoading()
                     activity.toast("Request gagal. error:${t.message}")
+                }
+
+                override fun tokenExpired() {
+                    hideLoading()
+                    activity.toast("Token telah expired, silahkan login ulang")
+                    activity.logout()
+                    Intent(requireContext(), LoginActivity::class.java).also {
+                        startActivity(it)
+                    }
                 }
 
             }))

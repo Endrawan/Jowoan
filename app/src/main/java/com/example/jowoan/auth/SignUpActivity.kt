@@ -114,6 +114,11 @@ class SignUpActivity : AppCompatActivity() {
                 hideLoading()
                 toast("Pendaftaran Gagal! ${t.message}")
             }
+
+            override fun tokenExpired() {
+                hideLoading()
+                toast("Token expired!")
+            }
         }))
     }
 

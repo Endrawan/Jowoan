@@ -148,6 +148,11 @@ class LoginActivity : AppCompatActivity() {
                 hideLoading()
                 toast("Login gagal! error:${t.message}")
             }
+
+            override fun tokenExpired() {
+                hideLoading()
+                toast("Token expired!")
+            }
         }))
     }
 
@@ -176,6 +181,11 @@ class LoginActivity : AppCompatActivity() {
                 toast("Login gagal! error:${t.message}")
             }
 
+            override fun tokenExpired() {
+                hideLoading()
+                toast("Token expired!")
+            }
+
         }))
     }
 
@@ -202,6 +212,11 @@ class LoginActivity : AppCompatActivity() {
             override fun networkFailed(t: Throwable) {
                 hideLoading()
                 toast("Login gagal! error:${t.message}")
+            }
+
+            override fun tokenExpired() {
+                hideLoading()
+                toast("Token expired!")
             }
 
         }))

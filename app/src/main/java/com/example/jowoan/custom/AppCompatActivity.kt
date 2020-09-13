@@ -28,11 +28,7 @@ open class AppCompatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         loadUser()
-        if (user.fullName.isNotEmpty()) {
-            Utils.toast(this, "User logged in! ${user.fullName}")
-        } else {
-            Utils.toast(this, "User not logged in!")
-        }
+        checkUser()
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -40,6 +36,14 @@ open class AppCompatActivity : AppCompatActivity() {
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
+    }
+
+    fun checkUser() {
+        if (user.fullName.isNotEmpty()) {
+            Utils.toast(this, "User logged in! ${user.fullName}")
+        } else {
+            Utils.toast(this, "User not logged in!")
+        }
     }
 
     fun saveUser(user: User) {
