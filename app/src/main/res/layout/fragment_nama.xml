@@ -50,15 +50,19 @@
             app:boxBackgroundColor="#ffffff">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_name"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:background="@drawable/boxputih"
                 android:text="Nama Pengguna"
+                android:inputType="textPersonName"
+                android:singleLine="true"
                 android:textColor="#666666" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/button_submit"
             android:layout_width="182dp"
             android:layout_height="57dp"
             android:layout_gravity="center_horizontal"
@@ -66,7 +70,10 @@
             android:text="Simpan"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
+            android:layout_marginBottom="@dimen/normal"
             android:textSize="18sp" />
+
+        <include layout="@layout/view_progress" />
 
     </LinearLayout>
 </layout>

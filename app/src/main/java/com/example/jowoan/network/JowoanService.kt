@@ -4,10 +4,7 @@ import com.example.jowoan.models.Avatar
 import com.example.jowoan.models.Practice
 import com.example.jowoan.models.User
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface JowoanService {
     @GET("avatar")
@@ -27,4 +24,11 @@ interface JowoanService {
 
     @GET("practice")
     fun practiceGetAll(@Header("Token") token: String): Call<APIResponse<List<Practice>>>
+
+    @PUT("user/{id}")
+    fun userUpdate(
+        @Header("Token") token: String,
+        @Path("id") id: Int,
+        @Body user: User
+    ): Call<APIResponse<User>>
 }

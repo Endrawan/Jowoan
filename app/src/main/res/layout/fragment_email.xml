@@ -51,14 +51,18 @@
             android:layout_marginBottom="@dimen/large">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_email"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:background="@drawable/boxputih"
-                android:text="Zainurimahmud@gmail.com"
-                android:textColor="#666666" />
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textColor="#666666"
+                tools:text="Zainurimahmud@gmail.com" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/button_submit"
             android:layout_width="182dp"
             android:layout_height="57dp"
             android:layout_gravity="center_horizontal"
@@ -66,6 +70,11 @@
             android:text="Simpan"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
+            android:layout_marginBottom="@dimen/normal"
             android:textSize="18sp" />
+
+        <include layout="@layout/view_progress" />
+
+
     </LinearLayout>
 </layout>

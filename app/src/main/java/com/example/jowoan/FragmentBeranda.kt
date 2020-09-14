@@ -76,7 +76,6 @@ class FragmentBeranda : Fragment() {
                         startActivity(it)
                     }
                 }
-
             }))
     }
 

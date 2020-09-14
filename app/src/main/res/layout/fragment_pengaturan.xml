@@ -77,11 +77,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-
+                    android:id="@+id/textView_fullName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="Nama Pengguna"
+                    android:text="Belum di set"
                     app:layout_constraintStart_toStartOf="@+id/textView21"
                     app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
@@ -128,11 +128,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-
+                    android:id="@+id/textView_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="NamaPengguna@gmail.com"
+                    android:text="Belum di set"
                     app:layout_constraintStart_toStartOf="@+id/textView22"
                     app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
@@ -179,11 +179,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-
+                    android:id="@+id/textView_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="********"
+                    android:text="Belum di set"
                     app:layout_constraintStart_toStartOf="@+id/textView24"
                     app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -230,11 +230,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-
+                    android:id="@+id/textView_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="+62 81249333858"
+                    android:text="Belum di set"
                     app:layout_constraintStart_toStartOf="@+id/textView25"
                     app:layout_constraintTop_toBottomOf="@+id/textView25" />
 

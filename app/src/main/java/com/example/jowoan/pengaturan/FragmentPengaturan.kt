@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.jowoan.MainActivity
 import com.example.jowoan.R
 import com.example.jowoan.auth.LoginActivity
+import com.example.jowoan.custom.Fragment
 import com.example.jowoan.databinding.FragmentPengaturanBinding
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_pengaturan.*
@@ -58,13 +58,27 @@ class FragmentPengaturan : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (activity.user.fullName.isNotEmpty()) {
+            textView_fullName.text = activity.user.fullName
+        }
+        if (activity.user.email.isNotEmpty()) {
+            textView_email.text = activity.user.email
+        }
+        if (activity.user.password.isNotEmpty()) {
+            textView_password.text = "******"
+        }
+        if (activity.user.phone.isNotEmpty()) {
+            textView_phone.text = activity.user.phone
+        }
+
         btn_logout.setOnClickListener {
             pengaturanActivity.logout()
             Intent(requireContext(), LoginActivity::class.java).also {
                 startActivity(it)
-
+                activity.finishAffinity()
             }
-            Toast.makeText(context,"Anda Telah Keluar",Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Anda Telah Keluar", Toast.LENGTH_LONG).show()
         }
 
     }
