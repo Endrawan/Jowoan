@@ -1,4 +1,4 @@
-package com.example.jowoan.Intro
+package com.example.jowoan.views.intro
 
 data class IntroSlide(
     val title: String,

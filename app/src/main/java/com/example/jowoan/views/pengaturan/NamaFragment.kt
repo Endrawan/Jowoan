@@ -1,4 +1,4 @@
-package com.example.jowoan.pengaturan
+package com.example.jowoan.views.pengaturan
 
 import android.os.Bundle
 import android.util.Log
@@ -9,25 +9,27 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.example.jowoan.R
 import com.example.jowoan.custom.Fragment
-import com.example.jowoan.databinding.FragmentEmailBinding
+import com.example.jowoan.databinding.FragmentNamaBinding
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_email.*
+import com.google.firebase.auth.ktx.userProfileChangeRequest
+import kotlinx.android.synthetic.main.fragment_nama.*
 import kotlinx.android.synthetic.main.view_progress.*
 
-class EmailFragment : Fragment() {
+class NamaFragment : Fragment() {
 
-    private val TAG = "EmaiLFragment"
+    private val TAG = "NamaFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding: FragmentEmailBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_email, container, false)
+        val binding: FragmentNamaBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_nama, container, false)
 
         binding.buttonBack.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_emailFragment_to_fragmentPengaturan2)
+
+            Navigation.createNavigateOnClickListener(R.id.action_namaFragment_to_fragmentPengaturan2)
         )
 
         return binding.root
@@ -35,34 +37,38 @@ class EmailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        editText_email.setText(activity.user.email)
-        button_submit.setOnClickListener { validateAndUpdateEmail() }
+        editText_name.setText(activity.user.fullName)
+        button_submit.setOnClickListener { validateAndUpdateName() }
     }
 
-    private fun validateAndUpdateEmail() {
-        val email = editText_email.text.toString().trim()
-        if (email.isEmpty()) {
-            activity.toast("Email tidak boleh kosong!")
+    private fun validateAndUpdateName() {
+        val name = editText_name.text.toString().trim()
+        if (name.length < 6) {
+            activity.toast("Nama tidak boleh kurang dari 6 karakter!")
             return
         }
-        activity.user.email = email
+        activity.user.fullName = name
         updateFirebase()
     }
 
     private fun updateFirebase() {
-        showLoading("Mengubah email di Firebase...")
+        showLoading("Mengubah nama di Firebase...")
         val user = FirebaseAuth.getInstance().currentUser
 
-        user!!.updateEmail(activity.user.email)
+        val profileUpdates = userProfileChangeRequest {
+            displayName = activity.user.fullName
+        }
+
+        user!!.updateProfile(profileUpdates)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "User email address updated.")
+                    Log.d(TAG, "User name updated.")
                     val a = activity as PengaturanActivity
-                    a.updateBackend("email")
+                    a.updateBackend("nama")
                 } else {
                     hideLoading()
-                    Log.d(TAG, "Update email failed. error:${task.exception?.message}")
-                    activity.toast("Gagal mengubah email. error:${task.exception?.message}")
+                    Log.d(TAG, "Update nama failed. error:${task.exception?.message}")
+                    activity.toast("Gagal mengubah nama. error:${task.exception?.message}")
                 }
             }
     }

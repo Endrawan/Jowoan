@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/abu"
-    tools:context=".pengaturan.PengaturanActivity">
+    tools:context=".views.pengaturan.PengaturanActivity">
 
     <fragment
         android:id="@+id/navpengaturan_fragment"

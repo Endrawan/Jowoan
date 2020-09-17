@@ -1,17 +1,13 @@
-package com.example.jowoan.FragmentToko
+package com.example.jowoan.views.main.fragmentToko
 
 import android.os.Bundle
-import android.transition.AutoTransition
-import android.transition.TransitionManager
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.example.jowoan.R
-import kotlinx.android.synthetic.main.fragment_beranda.*
-import kotlinx.android.synthetic.main.fragment_toko.*
 
 /**
  * A simple [Fragment] subclass.

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    tools:context=".FragmentToko.TokoDialogFragment"      android:layout_width="310.07dp"
+    android:layout_width="310.07dp"
+    tools:context=".views.main.fragmentToko.TokoDialogFragment"
     android:layout_height="575dp">
 
 

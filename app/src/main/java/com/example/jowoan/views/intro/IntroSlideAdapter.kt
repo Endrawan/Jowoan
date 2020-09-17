@@ -1,4 +1,4 @@
-package com.example.jowoan.Intro
+package com.example.jowoan.views.intro
 
 import android.view.LayoutInflater
 import android.view.View

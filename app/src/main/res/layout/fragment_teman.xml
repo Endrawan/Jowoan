@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
     android:orientation="vertical"
-    tools:context=".FragmentProfil.TemanFragment"
+    tools:context=".views.main.fragmentProfil.TemanFragment"
     android:padding="@dimen/normal">
 
 

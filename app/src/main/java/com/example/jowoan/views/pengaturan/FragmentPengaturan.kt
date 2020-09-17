@@ -1,4 +1,4 @@
-package com.example.jowoan.pengaturan
+package com.example.jowoan.views.pengaturan
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +9,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.example.jowoan.R
-import com.example.jowoan.auth.LoginActivity
 import com.example.jowoan.custom.Fragment
 import com.example.jowoan.databinding.FragmentPengaturanBinding
+import com.example.jowoan.views.auth.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_pengaturan.*
 

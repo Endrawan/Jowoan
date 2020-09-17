@@ -1,13 +1,13 @@
-package com.example.jowoan.pengaturan
+package com.example.jowoan.views.pengaturan
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.example.jowoan.R
-import com.example.jowoan.auth.LoginActivity
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.models.User
 import com.example.jowoan.network.APICallback
+import com.example.jowoan.views.auth.LoginActivity
 import kotlinx.android.synthetic.main.view_progress.*
 
 class PengaturanActivity : AppCompatActivity() {

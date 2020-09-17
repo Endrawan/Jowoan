@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".FragmentProfil.AktifitasFragment">
+    tools:context=".views.main.fragmentProfil.AktifitasFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/layout_hariBelajar"

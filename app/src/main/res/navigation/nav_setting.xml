@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentPengaturan2"
-        android:name="com.example.jowoan.pengaturan.FragmentPengaturan"
+        android:name="com.example.jowoan.views.pengaturan.FragmentPengaturan"
         android:label="fragment_pengaturan"
         tools:layout="@layout/fragment_pengaturan" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/namaFragment"
-        android:name="com.example.jowoan.pengaturan.NamaFragment"
+        android:name="com.example.jowoan.views.pengaturan.NamaFragment"
         android:label="fragment_nama"
         tools:layout="@layout/fragment_nama" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/emailFragment"
-        android:name="com.example.jowoan.pengaturan.EmailFragment"
+        android:name="com.example.jowoan.views.pengaturan.EmailFragment"
         android:label="fragment_email"
         tools:layout="@layout/fragment_email" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/passwordFragment"
-        android:name="com.example.jowoan.pengaturan.PasswordFragment"
+        android:name="com.example.jowoan.views.pengaturan.PasswordFragment"
         android:label="fragment_password"
         tools:layout="@layout/fragment_password" >
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/telponFragment"
-        android:name="com.example.jowoan.pengaturan.TelponFragment"
+        android:name="com.example.jowoan.views.pengaturan.TelponFragment"
         android:label="fragment_telpon"
         tools:layout="@layout/fragment_telpon" >
         <action

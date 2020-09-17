@@ -1,13 +1,14 @@
-package com.example.jowoan.FragmentProfil
+package com.example.jowoan.views.main.fragmentProfil
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.jowoan.R
 
-class AktifitasFragment : Fragment() {
+//
+class TemanFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -15,7 +16,7 @@ class AktifitasFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_aktifitas, container, false)
+        return inflater.inflate(R.layout.fragment_teman, container, false)
     }
 
     }

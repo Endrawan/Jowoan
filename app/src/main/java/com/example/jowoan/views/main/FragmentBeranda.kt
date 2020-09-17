@@ -1,4 +1,4 @@
-package com.example.jowoan
+package com.example.jowoan.views.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.jowoan.R
 import com.example.jowoan.adapters.PracticeAdapter
-import com.example.jowoan.auth.LoginActivity
 import com.example.jowoan.custom.Fragment
 import com.example.jowoan.models.Practice
 import com.example.jowoan.network.APICallback
+import com.example.jowoan.views.auth.LoginActivity
+import com.example.jowoan.views.lesson.LessonActivity
 import kotlinx.android.synthetic.main.fragment_beranda.*
 import kotlinx.android.synthetic.main.view_progress.*
 

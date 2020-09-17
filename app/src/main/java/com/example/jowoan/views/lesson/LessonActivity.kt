@@ -1,6 +1,7 @@
-package com.example.jowoan
+package com.example.jowoan.views.lesson
 
 import android.os.Bundle
+import com.example.jowoan.R
 import com.example.jowoan.adapters.LessonAdapter
 import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.custom.AppCompatActivity

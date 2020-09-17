@@ -1,16 +1,16 @@
-package com.example.jowoan.auth
+package com.example.jowoan.views.auth
 
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.example.jowoan.MainActivity
 import com.example.jowoan.R
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.internal.Utils
 import com.example.jowoan.models.User
 import com.example.jowoan.network.APICallback
+import com.example.jowoan.views.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.view_progress.*

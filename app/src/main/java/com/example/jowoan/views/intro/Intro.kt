@@ -1,16 +1,16 @@
-package com.example.jowoan.Intro
+package com.example.jowoan.views.intro
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
-import com.example.jowoan.auth.LoginActivity
 import com.example.jowoan.R
+import com.example.jowoan.views.auth.LoginActivity
 import kotlinx.android.synthetic.main.activity_intro.*
 
 class Intro : AppCompatActivity() {

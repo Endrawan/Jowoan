@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".pengaturan.FragmentPengaturan"
+        tools:context=".views.pengaturan.FragmentPengaturan"
         android:layout_marginStart="@dimen/normal"
         android:layout_marginEnd="@dimen/normal">
 

@@ -1,12 +1,12 @@
-package com.example.jowoan.auth
+package com.example.jowoan.views.auth
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.example.jowoan.Intro.Intro
-import com.example.jowoan.MainActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.jowoan.R
+import com.example.jowoan.views.intro.Intro
+import com.example.jowoan.views.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class SplashScreen : AppCompatActivity() {

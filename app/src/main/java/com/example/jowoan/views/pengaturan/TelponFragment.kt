@@ -1,4 +1,4 @@
-package com.example.jowoan.pengaturan
+package com.example.jowoan.views.pengaturan
 
 import android.os.Bundle
 import android.view.LayoutInflater

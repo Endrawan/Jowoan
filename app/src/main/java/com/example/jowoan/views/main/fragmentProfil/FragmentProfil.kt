@@ -1,4 +1,4 @@
-package com.example.jowoan.FragmentProfil
+package com.example.jowoan.views.main.fragmentProfil
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.jowoan.R
 import com.example.jowoan.custom.Fragment
 import com.example.jowoan.databinding.FragmentProfilBinding
-import com.example.jowoan.pengaturan.PengaturanActivity
+import com.example.jowoan.views.pengaturan.PengaturanActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.fragment_profil.*

@@ -1,4 +1,4 @@
-package com.example.jowoan.FragmentProfil
+package com.example.jowoan.views.main.fragmentProfil
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
