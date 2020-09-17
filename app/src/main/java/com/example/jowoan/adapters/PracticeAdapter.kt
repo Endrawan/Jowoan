@@ -11,7 +11,7 @@ import com.example.jowoan.models.Practice
 import com.example.jowoan.models.Subpractice
 import kotlinx.android.synthetic.main.item_practice.view.*
 
-class PracticeAdapter(private val practices: MutableList<Practice>) :
+class PracticeAdapter(private val practices: MutableList<Practice>, private val action: Action) :
     RecyclerView.Adapter<PracticeAdapter.PracticeViewHolder>() {
 
     val TAG = "PracticeAdapter"
@@ -24,7 +24,7 @@ class PracticeAdapter(private val practices: MutableList<Practice>) :
     override fun getItemCount() = practices.size
 
     override fun onBindViewHolder(holder: PracticeViewHolder, position: Int) {
-        holder.bind(practices[position])
+        holder.bind(practices[position], action)
     }
 
     class PracticeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -34,14 +34,14 @@ class PracticeAdapter(private val practices: MutableList<Practice>) :
         private val toggleSubpractices = view.toggleSubpractices
         private val recyclerView = view.recyclerView
 
-        fun bind(practice: Practice) {
+        fun bind(practice: Practice, action: Action) {
             val subpractice = mutableListOf<Subpractice>()
             subpractice.addAll(practice.subpractices)
             name.text = practice.name
             totalSubpractices.text = "${practice.subpractices.size} Pelajaran"
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = SubpracticeAdapter(subpractice)
+                adapter = SubpracticeAdapter(subpractice, action)
             }
             toggleSubpractices.setOnClickListener {
                 expandView(recyclerView)
@@ -54,6 +54,10 @@ class PracticeAdapter(private val practices: MutableList<Practice>) :
             else
                 Expandable.collapse(view)
         }
+    }
+
+    interface Action {
+        fun subpracticeClicked()
     }
 
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CardView.Light"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="24dp"
+    android:background="@drawable/border"
+    app:cardCornerRadius="@dimen/normal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/normal"
+            android:text="Dengar dan ucapkan pelafalan berikut ini"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/jowoLang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/small"
+                android:text="Mangga pak!"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/listen"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_baseline_volume_up_24" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/indoLang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/large"
+            android:text="Mari pak!"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/normal"
+            android:gravity="center"
+            tools:text="Mendengarkan..." />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/speak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/normal"
+            android:scaleType="center"
+            app:fabCustomSize="150dp"
+            app:maxImageSize="72dp"
+            app:srcCompat="@drawable/ic_baseline_mic_128" />
+
+        <TextView
+            android:id="@+id/skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Lain Kali"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+

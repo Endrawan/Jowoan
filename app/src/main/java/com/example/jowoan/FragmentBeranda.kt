@@ -27,7 +27,12 @@ class FragmentBeranda : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter = PracticeAdapter(practices)
+        adapter = PracticeAdapter(practices, object : PracticeAdapter.Action {
+            override fun subpracticeClicked() {
+                startActivity(Intent(activity, LessonActivity::class.java))
+            }
+
+        })
         return inflater.inflate(R.layout.fragment_beranda, container, false)
     }
 

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/CardView.Light"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="24dp"
+    android:background="@drawable/border"
+    app:cardCornerRadius="@dimen/normal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <FrameLayout
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/large">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="250dp"
+                android:layout_height="239dp"
+                android:src="@color/biru" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="@dimen/small"
+                app:cardCornerRadius="@dimen/normal"
+                app:cardElevation="@dimen/xsmall">
+
+                <TextView
+                    android:id="@+id/points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/small"
+                    android:text="+ 100 pts"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/AppTheme.TextView.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small"
+            android:gravity="center_horizontal"
+            android:text="Kamu luar biasa!" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Tetap jaga semangatmu dan selesaikan pelajaran selanjutnya."
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+

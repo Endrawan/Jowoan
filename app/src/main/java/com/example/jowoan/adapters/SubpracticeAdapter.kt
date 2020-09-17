@@ -8,7 +8,10 @@ import com.example.jowoan.R.layout.item_subpractice
 import com.example.jowoan.models.Subpractice
 import kotlinx.android.synthetic.main.item_subpractice.view.*
 
-class SubpracticeAdapter(private val subpractices: MutableList<Subpractice>) :
+class SubpracticeAdapter(
+    private val subpractices: MutableList<Subpractice>,
+    private val action: PracticeAdapter.Action
+) :
     RecyclerView.Adapter<SubpracticeAdapter.SubpracticeViewHolder>() {
 
     val TAG = "SubpracticeAdapter"
@@ -21,7 +24,7 @@ class SubpracticeAdapter(private val subpractices: MutableList<Subpractice>) :
     override fun getItemCount() = subpractices.size
 
     override fun onBindViewHolder(holder: SubpracticeViewHolder, position: Int) {
-        holder.bind(subpractices[position])
+        holder.bind(subpractices[position], action)
     }
 
     class SubpracticeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,7 +35,7 @@ class SubpracticeAdapter(private val subpractices: MutableList<Subpractice>) :
         private val duration = view.duration
         private val checklist = view.checklist
 
-        fun bind(subpractice: Subpractice) {
+        fun bind(subpractice: Subpractice, action: PracticeAdapter.Action) {
             name.text = subpractice.name
             title.text = subpractice.title
             if (subpractice.ID % 2 == 0) {
@@ -41,6 +44,9 @@ class SubpracticeAdapter(private val subpractices: MutableList<Subpractice>) :
             } else {
                 checklist.visibility = View.VISIBLE
                 duration.visibility = View.INVISIBLE
+            }
+            duration.setOnClickListener {
+                action.subpracticeClicked()
             }
         }
     }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/CardView.Light"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="24dp"
+    android:background="@drawable/border"
+    app:cardCornerRadius="@dimen/normal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small"
+            android:text="Hafalkan kata berikut ini"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="@dimen/normal"
+            android:scaleType="centerCrop"
+            android:src="@color/black" />
+
+        <TextView
+            android:id="@+id/jowoLang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small"
+            android:text="Mangga pak!"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/indoLang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mari pak!"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+

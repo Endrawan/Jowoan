@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
-import com.example.jowoan.MainActivity
 import com.example.jowoan.R
 import com.example.jowoan.auth.LoginActivity
 import com.example.jowoan.custom.Fragment
@@ -49,9 +48,7 @@ class FragmentPengaturan : Fragment() {
 
 
         bindingPengaturan.buttonBack.setOnClickListener {
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            startActivity(intent)
-
+            activity.finish()
         }
         return bindingPengaturan.root
     }

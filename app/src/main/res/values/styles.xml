@@ -38,6 +38,13 @@
         <item name="android:textColor">@color/yellow</item>
     </style>
 
+    <style name="AppTheme.TextView.H1"></style>
+
+    <style name="AppTheme.TextView.H2" parent="AppTheme.TextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <!-- Button -->
     <style name="AppTheme.Button" parent="AppTheme">
         <item name="android:background">@drawable/box_biru</item>
