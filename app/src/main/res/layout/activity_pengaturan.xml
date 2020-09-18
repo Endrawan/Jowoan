@@ -8,6 +8,7 @@
     tools:context=".views.pengaturan.PengaturanActivity">
 
     <fragment
+
         android:id="@+id/navpengaturan_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_height="match_parent"

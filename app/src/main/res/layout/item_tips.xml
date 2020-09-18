@@ -15,13 +15,6 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="@dimen/normal"
-            android:src="@drawable/ic_home_active" />
-
         <TextView
             android:id="@+id/title"
             style="@style/AppTheme.TextView.H2"

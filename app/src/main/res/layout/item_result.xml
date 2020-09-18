@@ -25,7 +25,7 @@
                 android:id="@+id/image"
                 android:layout_width="250dp"
                 android:layout_height="239dp"
-                android:src="@color/biru" />
+                android:src="@drawable/ic_complete" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -41,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/small"
                     android:text="+ 100 pts"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
