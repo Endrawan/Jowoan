@@ -4,78 +4,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".CobaActivity">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_margin="@dimen/normal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normal"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/closed_lesson"
-            android:background="@drawable/ic_close"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            />
+            android:background="@drawable/ic_close" />
+
         <ProgressBar
             android:id="@+id/progress_soal"
-            android:progress="0"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_progress_soal"/>
+            android:progress="0"
+            android:src="@drawable/ic_progress_soal" />
     </LinearLayout>
-    <com.yuyakaido.android.cardstackview.CardStackView
-        android:id="@+id/cardStackView"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/normal"
-        android:layout_weight="1" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
+        <com.yuyakaido.android.cardstackview.CardStackView
+            android:id="@+id/cardStackView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/normal"
+            android:layout_marginBottom="72dp" />
 
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:background="@android:color/white"
-        android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:id="@+id/layout_tulisan_benar"
-        android:background="@drawable/layout_tulisan_benar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        />
         <LinearLayout
-            android:visibility="gone"
-            android:padding="@dimen/normal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        >
-            <TextView
-                android:textColor="#666666"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Kalimat “Nggih, mangga!” diucapkan untuk memberi balasan kalimat “Mangga Pak!”      "/>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/swipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
 
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/box_biru"
-            android:text="Lanjutkan"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
+            <include
+                layout="@layout/view_correct_label"
+                android:visibility="gone" />
+
+            <include
+                layout="@layout/view_wrong_label"
+                android:visibility="gone" />
+
+            <include
+                layout="@layout/view_correction"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <Button
+                    android:id="@+id/swipe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/normal"
+                    android:background="@drawable/box_biru"
+                    android:text="Lanjutkan"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+
 </LinearLayout>

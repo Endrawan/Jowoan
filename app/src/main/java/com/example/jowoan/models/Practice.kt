@@ -9,5 +9,6 @@ data class Practice(
     @SerializedName("UpdatedAt") val updatedAt: Date,
     @SerializedName("DeletedAt") val deletedAt: Date,
     val name: String,
+    val image: String,
     val subpractices: List<Subpractice>
 )

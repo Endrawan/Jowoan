@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.jowoan.R
 import com.example.jowoan.R.layout.item_practice
 import com.example.jowoan.anim.Expandable
 import com.example.jowoan.models.Practice
@@ -27,7 +29,7 @@ class PracticeAdapter(private val practices: MutableList<Practice>, private val 
         holder.bind(practices[position], action)
     }
 
-    class PracticeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class PracticeViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         private val image = view.image
         private val name = view.name
         private val totalSubpractices = view.totalSubpractices
@@ -46,6 +48,8 @@ class PracticeAdapter(private val practices: MutableList<Practice>, private val 
             toggleSubpractices.setOnClickListener {
                 expandView(recyclerView)
             }
+            Glide.with(view.context).load("http://${practice.image}").centerCrop()
+                .placeholder(R.drawable.gambar_pemula1).into(image)
         }
 
         private fun expandView(view: View) {

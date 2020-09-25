@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/normal"
+    android:paddingTop="@dimen/normal"
+    android:paddingEnd="@dimen/normal">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jawaban Yang Benar:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView_correctWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small"
+        android:layout_marginBottom="@dimen/small"
+        android:text="Mangga Pak"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_correction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kalimat `Mangga Pak` digunakan untuk mempersilahkan atau menyapa orang lainnya, terutama orang yang lebih tua" />
+
+</LinearLayout>

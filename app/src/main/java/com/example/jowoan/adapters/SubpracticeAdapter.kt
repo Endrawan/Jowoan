@@ -41,17 +41,14 @@ class SubpracticeAdapter(
         private val linelayout2 = view.linelayout2
 
         fun bind(subpractice: Subpractice, action: PracticeAdapter.Action, position: Int, size: Int) {
-
-
-            if (position == 0){
+            if (position == 0) {
                 layout1.visibility = View.VISIBLE
                 layout2.visibility = View.GONE
-
-            } else if(position == size ){
+            } else if (position == size) {
                 layout1.visibility = View.GONE
                 layout2.visibility = View.GONE
                 linelayout2.visibility = View.GONE
-            }else {
+            } else {
                 layout1.visibility = View.GONE
                 layout2.visibility = View.VISIBLE
             }

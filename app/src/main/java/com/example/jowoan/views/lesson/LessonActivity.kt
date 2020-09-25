@@ -7,7 +7,6 @@ import com.example.jowoan.adapters.LessonAdapter
 import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.models.lesson.*
-import com.example.jowoan.views.auth.LoginActivity
 import com.example.jowoan.views.main.MainActivity
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.StackFrom
@@ -87,15 +86,6 @@ class LessonActivity : AppCompatActivity() {
                 )
             ), this
         )
-
-        var progress_number = 0
-        swipe.setOnClickListener {
-            progress_number+=5
-            cardStackView.swipe()
-            progress_soal.incrementProgressBy(progress_number)
-
-
-        }
 
         closed_lesson.setOnClickListener {
             Intent (applicationContext, MainActivity::class.java).also {

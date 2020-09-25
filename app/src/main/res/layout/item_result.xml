@@ -16,22 +16,23 @@
         android:padding="24dp">
 
         <FrameLayout
-            android:layout_width="256dp"
-            android:layout_height="256dp"
+            android:layout_width="192dp"
+            android:layout_height="192dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/large">
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="250dp"
-                android:layout_height="239dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_complete" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="@dimen/small"
+                android:layout_marginBottom="@dimen/xsmall"
                 app:cardCornerRadius="@dimen/normal"
                 app:cardElevation="@dimen/xsmall">
 
