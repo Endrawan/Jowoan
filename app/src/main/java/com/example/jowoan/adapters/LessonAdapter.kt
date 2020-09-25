@@ -57,7 +57,8 @@ class LessonAdapter(private val lessons: MutableList<Lesson>, val activity: AppC
 
     class Blank(view: View) : LessonViewHolder(view) {
         override fun bind(lesson: Lesson) {
-            TODO("Not yet implemented")
+
+
         }
     }
 

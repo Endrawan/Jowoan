@@ -65,17 +65,21 @@
                 android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:background="@color/abu">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayoutProfil"
                     android:layout_width="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@drawable/box_melengkung" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.viewpager.widget.ViewPager
+                android:background="@android:color/transparent"
                 android:id="@+id/ViewPagerProfil"
                 android:layout_width="match_parent"
                 android:layout_height="400dp" />

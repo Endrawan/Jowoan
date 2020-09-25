@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/box_melengkung"
             android:orientation="vertical"
-            android:paddingStart="@dimen/normal"
+            android:paddingStart="8dp"
             android:paddingEnd="@dimen/normal">
 
             <androidx.constraintlayout.widget.ConstraintLayout

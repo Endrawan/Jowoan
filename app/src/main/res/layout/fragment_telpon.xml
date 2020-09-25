@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingStart="@dimen/normal"
+        android:background="@color/abu"
         android:paddingEnd="@dimen/normal"
         tools:context=".views.pengaturan.TelponFragment">
 

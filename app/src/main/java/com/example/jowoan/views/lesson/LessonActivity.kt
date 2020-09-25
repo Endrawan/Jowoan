@@ -1,19 +1,24 @@
 package com.example.jowoan.views.lesson
 
+import android.content.Intent
 import android.os.Bundle
 import com.example.jowoan.R
 import com.example.jowoan.adapters.LessonAdapter
 import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.models.lesson.*
+import com.example.jowoan.views.auth.LoginActivity
+import com.example.jowoan.views.main.MainActivity
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.StackFrom
 import kotlinx.android.synthetic.main.activity_lesson.*
 
 class LessonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lesson)
+
         cardStackView.layoutManager = CardStackLayoutManager(this).apply {
             setStackFrom(StackFrom.Top)
             setVisibleCount(3)
@@ -82,8 +87,21 @@ class LessonActivity : AppCompatActivity() {
                 )
             ), this
         )
+
+        var progress_number = 0
         swipe.setOnClickListener {
+            progress_number+=5
             cardStackView.swipe()
+            progress_soal.incrementProgressBy(progress_number)
+
+
+        }
+
+        closed_lesson.setOnClickListener {
+            Intent (applicationContext, MainActivity::class.java).also {
+                startActivity(it)
+                finishAffinity()
+            }
         }
     }
 }
