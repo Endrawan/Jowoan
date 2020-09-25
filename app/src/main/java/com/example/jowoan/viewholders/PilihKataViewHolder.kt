@@ -1,25 +1,27 @@
 package com.example.jowoan.viewholders
 
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.View
-import com.bumptech.glide.Glide
+import androidx.core.content.res.ResourcesCompat
+import com.example.jowoan.R
 import com.example.jowoan.adapters.LessonAdapter
-import com.example.jowoan.adapters.PilihKataAdapter
-import com.example.jowoan.config.PilihKataConfig
+import com.example.jowoan.custom.App
+import com.example.jowoan.custom.GlideApp
 import com.example.jowoan.models.lesson.Lesson
 import com.example.jowoan.models.lesson.PilihKata
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
 import kotlinx.android.synthetic.main.item_pilih_kata.view.*
 
 class PilihKataViewHolder(val view: View) : LessonAdapter.LessonViewHolder(view) {
     private val title = view.title
     private val image = view.image
-    private val question = view.recyclerView_question
+    private val question = view.question
     private val answer1 = view.answer1
     private val answer2 = view.answer2
     private val answer1Indicator = view.answer1_indicator
     private val answer2Indicator = view.answer2_indicator
+    private var answerColor: Int = 0
     private var choosenAnswerID: Int = 0
     private var answer: Int = 0
 
@@ -27,43 +29,45 @@ class PilihKataViewHolder(val view: View) : LessonAdapter.LessonViewHolder(view)
         val pilihKata = lesson.pilihKata
         if (pilihKata != null) {
             title.text = pilihKata.title
-            Glide.with(view.context).load(pilihKata.image).into(image)
 
-            prepareAnswer(pilihKata)
+            val placeholder =
+                ResourcesCompat.getDrawable(App.resourses!!, R.drawable.image_not_found, null)
+            GlideApp.with(view.context).load(pilihKata.image).placeholder(placeholder).centerCrop()
+                .into(image)
+
+            answerColor = ResourcesCompat.getColor(App.resourses!!, R.color.blue, null)
+            val plainQuestion = pilihKata.question.replaceRange(
+                pilihKata.charStart,
+                pilihKata.charStart + pilihKata.charLength, getBlankString(pilihKata.charLength)
+            )
+            val spannableQuestion = SpannableStringBuilder(plainQuestion).apply {
+                setSpan(
+                    ForegroundColorSpan(answerColor),
+                    pilihKata.charStart, pilihKata.charStart + pilihKata.charLength,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+            question.text = spannableQuestion
+
             answer1.setOnClickListener {
                 choosenAnswerID = 0
-                showAnswer()
+                showAnswer(pilihKata)
             }
             answer2.setOnClickListener {
                 choosenAnswerID = 1
-                showAnswer()
+                showAnswer(pilihKata)
             }
 
-            val layoutManager = FlexboxLayoutManager(view.context)
-            layoutManager.flexDirection = FlexDirection.ROW
-            layoutManager.justifyContent = JustifyContent.FLEX_START
-            question.layoutManager = layoutManager
-            val adapter = PilihKataAdapter(prepareWord(pilihKata))
-            question.adapter = adapter
+            prepareAnswer(pilihKata)
         }
     }
 
-    private fun prepareWord(pilihKata: PilihKata): List<PilihKataAdapter.Kata> {
-        val katas = mutableListOf<PilihKataAdapter.Kata>()
-        val firstWord = pilihKata.question.substring(0, pilihKata.charStart)
-        val secondWord = pilihKata.question.substring(
-            pilihKata.charStart,
-            pilihKata.charStart + pilihKata.charLength
-        )
-
-        katas.add(PilihKataAdapter.Kata(firstWord, PilihKataConfig.WORD_TYPE))
-        katas.add(PilihKataAdapter.Kata(secondWord, PilihKataConfig.ANSWER_TYPE))
-
-        if (pilihKata.charStart + pilihKata.charLength < pilihKata.question.length) {
-            val thirdWord = pilihKata.question.substring(pilihKata.charStart + pilihKata.charLength)
-            katas.add(PilihKataAdapter.Kata(thirdWord, PilihKataConfig.WORD_TYPE))
+    private fun getBlankString(length: Int): String {
+        var result = ""
+        for (i in 0 until length) {
+            result += "_"
         }
-        return katas
+        return result
     }
 
     private fun prepareAnswer(pilihKata: PilihKata) {
@@ -79,14 +83,19 @@ class PilihKataViewHolder(val view: View) : LessonAdapter.LessonViewHolder(view)
         }
     }
 
-    private fun showAnswer() {
-        answer1Indicator.visibility = View.VISIBLE
-        answer2Indicator.visibility = View.VISIBLE
-        val vh =
-            question.getChildViewHolder(question.getChildAt(1)) as PilihKataAdapter.AnswerViewHolder
-        vh.revealAnswer()
-        answer1.isEnabled = false
-        answer2.isEnabled = false
+    private fun showAnswer(pilihKata: PilihKata) {
+//        answer1Indicator.visibility = View.VISIBLE
+//        answer2Indicator.visibility = View.VISIBLE
+//        answer1.isEnabled = false
+//        answer2.isEnabled = false
+        val spannableQuestion = SpannableStringBuilder(pilihKata.question).apply {
+            setSpan(
+                ForegroundColorSpan(answerColor),
+                pilihKata.charStart, pilihKata.charStart + pilihKata.charLength,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+        question.text = spannableQuestion
         if (answer == choosenAnswerID) {
             // TODO Add correct reaction
         } else {

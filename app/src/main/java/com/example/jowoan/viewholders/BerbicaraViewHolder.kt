@@ -59,27 +59,27 @@ class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
                 RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
             )
-            speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale("jv", "ID"))
+            speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "jv-ID")
 
             speechRecognizer.setRecognitionListener(object : RecognitionListener {
                 override fun onReadyForSpeech(p0: Bundle?) {
-                    TODO("Not yet implemented")
+                    //TODO("Not yet implemented")
                 }
 
                 override fun onRmsChanged(p0: Float) {
-                    TODO("Not yet implemented")
+                    //TODO("Not yet implemented")
                 }
 
                 override fun onBufferReceived(p0: ByteArray?) {
-                    TODO("Not yet implemented")
+                    //TODO("Not yet implemented")
                 }
 
                 override fun onPartialResults(p0: Bundle?) {
-                    TODO("Not yet implemented")
+                    //TODO("Not yet implemented")
                 }
 
                 override fun onEvent(p0: Int, p1: Bundle?) {
-                    TODO("Not yet implemented")
+                    //TODO("Not yet implemented")
                 }
 
                 override fun onBeginningOfSpeech() {
@@ -87,11 +87,11 @@ class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
                 }
 
                 override fun onEndOfSpeech() {
-                    TODO("Not yet implemented")
+                    //TODO("Not yet implemented")
                 }
 
                 override fun onError(p0: Int) {
-                    TODO("Not yet implemented")
+                    //TODO("Not yet implemented")
                 }
 
                 override fun onResults(bundle: Bundle?) {

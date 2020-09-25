@@ -34,12 +34,15 @@
             android:scaleType="centerCrop"
             android:src="@color/black" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_question"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/normal"
-            android:overScrollMode="never" />
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            tools:text="Mangga pak!" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,10 +59,6 @@
                     android:id="@+id/answer1"
                     android:background="@drawable/btn_answer"
                     android:layout_width="wrap_content"
-                    android:padding="6dp"
-
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="@color/biru"
@@ -86,9 +85,6 @@
                     android:id="@+id/answer2"
                     android:background="@drawable/btn_answer"
                     android:layout_width="wrap_content"
-                    android:padding="6dp"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="@color/biru"
