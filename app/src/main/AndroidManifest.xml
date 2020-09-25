@@ -15,14 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.lesson.LessonActivity"></activity>
-        <activity android:name=".CobaActivity"></activity>
+        <activity android:name=".views.lesson.LoadLessonActivity"></activity>
+        <activity android:name=".views.lesson.LessonActivity" />
+        <activity android:name=".CobaActivity" />
         <activity android:name=".Activity_P1_2" />
-        <activity android:name="com.example.jowoan.views.pengaturan.PengaturanActivity" />
-        <activity android:name="com.example.jowoan.views.auth.SignUpActivity" />
-        <activity android:name="com.example.jowoan.views.auth.LoginActivity" />
-        <activity android:name="com.example.jowoan.views.intro.Intro" />
-        <activity android:name="com.example.jowoan.views.auth.SplashScreen">
+        <activity android:name=".views.pengaturan.PengaturanActivity" />
+        <activity android:name=".views.auth.SignUpActivity" />
+        <activity android:name=".views.auth.LoginActivity" />
+        <activity android:name=".views.intro.Intro" />
+        <activity android:name=".views.auth.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

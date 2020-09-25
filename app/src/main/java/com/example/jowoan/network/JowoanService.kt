@@ -3,6 +3,7 @@ package com.example.jowoan.network
 import com.example.jowoan.models.Avatar
 import com.example.jowoan.models.Practice
 import com.example.jowoan.models.User
+import com.example.jowoan.models.lesson.Lesson
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -31,4 +32,11 @@ interface JowoanService {
         @Path("id") id: Int,
         @Body user: User
     ): Call<APIResponse<User>>
+
+    @GET("lesson")
+    fun lessonGet(
+        @Header("Token") token: String,
+        @Query("subpractice_id") subpracticeID: String
+    )
+            : Call<APIResponse<List<Lesson>>>
 }

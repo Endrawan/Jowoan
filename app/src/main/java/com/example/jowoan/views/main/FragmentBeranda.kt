@@ -10,6 +10,7 @@ import com.example.jowoan.R
 import com.example.jowoan.adapters.PracticeAdapter
 import com.example.jowoan.custom.Fragment
 import com.example.jowoan.models.Practice
+import com.example.jowoan.models.Subpractice
 import com.example.jowoan.network.APICallback
 import com.example.jowoan.views.auth.LoginActivity
 import com.example.jowoan.views.lesson.LessonActivity
@@ -30,8 +31,11 @@ class FragmentBeranda : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         adapter = PracticeAdapter(practices, object : PracticeAdapter.Action {
-            override fun subpracticeClicked() {
-                startActivity(Intent(activity, LessonActivity::class.java))
+
+            override fun subpracticeClicked(subpractice: Subpractice) {
+                val intent = Intent(activity, LessonActivity::class.java)
+                intent.putExtra("SubpracticeID", subpractice.ID)
+                startActivity(intent)
             }
 
         })

@@ -61,7 +61,7 @@ class PracticeAdapter(private val practices: MutableList<Practice>, private val 
     }
 
     interface Action {
-        fun subpracticeClicked()
+        fun subpracticeClicked(subpractice: Subpractice)
     }
 
 }
