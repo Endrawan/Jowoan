@@ -8,8 +8,9 @@ data class Lesson(
     val penjelasan: Penjelasan?,
     val tips: Tips?,
     val hafalan: Hafalan?,
-    val pilihKata: PilihKata?,
+    @SerializedName("pilih_kata") val pilihKata: PilihKata?,
     val berbicara: Berbicara?,
+    @SerializedName("benar_salah") val benarSalah: BenarSalah?,
     val result: LessonResult?,
     @SerializedName("subpractice_id") val subpracticeID: Int,
     val type: Int

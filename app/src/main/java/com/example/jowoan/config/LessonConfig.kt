@@ -7,4 +7,5 @@ object LessonConfig {
     val HAFALAN_TYPE = 3
     val PILIH_KATA_TYPE = 4
     val BERBICARA_TYPE = 5
+    val BENAR_SALAH_TYPE = 6
 }

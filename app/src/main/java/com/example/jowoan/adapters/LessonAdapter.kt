@@ -38,6 +38,9 @@ class LessonAdapter(private val lessons: MutableList<Lesson>, val activity: AppC
             LessonConfig.BERBICARA_TYPE -> BerbicaraViewHolder(
                 LayoutInflater.from(parent.context).inflate(item_berbicara, parent, false), activity
             )
+            LessonConfig.BENAR_SALAH_TYPE -> BenarSalahViewHolder(
+                LayoutInflater.from(parent.context).inflate(item_benar_salah, parent, false)
+            )
             LessonConfig.RESULT_TYPE -> ResultViewHolder(
                 LayoutInflater.from(parent.context).inflate(item_result, parent, false)
             )

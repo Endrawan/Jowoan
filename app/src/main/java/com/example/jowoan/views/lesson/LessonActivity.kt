@@ -31,7 +31,7 @@ class LessonActivity : AppCompatActivity() {
                 Lesson(
                     1, 1,
                     Penjelasan(1, "Poker Face", getString(R.string.lorem_ipsum)),
-                    null, null, null, null, null, 1, 1
+                    null, null, null, null, null, null, 1, 1
                 ),
                 Lesson(
                     1, 1, null, null,
@@ -42,7 +42,7 @@ class LessonActivity : AppCompatActivity() {
                         "Mari pak!",
                         "Monggo pak!"
                     ),
-                    null, null, null, 1, 3
+                    null, null, null, null, 1, 3
                 ),
                 Lesson(
                     1, 1,
@@ -56,14 +56,15 @@ class LessonActivity : AppCompatActivity() {
                             PilihKataAnswer(1, "World", 1), PilihKataAnswer(2, "Cuties", 1)
                         ),
                         "Hello World!",
-                        "Lengkapi kalimat di bawah ini"
+                        "Lengkapi kalimat di bawah ini",
+                        "Tidak ada pembenaran"
                     ),
-                    null, null, 1, 4
+                    null, null, null, 1, 4
                 ),
                 Lesson(
                     1, 1, null,
                     Tips(1, "Unfaithful Wife", getString(R.string.lorem_ipsum)),
-                    null, null, null, null, 1, 2
+                    null, null, null, null, null, 1, 2
                 ),
                 Lesson(
                     1, 1, null, null, null, null,
@@ -73,10 +74,22 @@ class LessonActivity : AppCompatActivity() {
                         "Mangga Pak",
                         "Mari Pak"
                     ),
-                    null, 1, LessonConfig.BERBICARA_TYPE
+                    null, null, 1, LessonConfig.BERBICARA_TYPE
                 ),
                 Lesson(
                     1, 1, null, null, null, null, null,
+                    BenarSalah(
+                        1,
+                        "Ini title",
+                        "Ini Statement",
+                        "Kalo begitu mana questionnya dong?",
+                        false,
+                        "Tidak ada koreksi"
+                    ),
+                    null, 1, LessonConfig.BENAR_SALAH_TYPE
+                ),
+                Lesson(
+                    1, 1, null, null, null, null, null, null,
                     LessonResult(
                         100,
                         "Kamu luar biasa!",
@@ -88,10 +101,17 @@ class LessonActivity : AppCompatActivity() {
         )
 
         closed_lesson.setOnClickListener {
-            Intent (applicationContext, MainActivity::class.java).also {
+            Intent(applicationContext, MainActivity::class.java).also {
                 startActivity(it)
                 finishAffinity()
             }
+        }
+
+        var progress_number = 0
+        swipe.setOnClickListener {
+            progress_number += 5
+            cardStackView.swipe()
+            progress_soal.incrementProgressBy(progress_number)
         }
     }
 }

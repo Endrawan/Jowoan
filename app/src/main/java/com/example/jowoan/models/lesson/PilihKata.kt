@@ -9,5 +9,6 @@ data class PilihKata(
     val image: String,
     val answers: List<PilihKataAnswer>,
     val question: String,
-    val title: String
+    val title: String,
+    val correction: String
 )
