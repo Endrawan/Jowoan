@@ -73,7 +73,7 @@
             android:layout_marginBottom="@dimen/normal"
             android:scaleType="center"
             app:fabCustomSize="150dp"
-            app:maxImageSize="72dp"
+            app:maxImageSize="56dp"
             app:srcCompat="@drawable/ic_baseline_mic_128" />
 
         <TextView

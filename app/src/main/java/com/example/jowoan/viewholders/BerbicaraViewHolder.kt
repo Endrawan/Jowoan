@@ -1,7 +1,7 @@
 package com.example.jowoan.viewholders
 
 import android.Manifest
-import android.R
+import android.R.drawable.ic_media_pause
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -10,10 +10,12 @@ import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.jowoan.R.drawable.ic_baseline_mic_128
 import com.example.jowoan.adapters.LessonAdapter
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.models.lesson.Lesson
@@ -98,12 +100,13 @@ class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
                     speak.setImageDrawable(
                         ContextCompat.getDrawable(
                             activity,
-                            R.drawable.ic_media_play
+                            ic_baseline_mic_128
                         )
                     )
                     val data = bundle!!.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                    title.text = data!![0]
+                    //title.text = data!![0]
                     note.text = ""
+                    checkAnswer(berbicara.jowoLang, data!![0])
                 }
 
             })
@@ -114,8 +117,8 @@ class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
                         speechRecognizer.stopListening()
                     }
                     if (motionEvent?.action == MotionEvent.ACTION_DOWN) {
-                        speak.setImageResource(R.drawable.ic_media_pause);
-                        speechRecognizer.startListening(speechRecognizerIntent);
+                        speak.setImageResource(ic_media_pause)
+                        speechRecognizer.startListening(speechRecognizerIntent)
                     }
                     return false
                 }
@@ -137,6 +140,25 @@ class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
                 RecordAudioRequestCode
             )
         }
+    }
+
+    private fun checkAnswer(jowoLang: String, userAnswer: String) {
+        val correctAnswer = removeNonAlphaNumeric(jowoLang)
+        var result = ""
+        if (correctAnswer.equals(userAnswer, ignoreCase = true)) {
+            // TODO add action if true
+            result = "Correct"
+        } else {
+            // TODO add action if false
+            result = "False"
+        }
+        Log.d("Coba", "$result; $correctAnswer = $userAnswer")
+        activity.toast("$result; $correctAnswer = $userAnswer")
+    }
+
+    private fun removeNonAlphaNumeric(text: String): String {
+        val re = Regex("[^A-Za-z0-9 ]")
+        return re.replace(text, "")
     }
 
 }
