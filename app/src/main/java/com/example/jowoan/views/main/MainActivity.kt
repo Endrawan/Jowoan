@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.jowoan.R
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.databinding.ActivityMainBinding
+import com.example.jowoan.models.Activity
 import com.example.jowoan.models.Completion
 import com.example.jowoan.network.APICallback
 import com.example.jowoan.views.auth.LoginActivity
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     val completions = mutableListOf<Completion>()
+    val activities = mutableListOf<Activity>()
     val fragmentBeranda = FragmentBeranda()
     val fragmentProfil = FragmentProfil()
     val fragmentShop = FragmentToko()
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 //        val navCtrl = this.findNavController(R.id.navhost_fragment)
 
         loadCompletions()
+        loadActivities()
         setFragment(fragmentBeranda)
 
         iv_home.setOnClickListener {
@@ -102,6 +105,38 @@ class MainActivity : AppCompatActivity() {
                         finishAffinity()
                     }
                 }
+            }))
+    }
+
+    fun loadActivities() {
+        jowoanService.activityGetAll(user.token, user.ID)
+            .enqueue(APICallback(object : APICallback.Action<List<Activity>> {
+                override fun responseSuccess(data: List<Activity>) {
+                    activities.clear()
+                    activities.addAll(data)
+                }
+
+                override fun dataNotFound(message: String) {
+                    toast("Activities data not found!")
+                }
+
+                override fun responseFailed(status: String, message: String) {
+                    toast("Request activities gagal. status:$status, message:$message")
+                }
+
+                override fun networkFailed(t: Throwable) {
+                    toast("Request activities gagal. error:${t.message}")
+                }
+
+                override fun tokenExpired() {
+                    toast("Token telah expired, silahkan login ulang")
+                    logout()
+                    Intent(this@MainActivity, LoginActivity::class.java).also {
+                        startActivity(it)
+                        finishAffinity()
+                    }
+                }
+
             }))
     }
 }

@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jowoan.R
 import com.example.jowoan.adapters.PracticeAdapter
+import com.example.jowoan.config.LevelConfig
 import com.example.jowoan.custom.Fragment
+import com.example.jowoan.models.Level
 import com.example.jowoan.models.Practice
 import com.example.jowoan.models.Subpractice
 import com.example.jowoan.network.APICallback
@@ -105,7 +107,30 @@ class FragmentBeranda : Fragment() {
                 }
             }
         }
+        setUserLevel()
         adapter.notifyDataSetChanged()
+    }
+
+    fun setUserLevel() {
+        val act = activity as MainActivity
+        var completionsGained = act.completions.size
+        var idx = 0
+        var currentLevel: Level = LevelConfig.levels[idx]
+
+        while (completionsGained >= LevelConfig.levels[idx].completionNeeded) {
+            completionsGained -= LevelConfig.levels[idx].completionNeeded
+            idx++
+            currentLevel = LevelConfig.levels[idx]
+        }
+
+        textView_userCompletions.text = completionsGained.toString()
+        textView_completionsNeeded.text = "/${currentLevel.completionNeeded}"
+        textView_tingkatLevel.text = "Tingkat ${currentLevel.name}"
+        textView_level.text = currentLevel.name
+
+        val progress = ((100 / currentLevel.completionNeeded) * completionsGained).toFloat()
+        completionProgress.progress = progress
+        completionProgress.progressText = "${progress.toInt()}%"
     }
 
     private fun showLoading(message: String) {

@@ -211,13 +211,13 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/normal"
-        android:layout_marginEnd="@dimen/normal"
-        android:layout_marginBottom="@dimen/large"
+        android:layout_margin="@dimen/normal"
         android:padding="@dimen/normal"
-        android:background="@drawable/box_melengkung">
+        android:background="@drawable/box_melengkung"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/textView7"
@@ -229,7 +229,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textView_tingkatLevel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -237,19 +237,28 @@
             android:textColor="#F59218"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textView7"
             app:layout_constraintEnd_toStartOf="@id/textView9"
+            android:layout_marginBottom="@dimen/normal"
+            app:layout_constraintBottom_toTopOf="@id/completionProgress"
+            app:layout_constraintStart_toStartOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-        <ImageView
-            android:id="@+id/imageView3"
+        <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+            android:id="@+id/completionProgress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:src="@drawable/persen20"
+            android:layout_height="36dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_tingkatLevel"
+            app:rcBackgroundColor="#0A000000"
+            app:rcBackgroundPadding="2dp"
+            app:rcMax="100"
+            app:rcProgressColor="@color/blue"
+            app:rcRadius="80dp"
+            app:rcTextInsideGravity="start"
+            app:rcTextPositionPriority="inside"
+            app:rcTextProgressColor="@color/white" />
 
         <TextView
             android:id="@+id/textView9"
@@ -258,13 +267,13 @@
             android:layout_marginBottom="@dimen/normal"
             android:text="Latihan"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView3"
+            app:layout_constraintBottom_toTopOf="@+id/completionProgress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView8" />
+            app:layout_constraintStart_toEndOf="@+id/textView_tingkatLevel" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/textView_completionsNeeded"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/xsmall"
@@ -276,15 +285,15 @@
             app:layout_constraintEnd_toEndOf="@+id/textView9" />
 
         <TextView
-            android:id="@+id/tv_jumlah_latihan"
+            android:id="@+id/textView_userCompletions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
             android:textColor="@color/biru"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView10"
-            app:layout_constraintEnd_toStartOf="@+id/textView10"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_completionsNeeded"
+            app:layout_constraintEnd_toStartOf="@+id/textView_completionsNeeded"
             app:layout_constraintTop_toTopOf="parent" />
 
 
