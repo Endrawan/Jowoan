@@ -7,7 +7,7 @@ import retrofit2.http.*
 
 interface JowoanService {
     @GET("avatar")
-    fun listAvatars(): Call<List<Avatar>>
+    fun avatarGetAll(@Header("Token") token: String): Call<APIResponse<List<Avatar>>>
 
     @POST("user/emailSignUp")
     fun emailSignUp(@Body user: User): Call<APIResponse<User>>

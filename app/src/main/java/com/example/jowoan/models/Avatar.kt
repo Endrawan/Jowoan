@@ -4,5 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Avatar(
     @SerializedName("id") val ID: Int,
-    @SerializedName("url") val URL: String
+    @SerializedName("url") val URL: String,
+    val price: Int,
+    val name: String
 )

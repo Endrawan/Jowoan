@@ -85,6 +85,7 @@ class FragmentBeranda : Fragment() {
                     activity.logout()
                     Intent(requireContext(), LoginActivity::class.java).also {
                         startActivity(it)
+                        activity.finishAffinity()
                     }
                 }
             }))
