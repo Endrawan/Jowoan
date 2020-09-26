@@ -9,6 +9,7 @@
     android:paddingEnd="@dimen/normal">
 
     <TextView
+        android:id="@+id/textView_titleCorrection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Jawaban Yang Benar:"

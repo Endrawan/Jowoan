@@ -71,7 +71,8 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_answer_correct" />
+                    android:src="@drawable/ic_answer_correct"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 
@@ -98,7 +99,8 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_answer_false" />
+                    android:src="@drawable/ic_answer_false"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 

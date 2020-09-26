@@ -52,14 +52,17 @@
             android:orientation="vertical">
 
             <include
+                android:id="@+id/view_correct_label"
                 layout="@layout/view_correct_label"
                 android:visibility="gone" />
 
             <include
+                android:id="@+id/view_wrong_label"
                 layout="@layout/view_wrong_label"
                 android:visibility="gone" />
 
             <include
+                android:id="@+id/view_correction"
                 layout="@layout/view_correction"
                 android:visibility="gone" />
 

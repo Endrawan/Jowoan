@@ -22,8 +22,12 @@ import com.example.jowoan.models.lesson.Lesson
 import kotlinx.android.synthetic.main.item_berbicara.view.*
 import java.util.*
 
-class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
-    LessonAdapter.LessonViewHolder(view) {
+class BerbicaraViewHolder(
+    view: View,
+    val activity: AppCompatActivity,
+    action: LessonAdapter.Action
+) :
+    LessonAdapter.LessonViewHolder(view, action) {
     private val title = view.title
     private val jowoLang = view.jowoLang
     private val listen = view.listen
@@ -34,6 +38,7 @@ class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
     private lateinit var tts: TextToSpeech
 
     private val RecordAudioRequestCode = 1
+//    private var status = LessonConfig.ANSWER_HASNT_ANSWERED
 
     override fun bind(lesson: Lesson) {
         val berbicara = lesson.berbicara
@@ -42,6 +47,8 @@ class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
             title.text = berbicara.title
             jowoLang.text = berbicara.jowoLang
             indoLang.text = berbicara.indoLang
+
+            disableAnswerOption()
 
             listen.setOnClickListener {
                 tts.speak(berbicara.jowoLang, TextToSpeech.QUEUE_FLUSH, null, null)
@@ -126,6 +133,10 @@ class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
         }
     }
 
+    override fun onViewShowed() {
+        enableAnswerOption()
+    }
+
     private fun initTTS() {
         tts = TextToSpeech(activity,
             TextToSpeech.OnInitListener {})
@@ -148,10 +159,18 @@ class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
         if (correctAnswer.equals(userAnswer, ignoreCase = true)) {
             // TODO add action if true
             result = "Correct"
+            action.showCorrectDisplay("Jawaban Kamu:", userAnswer, null)
         } else {
             // TODO add action if false
             result = "False"
+            action.showWrongDisplay(
+                "Jawaban Kamu:",
+                userAnswer,
+                "Pastikan anda mengucapkan kalimat di atas dengan keras dan lantang"
+            )
         }
+        action.questionAnswered()
+        disableAnswerOption()
         Log.d("Coba", "$result; $correctAnswer = $userAnswer")
         activity.toast("$result; $correctAnswer = $userAnswer")
     }
@@ -159,6 +178,18 @@ class BerbicaraViewHolder(view: View, val activity: AppCompatActivity) :
     private fun removeNonAlphaNumeric(text: String): String {
         val re = Regex("[^A-Za-z0-9 ]")
         return re.replace(text, "")
+    }
+
+    private fun enableAnswerOption() {
+        speak.isEnabled = true
+        listen.isEnabled = true
+        skip.isEnabled = true
+    }
+
+    private fun disableAnswerOption() {
+        speak.isEnabled = false
+        listen.isEnabled = false
+        skip.isEnabled = false
     }
 
 }

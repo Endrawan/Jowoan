@@ -5,15 +5,21 @@ import com.example.jowoan.adapters.LessonAdapter
 import com.example.jowoan.models.lesson.Lesson
 import kotlinx.android.synthetic.main.item_penjelasan.view.*
 
-class PenjelasanViewHolder(view: View) : LessonAdapter.LessonViewHolder(view) {
+class PenjelasanViewHolder(view: View, action: LessonAdapter.Action) :
+    LessonAdapter.LessonViewHolder(view, action) {
     private val title = view.title
     private val content = view.content
 
     override fun bind(lesson: Lesson) {
+        action.questionAnswered()
         val penjelasan = lesson.penjelasan
         if (penjelasan != null) {
             title.text = penjelasan.title
             content.text = penjelasan.content
         }
+    }
+
+    override fun onViewShowed() {
+        action.questionAnswered()
     }
 }

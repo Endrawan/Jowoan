@@ -13,7 +13,8 @@ import com.example.jowoan.models.lesson.Lesson
 import com.example.jowoan.models.lesson.PilihKata
 import kotlinx.android.synthetic.main.item_pilih_kata.view.*
 
-class PilihKataViewHolder(val view: View) : LessonAdapter.LessonViewHolder(view) {
+class PilihKataViewHolder(val view: View, action: LessonAdapter.Action) :
+    LessonAdapter.LessonViewHolder(view, action) {
     private val title = view.title
     private val image = view.image
     private val question = view.question
@@ -29,6 +30,8 @@ class PilihKataViewHolder(val view: View) : LessonAdapter.LessonViewHolder(view)
         val pilihKata = lesson.pilihKata
         if (pilihKata != null) {
             title.text = pilihKata.title
+
+            disableAnswerOption()
 
             val placeholder =
                 ResourcesCompat.getDrawable(App.resourses!!, R.drawable.image_not_found, null)
@@ -60,6 +63,10 @@ class PilihKataViewHolder(val view: View) : LessonAdapter.LessonViewHolder(view)
 
             prepareAnswer(pilihKata)
         }
+    }
+
+    override fun onViewShowed() {
+        enableAnswerOption()
     }
 
     private fun getBlankString(length: Int): String {
@@ -98,8 +105,26 @@ class PilihKataViewHolder(val view: View) : LessonAdapter.LessonViewHolder(view)
         question.text = spannableQuestion
         if (answer == choosenAnswerID) {
             // TODO Add correct reaction
+            action.showCorrectDisplay(
+                "Jawaban Yang Benar:",
+                pilihKata.question,
+                pilihKata.correction
+            )
         } else {
             // TODO Add wrong reaction
+            action.showWrongDisplay("Jawaban Yang Benar:", pilihKata.question, pilihKata.correction)
         }
+        action.questionAnswered()
+        disableAnswerOption()
+    }
+
+    private fun enableAnswerOption() {
+        answer1.isEnabled = true
+        answer2.isEnabled = true
+    }
+
+    private fun disableAnswerOption() {
+        answer1.isEnabled = false
+        answer2.isEnabled = false
     }
 }

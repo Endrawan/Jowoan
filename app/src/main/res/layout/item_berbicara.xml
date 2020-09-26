@@ -55,7 +55,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/large"
             android:text="Mari pak!"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/note"
