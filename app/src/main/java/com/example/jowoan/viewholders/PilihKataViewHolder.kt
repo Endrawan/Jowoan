@@ -7,6 +7,7 @@ import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import com.example.jowoan.R
 import com.example.jowoan.adapters.LessonAdapter
+import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.custom.App
 import com.example.jowoan.custom.GlideApp
 import com.example.jowoan.models.lesson.Lesson
@@ -25,8 +26,10 @@ class PilihKataViewHolder(val view: View, action: LessonAdapter.Action) :
     private var answerColor: Int = 0
     private var choosenAnswerID: Int = 0
     private var answer: Int = 0
+    private lateinit var lesson: Lesson
 
     override fun bind(lesson: Lesson) {
+        this.lesson = lesson
         val pilihKata = lesson.pilihKata
         if (pilihKata != null) {
             title.text = pilihKata.title
@@ -105,6 +108,7 @@ class PilihKataViewHolder(val view: View, action: LessonAdapter.Action) :
         question.text = spannableQuestion
         if (answer == choosenAnswerID) {
             // TODO Add correct reaction
+            action.questionAnswered(LessonConfig.ANSWER_CORRECT)
             action.showCorrectDisplay(
                 "Jawaban Yang Benar:",
                 pilihKata.question,
@@ -112,9 +116,10 @@ class PilihKataViewHolder(val view: View, action: LessonAdapter.Action) :
             )
         } else {
             // TODO Add wrong reaction
+            action.questionAnswered(LessonConfig.ANSWER_WRONG)
             action.showWrongDisplay("Jawaban Yang Benar:", pilihKata.question, pilihKata.correction)
+            action.retryNextTime(lesson)
         }
-        action.questionAnswered()
         disableAnswerOption()
     }
 

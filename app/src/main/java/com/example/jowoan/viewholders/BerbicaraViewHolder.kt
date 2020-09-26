@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.jowoan.R.drawable.ic_baseline_mic_128
 import com.example.jowoan.adapters.LessonAdapter
+import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.models.lesson.Lesson
 import kotlinx.android.synthetic.main.item_berbicara.view.*
@@ -36,11 +37,13 @@ class BerbicaraViewHolder(
     private val skip = view.skip
     private val note = view.note
     private lateinit var tts: TextToSpeech
+    private lateinit var lesson: Lesson
 
     private val RecordAudioRequestCode = 1
 //    private var status = LessonConfig.ANSWER_HASNT_ANSWERED
 
     override fun bind(lesson: Lesson) {
+        this.lesson = lesson
         val berbicara = lesson.berbicara
         if (berbicara != null) {
             initTTS()
@@ -158,18 +161,20 @@ class BerbicaraViewHolder(
         var result = ""
         if (correctAnswer.equals(userAnswer, ignoreCase = true)) {
             // TODO add action if true
+            action.questionAnswered(LessonConfig.ANSWER_CORRECT)
             result = "Correct"
             action.showCorrectDisplay("Jawaban Kamu:", userAnswer, null)
         } else {
             // TODO add action if false
+            action.questionAnswered(LessonConfig.ANSWER_WRONG)
             result = "False"
             action.showWrongDisplay(
                 "Jawaban Kamu:",
                 userAnswer,
                 "Pastikan anda mengucapkan kalimat di atas dengan keras dan lantang"
             )
+            action.retryNextTime(lesson)
         }
-        action.questionAnswered()
         disableAnswerOption()
         Log.d("Coba", "$result; $correctAnswer = $userAnswer")
         activity.toast("$result; $correctAnswer = $userAnswer")

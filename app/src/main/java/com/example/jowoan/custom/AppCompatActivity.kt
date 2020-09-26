@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.jowoan.R
-import com.example.jowoan.internal.Utils
 import com.example.jowoan.models.User
 import com.example.jowoan.network.Repository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -40,9 +39,11 @@ open class AppCompatActivity : AppCompatActivity() {
 
     fun checkUser() {
         if (user.fullName.isNotEmpty()) {
-            Utils.toast(this, "User logged in! ${user.fullName}")
+            Log.d(TAG, "User logged in! ${user.fullName}")
+//            Utils.toast(this, "User logged in! ${user.fullName}")
         } else {
-            Utils.toast(this, "User not logged in!")
+            Log.d(TAG, "User logged in! ${user.fullName}")
+//            Utils.toast(this, "User not logged in!")
         }
     }
 

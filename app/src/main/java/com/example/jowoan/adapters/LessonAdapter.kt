@@ -95,7 +95,8 @@ class LessonAdapter(
         fun showCorrectDisplay(correctionTitle: String?, correctWord: String?, correction: String?)
         fun showWrongDisplay(correctionTitle: String?, correctWord: String?, correction: String?)
         fun hideSolutionDisplay()
-        fun questionAnswered()
+        fun questionAnswered(status: Int)
+        fun retryNextTime(lesson: Lesson)
     }
 
     fun getLessonActionFromPosition(position: Int): LessonAction? {

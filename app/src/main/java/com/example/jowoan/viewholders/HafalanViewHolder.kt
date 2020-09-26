@@ -3,6 +3,7 @@ package com.example.jowoan.viewholders
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.jowoan.adapters.LessonAdapter
+import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.models.lesson.Lesson
 import kotlinx.android.synthetic.main.item_hafalan.view.*
 
@@ -14,7 +15,7 @@ class HafalanViewHolder(val view: View, action: LessonAdapter.Action) :
     private val indoLang = view.indoLang
 
     override fun bind(lesson: Lesson) {
-        action.questionAnswered()
+        action.questionAnswered(LessonConfig.ANSWER_CORRECT)
         val hafalan = lesson.hafalan
         if (hafalan != null) {
             title.text = hafalan.title
@@ -25,6 +26,6 @@ class HafalanViewHolder(val view: View, action: LessonAdapter.Action) :
     }
 
     override fun onViewShowed() {
-        action.questionAnswered()
+        action.questionAnswered(LessonConfig.ANSWER_CORRECT)
     }
 }

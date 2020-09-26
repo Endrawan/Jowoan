@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.TextView
 import com.example.jowoan.R
 import com.example.jowoan.adapters.LessonAdapter
+import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.models.lesson.Lesson
 import com.example.jowoan.network.APICallback
@@ -23,7 +24,8 @@ class LessonActivity : AppCompatActivity() {
     private lateinit var adapter: LessonAdapter
     private var progressIncrement = 0
     private var currentLesson = 0
-    private var questionAnswered = false
+    private var questionStatus: Int = LessonConfig.ANSWER_HASNT_ANSWERED
+    private var resultShowed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -61,8 +63,12 @@ class LessonActivity : AppCompatActivity() {
                 this@LessonActivity.hideSolutionDisplay()
             }
 
-            override fun questionAnswered() {
-                setQuestionToAnswered()
+            override fun questionAnswered(status: Int) {
+                setQuestionToAnswered(status)
+            }
+
+            override fun retryNextTime(lesson: Lesson) {
+                this@LessonActivity.retryNextTime(lesson)
             }
 
         })
@@ -176,24 +182,51 @@ class LessonActivity : AppCompatActivity() {
     }
 
     private fun swipeAction() {
-        Log.d(TAG, "Position: $currentLesson, Status: $questionAnswered")
-        if (questionAnswered) {
-            currentLesson++
-            hideSolutionDisplay()
-            cardStackView.swipe()
-            progress_soal.incrementProgressBy(progressIncrement)
-            resetQuestionStatus()
-            adapter.getLessonActionFromPosition(currentLesson)?.onViewShowed()
-        } else {
-            toast("Tolong jawab terlebih dahulu!")
+        Log.d(TAG, "Position: $currentLesson, Status: $questionStatus")
+        if (questionStatus == LessonConfig.ANSWER_CORRECT) progress_soal.incrementProgressBy(
+            progressIncrement
+        )
+        when (questionStatus) {
+            LessonConfig.ANSWER_CORRECT, LessonConfig.ANSWER_WRONG -> {
+                currentLesson++
+                if (currentLesson == lessons.size && !resultShowed) {
+                    retryNextTime(LessonConfig.resultTemplate)
+                    resultShowed = true
+                }
+                hideSolutionDisplay()
+                cardStackView.swipe()
+                resetQuestionStatus()
+                adapter.getLessonActionFromPosition(currentLesson)?.onViewShowed()
+            }
+            else -> toast("Tolong jawab terlebih dahulu!")
         }
+//        if (questionStatus) {
+//            currentLesson++
+//            if(currentLesson == lessons.size && !resultShowed) {
+//                retryNextTime(LessonConfig.resultTemplate)
+//                resultShowed = true
+//            }
+//            hideSolutionDisplay()
+//            cardStackView.swipe()
+//            progress_soal.incrementProgressBy(progressIncrement)
+//            resetQuestionStatus()
+//            adapter.getLessonActionFromPosition(currentLesson)?.onViewShowed()
+//        } else {
+//            toast("Tolong jawab terlebih dahulu!")
+//        }
     }
 
-    private fun setQuestionToAnswered() {
-        questionAnswered = true
+    private fun setQuestionToAnswered(status: Int) {
+        questionStatus = status
     }
 
     private fun resetQuestionStatus() {
-        questionAnswered = false
+        questionStatus = LessonConfig.ANSWER_HASNT_ANSWERED
+    }
+
+    private fun retryNextTime(lesson: Lesson) {
+        val lastIndex = lessons.size - 1
+        lessons.add(lesson)
+        adapter.notifyItemRangeChanged(lastIndex, 1)
     }
 }

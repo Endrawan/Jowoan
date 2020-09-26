@@ -2,6 +2,7 @@ package com.example.jowoan.viewholders
 
 import android.view.View
 import com.example.jowoan.adapters.LessonAdapter
+import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.models.lesson.Lesson
 import kotlinx.android.synthetic.main.item_result.view.*
 
@@ -13,7 +14,7 @@ class ResultViewHolder(view: View, action: LessonAdapter.Action) :
     private val subtitle = view.subtitle
 
     override fun bind(lesson: Lesson) {
-        action.questionAnswered()
+        action.questionAnswered(LessonConfig.ANSWER_CORRECT)
         val lessonResult = lesson.result
         if (lessonResult != null) {
             points.text = "+ ${lessonResult.point} pts"
@@ -23,6 +24,6 @@ class ResultViewHolder(view: View, action: LessonAdapter.Action) :
     }
 
     override fun onViewShowed() {
-        action.questionAnswered()
+        action.questionAnswered(LessonConfig.ANSWER_CORRECT)
     }
 }

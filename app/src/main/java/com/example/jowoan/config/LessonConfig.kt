@@ -11,6 +11,10 @@ object LessonConfig {
     val BERBICARA_TYPE = 5
     val BENAR_SALAH_TYPE = 6
 
+    val ANSWER_CORRECT = 1000
+    val ANSWER_WRONG = 2000
+    val ANSWER_HASNT_ANSWERED = 3000
+
     val Dummy = mutableListOf(
         Lesson(
             1, 1,
@@ -81,5 +85,15 @@ object LessonConfig {
             ),
             1, LessonConfig.RESULT_TYPE
         )
+    )
+
+    val resultTemplate = Lesson(
+        1, 1, null, null, null, null, null, null,
+        LessonResult(
+            100,
+            "Kamu luar biasa!",
+            "Tetap jaga semangatmu dan selesaikan pelajaran berikutnya."
+        ),
+        1, LessonConfig.RESULT_TYPE
     )
 }
