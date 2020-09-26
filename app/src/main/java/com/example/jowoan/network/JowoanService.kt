@@ -38,11 +38,23 @@ interface JowoanService {
     )
             : Call<APIResponse<List<Lesson>>>
 
+    @GET("completion/{user_id}")
+    fun completionGetAll(
+        @Header("Token") token: String,
+        @Path("user_id") userID: Int
+    ): Call<APIResponse<List<Completion>>>
+
     @POST("completion")
     fun completionUpsert(
         @Header("Token") token: String,
         @Body completion: Completion
     ): Call<APIResponse<Completion>>
+
+    @GET("activity")
+    fun activityGetAll(
+        @Header("Token") token: String,
+        @Query("user_id") userID: Int
+    ): Call<APIResponse<List<Activity>>>
 
     @POST("activity")
     fun activityCreate(

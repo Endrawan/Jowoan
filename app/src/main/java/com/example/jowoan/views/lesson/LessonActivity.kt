@@ -15,7 +15,6 @@ import com.example.jowoan.models.User
 import com.example.jowoan.models.lesson.Lesson
 import com.example.jowoan.network.APICallback
 import com.example.jowoan.views.auth.LoginActivity
-import com.example.jowoan.views.main.MainActivity
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.StackFrom
 import kotlinx.android.synthetic.main.activity_lesson.*
@@ -85,10 +84,7 @@ class LessonActivity : AppCompatActivity() {
         cardStackView.adapter = adapter
 
         closed_lesson.setOnClickListener {
-            Intent(applicationContext, MainActivity::class.java).also {
-                startActivity(it)
-                finishAffinity()
-            }
+            finish()
         }
 
         swipe.setOnClickListener {

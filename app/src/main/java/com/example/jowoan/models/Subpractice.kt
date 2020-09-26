@@ -10,5 +10,6 @@ data class Subpractice(
     @SerializedName("DeletedAt") val deletedAt: Date,
     val title: String,
     val name: String,
-    @SerializedName("practice_id") val practiceID: Int
+    @SerializedName("practice_id") val practiceID: Int,
+    var completionStatus: Boolean = false
 )

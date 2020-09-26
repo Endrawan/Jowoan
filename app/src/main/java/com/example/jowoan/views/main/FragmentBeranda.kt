@@ -61,7 +61,7 @@ class FragmentBeranda : Fragment() {
                     hideLoading()
                     practices.clear()
                     practices.addAll(data)
-                    adapter.notifyDataSetChanged()
+                    syncSubpracticeWithCompletion()
                 }
 
                 override fun dataNotFound(message: String) {
@@ -89,6 +89,23 @@ class FragmentBeranda : Fragment() {
                     }
                 }
             }))
+    }
+
+    fun syncSubpracticeWithCompletion() {
+        val act = activity as MainActivity
+        if (act.completions.size == 0) return
+        if (practices.size == 0) return
+        for (practice in practices) {
+            for (subpractice in practice.subpractices) {
+                for (completion in act.completions) {
+                    if (subpractice.ID == completion.subpracticeID) {
+                        subpractice.completionStatus = true
+                        break
+                    }
+                }
+            }
+        }
+        adapter.notifyDataSetChanged()
     }
 
     private fun showLoading(message: String) {

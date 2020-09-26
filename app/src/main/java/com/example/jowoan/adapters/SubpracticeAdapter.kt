@@ -57,13 +57,16 @@ class SubpracticeAdapter(
             name.text = subpractice.name
             title.text = subpractice.title
 
-//            if (subpractice.ID % 2 == 0) {
-//                checklist.visibility = View.INVISIBLE
-//                duration.visibility = View.VISIBLE
-//            } else {
-//                checklist.visibility = View.VISIBLE
-//                duration.visibility = View.INVISIBLE
-//            }
+            if (subpractice.completionStatus) {
+                checklist.visibility = View.VISIBLE
+                duration.visibility = View.INVISIBLE
+            } else {
+                checklist.visibility = View.INVISIBLE
+                duration.visibility = View.VISIBLE
+            }
+            checklist.setOnClickListener {
+                action.subpracticeClicked(subpractice)
+            }
             duration.setOnClickListener {
                 action.subpracticeClicked(subpractice)
             }
