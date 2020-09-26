@@ -40,7 +40,6 @@ class BerbicaraViewHolder(
     private lateinit var lesson: Lesson
 
     private val RecordAudioRequestCode = 1
-//    private var status = LessonConfig.ANSWER_HASNT_ANSWERED
 
     override fun bind(lesson: Lesson) {
         this.lesson = lesson
@@ -52,6 +51,10 @@ class BerbicaraViewHolder(
             indoLang.text = berbicara.indoLang
 
             disableAnswerOption()
+
+            skip.setOnClickListener {
+                checkAnswer(berbicara.jowoLang, berbicara.jowoLang)
+            }
 
             listen.setOnClickListener {
                 tts.speak(berbicara.jowoLang, TextToSpeech.QUEUE_FLUSH, null, null)
@@ -114,7 +117,6 @@ class BerbicaraViewHolder(
                         )
                     )
                     val data = bundle!!.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                    //title.text = data!![0]
                     note.text = ""
                     checkAnswer(berbicara.jowoLang, data!![0])
                 }
@@ -156,16 +158,15 @@ class BerbicaraViewHolder(
         }
     }
 
-    private fun checkAnswer(jowoLang: String, userAnswer: String) {
+    private fun checkAnswer(jowoLang: String, plainUserAnswer: String) {
         val correctAnswer = removeNonAlphaNumeric(jowoLang)
+        val userAnswer = removeNonAlphaNumeric(plainUserAnswer)
         var result = ""
         if (correctAnswer.equals(userAnswer, ignoreCase = true)) {
-            // TODO add action if true
             action.questionAnswered(LessonConfig.ANSWER_CORRECT)
             result = "Correct"
             action.showCorrectDisplay("Jawaban Kamu:", userAnswer, null)
         } else {
-            // TODO add action if false
             action.questionAnswered(LessonConfig.ANSWER_WRONG)
             result = "False"
             action.showWrongDisplay(
@@ -177,7 +178,6 @@ class BerbicaraViewHolder(
         }
         disableAnswerOption()
         Log.d("Coba", "$result; $correctAnswer = $userAnswer")
-        activity.toast("$result; $correctAnswer = $userAnswer")
     }
 
     private fun removeNonAlphaNumeric(text: String): String {
