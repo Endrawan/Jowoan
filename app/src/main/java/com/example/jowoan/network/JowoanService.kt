@@ -1,8 +1,6 @@
 package com.example.jowoan.network
 
-import com.example.jowoan.models.Avatar
-import com.example.jowoan.models.Practice
-import com.example.jowoan.models.User
+import com.example.jowoan.models.*
 import com.example.jowoan.models.lesson.Lesson
 import retrofit2.Call
 import retrofit2.http.*
@@ -39,4 +37,16 @@ interface JowoanService {
         @Query("subpractice_id") subpracticeID: String
     )
             : Call<APIResponse<List<Lesson>>>
+
+    @POST("completion")
+    fun completionUpsert(
+        @Header("Token") token: String,
+        @Body completion: Completion
+    ): Call<APIResponse<Completion>>
+
+    @POST("activity")
+    fun activityCreate(
+        @Header("Token") token: String,
+        @Body activity: Activity
+    ): Call<APIResponse<Activity>>
 }

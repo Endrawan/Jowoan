@@ -48,6 +48,7 @@ class FragmentProfil : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         textView_fullName.text = activity.user.fullName
+        tv_poin_user.text = "${activity.user.points} Poin"
     }
 
     //Call onActivity Create method

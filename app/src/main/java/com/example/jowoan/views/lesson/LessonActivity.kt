@@ -9,6 +9,9 @@ import com.example.jowoan.R
 import com.example.jowoan.adapters.LessonAdapter
 import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.custom.AppCompatActivity
+import com.example.jowoan.models.Activity
+import com.example.jowoan.models.Completion
+import com.example.jowoan.models.User
 import com.example.jowoan.models.lesson.Lesson
 import com.example.jowoan.network.APICallback
 import com.example.jowoan.views.auth.LoginActivity
@@ -16,16 +19,23 @@ import com.example.jowoan.views.main.MainActivity
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.StackFrom
 import kotlinx.android.synthetic.main.activity_lesson.*
+import kotlinx.android.synthetic.main.view_lesson_progress.view.*
 
 class LessonActivity : AppCompatActivity() {
 
     private val TAG = "LessonActivity"
     val lessons = mutableListOf<Lesson>()
     private lateinit var adapter: LessonAdapter
+    private var subpracticeID = 0
+    private var totalQuestion = 0
     private var progressIncrement = 0
     private var currentLesson = 0
     private var questionStatus: Int = LessonConfig.ANSWER_HASNT_ANSWERED
     private var resultShowed = false
+
+    private var user_update_done = false
+    private var completion_update_done = false
+    private var activity_update_done = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -87,11 +97,12 @@ class LessonActivity : AppCompatActivity() {
     }
 
     private fun loadLessonsFromAPI() {
-        val subpracticeID = intent.getIntExtra("SubpracticeID", 0)
+        subpracticeID = intent.getIntExtra("SubpracticeID", 0)
         jowoanService.lessonGet(user.token, subpracticeID.toString())
             .enqueue(APICallback(object : APICallback.Action<List<Lesson>> {
                 override fun responseSuccess(data: List<Lesson>) {
                     progress.visibility = View.GONE
+                    totalQuestion = data.size
                     lessons.addAll(data)
                     adapter.notifyDataSetChanged()
                     if (data.isNotEmpty()) {
@@ -189,6 +200,9 @@ class LessonActivity : AppCompatActivity() {
         when (questionStatus) {
             LessonConfig.ANSWER_CORRECT, LessonConfig.ANSWER_WRONG -> {
                 currentLesson++
+                if (resultShowed) {
+                    lessonDone()
+                }
                 if (currentLesson == lessons.size && !resultShowed) {
                     retryNextTime(LessonConfig.resultTemplate)
                     resultShowed = true
@@ -200,20 +214,6 @@ class LessonActivity : AppCompatActivity() {
             }
             else -> toast("Tolong jawab terlebih dahulu!")
         }
-//        if (questionStatus) {
-//            currentLesson++
-//            if(currentLesson == lessons.size && !resultShowed) {
-//                retryNextTime(LessonConfig.resultTemplate)
-//                resultShowed = true
-//            }
-//            hideSolutionDisplay()
-//            cardStackView.swipe()
-//            progress_soal.incrementProgressBy(progressIncrement)
-//            resetQuestionStatus()
-//            adapter.getLessonActionFromPosition(currentLesson)?.onViewShowed()
-//        } else {
-//            toast("Tolong jawab terlebih dahulu!")
-//        }
     }
 
     private fun setQuestionToAnswered(status: Int) {
@@ -228,5 +228,141 @@ class LessonActivity : AppCompatActivity() {
         val lastIndex = lessons.size - 1
         lessons.add(lesson)
         adapter.notifyItemRangeChanged(lastIndex, 1)
+    }
+
+    private fun lessonDone() {
+        swipe.isEnabled = false
+        lessonDoneProgress()
+        val pointsGot = LessonConfig.POINTS_REWARD_DEFAULT
+        user.points += pointsGot
+        val completion = Completion(
+            totalQuestion, totalQuestion, subpracticeID, user.ID
+        )
+        val activity = Activity(
+            subpracticeID, user.ID, pointsGot
+        )
+
+        jowoanService.userUpdate(user.token, user.ID, user)
+            .enqueue(APICallback(object : APICallback.Action<User> {
+                override fun responseSuccess(data: User) {
+                    toast("Berhasil mengupdate user")
+                    saveUser(data)
+                    user_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun dataNotFound(message: String) {
+                    toast("user data not found!")
+                    user_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun responseFailed(status: String, message: String) {
+                    toast("User update gagal Status: $status Message: $message")
+                    user_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun networkFailed(t: Throwable) {
+                    toast("User update gagal! ${t.message}")
+                    user_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun tokenExpired() {
+                    toast("Token telah expired, silahkan login ulang")
+                    logout()
+                    Intent(this@LessonActivity, LoginActivity::class.java).also {
+                        startActivity(it)
+                        finishAffinity()
+                    }
+                }
+            }))
+
+        jowoanService.completionUpsert(user.token, completion)
+            .enqueue(APICallback(object : APICallback.Action<Completion> {
+                override fun responseSuccess(data: Completion) {
+                    toast("Berhasil mengupdate completion")
+                    completion_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun dataNotFound(message: String) {
+                    toast("completion data not found!")
+                    completion_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun responseFailed(status: String, message: String) {
+                    toast("Completion update gagal Status: $status Message: $message")
+                    completion_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun networkFailed(t: Throwable) {
+                    toast("Completion update gagal! ${t.message}")
+                    completion_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun tokenExpired() {
+                    toast("Token telah expired, silahkan login ulang")
+                    logout()
+                    Intent(this@LessonActivity, LoginActivity::class.java).also {
+                        startActivity(it)
+                        finishAffinity()
+                    }
+                }
+
+            }))
+
+        jowoanService.activityCreate(user.token, activity)
+            .enqueue(APICallback(object : APICallback.Action<Activity> {
+                override fun responseSuccess(data: Activity) {
+                    toast("Berhasil mengupdate activity")
+                    activity_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun dataNotFound(message: String) {
+                    toast("activity data not found!")
+                    activity_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun responseFailed(status: String, message: String) {
+                    toast("activity update gagal Status: $status Message: $message")
+                    activity_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun networkFailed(t: Throwable) {
+                    toast("activity update gagal! ${t.message}")
+                    activity_update_done = true
+                    handleResponsesDone()
+                }
+
+                override fun tokenExpired() {
+                    toast("Token telah expired, silahkan login ulang")
+                    logout()
+                    Intent(this@LessonActivity, LoginActivity::class.java).also {
+                        startActivity(it)
+                        finishAffinity()
+                    }
+                }
+
+            }))
+    }
+
+    private fun lessonDoneProgress() {
+        val progressText = progress.textView_description
+        progressText.text = "Sedang menyimpan perkembangan kamu, mohon tunggu..."
+        progress.visibility = View.VISIBLE
+    }
+
+    private fun handleResponsesDone() {
+        if (user_update_done && completion_update_done && activity_update_done) {
+            finish()
+        }
     }
 }

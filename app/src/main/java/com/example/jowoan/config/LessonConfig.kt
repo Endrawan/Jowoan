@@ -15,6 +15,8 @@ object LessonConfig {
     val ANSWER_WRONG = 2000
     val ANSWER_HASNT_ANSWERED = 3000
 
+    val POINTS_REWARD_DEFAULT = 100
+
     val Dummy = mutableListOf(
         Lesson(
             1, 1,
