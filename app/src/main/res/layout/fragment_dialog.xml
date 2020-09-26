@@ -1,92 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:context=".views.main.fragmentToko.TokoDialogFragment">
 
-    android:layout_width="310.07dp"
-    tools:context=".views.main.fragmentToko.TokoDialogFragment"
-    android:layout_height="575dp">
-
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="310.07dp"
-            android:src="@drawable/ava1" />
+            android:id="@+id/imageView_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ava1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:text="Detail Avatar"
-            android:textColor="@android:color/black"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv_nama_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="7dp"
-            android:text="Avatar Joko"
-            android:textColor="@android:color/black"
-            android:textSize="22sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normal"
+        android:text="Detail Avatar"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-        <TextView
+    <TextView
+        android:id="@+id/textView_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal"
+        android:layout_marginEnd="@dimen/normal"
+        android:layout_marginBottom="@dimen/xsmall"
+        android:text="Avatar Joko"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginBottom="5dp"
-            android:text="Avatar"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/textView_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal"
+        android:layout_marginEnd="@dimen/normal"
+        android:layout_marginBottom="@dimen/xsmall"
+        tools:text="Avatar" />
 
-        <TextView
+    <TextView
+        android:id="@+id/textView_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal"
+        android:layout_marginEnd="@dimen/normal"
+        android:layout_marginBottom="@dimen/normal"
+        android:text="100 poin"
+        android:textColor="#F59218" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginBottom="7dp"
-            android:text="100 poin"
-            android:textColor="#F59218"
-            android:textSize="18sp" />
+    <Button
+        android:id="@+id/button_buy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal"
+        android:layout_marginEnd="@dimen/normal"
+        android:layout_marginBottom="@dimen/normal"
+        android:background="@drawable/box_biru"
+        android:gravity="center"
+        android:padding="@dimen/normal"
+        android:text="Beli"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
-        <LinearLayout
-            android:id="@+id/btn_beli"
-            android:layout_width="246dp"
-            android:layout_height="57dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/box_biru"
-           android:orientation="vertical"
-            android:textAllCaps="false"
-           >
-            <TextView
-                android:id="@+id/tv_toko_beli"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="18dp"
-                android:textColor="@android:color/white"
-                android:text="Beli"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+</LinearLayout>
 
-        </LinearLayout>
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@ import com.example.jowoan.custom.GlideApp
 import com.example.jowoan.models.Avatar
 import kotlinx.android.synthetic.main.item_avatar.view.*
 
-class AvatarAdapter(val avatars: List<Avatar>) :
+class AvatarAdapter(val avatars: List<Avatar>, val action: Action) :
     RecyclerView.Adapter<AvatarAdapter.AvatarViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AvatarViewHolder {
@@ -24,7 +24,7 @@ class AvatarAdapter(val avatars: List<Avatar>) :
     override fun getItemCount(): Int = avatars.size
 
     override fun onBindViewHolder(holder: AvatarViewHolder, position: Int) {
-        holder.bind(avatars[position])
+        holder.bind(avatars[position], action)
     }
 
     class AvatarViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -33,7 +33,7 @@ class AvatarAdapter(val avatars: List<Avatar>) :
         val category = view.category
         val price = view.price
 
-        fun bind(avatar: Avatar) {
+        fun bind(avatar: Avatar, action: Action) {
             if (!avatar.name.isNullOrEmpty())
                 name.text = avatar.name
             else name.text = "Lorem Ipsum"
@@ -46,7 +46,15 @@ class AvatarAdapter(val avatars: List<Avatar>) :
             category.text = "Avatar"
 
             price.text = "${avatar.price} poin"
+
+            view.setOnClickListener {
+                action.clicked(avatar)
+            }
         }
+    }
+
+    interface Action {
+        fun clicked(avatar: Avatar)
     }
 
 }

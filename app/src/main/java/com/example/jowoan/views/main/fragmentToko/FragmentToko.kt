@@ -31,7 +31,14 @@ class FragmentToko : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        adapter = AvatarAdapter(avatars)
+        adapter = AvatarAdapter(avatars, object : AvatarAdapter.Action {
+            override fun clicked(avatar: Avatar) {
+                val fm = activity.supportFragmentManager
+                val dialogFragment = TokoDialogFragment.newInstance(avatar, 0)
+                dialogFragment.show(fm, "fragment_avatar_detail")
+            }
+
+        })
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_toko, container, false)
