@@ -34,6 +34,7 @@
                 android:background="@drawable/photobackground">
 
                 <ImageView
+                    android:id="@+id/imageView_avatar"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
                     android:layout_gravity="center"

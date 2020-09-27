@@ -68,5 +68,10 @@ interface JowoanService {
         @Query("keyword") keyword: String
     ): Call<APIResponse<List<User>>>
 
-
+    @POST("buy-avatar/{user_id}/{avatar_id}")
+    fun buyAvatar(
+        @Header("Token") token: String,
+        @Path("user_id") userID: Int,
+        @Path("avatar_id") avatarID: Int
+    ): Call<APIResponse<String>>
 }

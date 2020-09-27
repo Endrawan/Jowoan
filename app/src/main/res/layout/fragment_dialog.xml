@@ -68,20 +68,34 @@
         android:text="100 poin"
         android:textColor="#F59218" />
 
-    <Button
-        android:id="@+id/button_buy"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/normal"
         android:layout_marginEnd="@dimen/normal"
-        android:layout_marginBottom="@dimen/normal"
-        android:background="@drawable/box_biru"
-        android:gravity="center"
-        android:padding="@dimen/normal"
-        android:text="Beli"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        android:layout_marginBottom="@dimen/normal">
+
+        <Button
+            android:id="@+id/button_buy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_biru"
+            android:gravity="center"
+            android:padding="@dimen/normal"
+            android:text="Beli"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:progressTint="@color/white"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
 </LinearLayout>
 

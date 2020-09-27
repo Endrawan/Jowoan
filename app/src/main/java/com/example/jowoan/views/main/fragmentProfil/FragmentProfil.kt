@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager
 import com.example.jowoan.R
+import com.example.jowoan.config.ImageConfig
 import com.example.jowoan.custom.Fragment
+import com.example.jowoan.custom.GlideApp
 import com.example.jowoan.databinding.FragmentProfilBinding
 import com.example.jowoan.views.pengaturan.PengaturanActivity
 import com.google.android.material.tabs.TabLayout
@@ -32,13 +34,6 @@ class FragmentProfil : Fragment() {
             val intent = Intent(requireContext(), PengaturanActivity::class.java)
             startActivity(intent)
         }
-//
-//        btn_logout.setOnClickListener(View.OnClickListener {
-//            if (auth.getCurrentUser() != null) auth.signOut()
-//            val intent = Intent(activity, LoginActivity::class.java)
-//            startActivity(intent)
-//        })
-
 
         // Inflate the layout for this fragment
         return binding.root
@@ -49,6 +44,10 @@ class FragmentProfil : Fragment() {
 
         textView_fullName.text = activity.user.fullName
         tv_poin_user.text = "${activity.user.points} Poin"
+
+        GlideApp.with(activity).load("http://${activity.user.avatar?.URL}")
+            .placeholder(ImageConfig.defaultAvatar).centerCrop()
+            .into(imageView_avatar)
     }
 
     //Call onActivity Create method

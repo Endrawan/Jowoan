@@ -34,7 +34,7 @@ class FragmentToko : Fragment() {
         adapter = AvatarAdapter(avatars, object : AvatarAdapter.Action {
             override fun clicked(avatar: Avatar) {
                 val fm = activity.supportFragmentManager
-                val dialogFragment = TokoDialogFragment.newInstance(avatar, 0)
+                val dialogFragment = TokoDialogFragment.newInstance(avatar)
                 dialogFragment.show(fm, "fragment_avatar_detail")
             }
 

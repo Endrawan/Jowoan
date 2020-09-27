@@ -14,12 +14,12 @@ data class User(
     @SerializedName("external_id") var externalID: String,
     var token: String,
     var points: Int,
-    @SerializedName("owned_avatars") var ownedAvatars: List<Avatar>,
+    @SerializedName("owned_avatars") var ownedAvatars: MutableList<Avatar>,
     var friends: List<User>
 ) {
     constructor() : this(
         0, "", "", "", "", 0,
-        null, "", "", "", 0, listOf<Avatar>(),
+        null, "", "", "", 0, mutableListOf<Avatar>(),
         listOf<User>()
     )
 }
