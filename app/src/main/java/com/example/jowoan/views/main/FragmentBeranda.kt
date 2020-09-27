@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jowoan.R
 import com.example.jowoan.adapters.PracticeAdapter
+import com.example.jowoan.config.ImageConfig
 import com.example.jowoan.config.LevelConfig
 import com.example.jowoan.custom.Fragment
+import com.example.jowoan.custom.GlideApp
 import com.example.jowoan.models.Level
 import com.example.jowoan.models.Practice
 import com.example.jowoan.models.Subpractice
@@ -54,6 +56,10 @@ class FragmentBeranda : Fragment() {
             adapter = this@FragmentBeranda.adapter
         }
         loadPractice()
+
+        GlideApp.with(activity).load("http://${activity.user.avatar?.URL}")
+            .placeholder(ImageConfig.defaultAvatar).centerCrop()
+            .into(imageView)
     }
 
     private fun loadPractice() {

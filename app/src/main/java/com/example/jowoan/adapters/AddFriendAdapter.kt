@@ -31,7 +31,7 @@ class AddFriendAdapter(private val friends: List<User>) :
         val points = view.points
 
         fun bind(friend: User) {
-            GlideApp.with(view.context).load(friend.avatar?.URL)
+            GlideApp.with(view.context).load("http://${friend.avatar?.URL}")
                 .placeholder(ImageConfig.defaultAvatar).centerCrop()
                 .into(image)
             fullName.text = friend.fullName

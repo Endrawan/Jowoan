@@ -7,6 +7,7 @@ import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import com.example.jowoan.R
 import com.example.jowoan.adapters.LessonAdapter
+import com.example.jowoan.config.ImageConfig
 import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.custom.App
 import com.example.jowoan.custom.GlideApp
@@ -36,9 +37,8 @@ class PilihKataViewHolder(val view: View, action: LessonAdapter.Action) :
 
             disableAnswerOption()
 
-            val placeholder =
-                ResourcesCompat.getDrawable(App.resourses!!, R.drawable.image_not_found, null)
-            GlideApp.with(view.context).load(pilihKata.image).placeholder(placeholder).centerCrop()
+            GlideApp.with(view.context).load("http://${pilihKata.image}")
+                .placeholder(ImageConfig.imageNotFound).centerCrop()
                 .into(image)
 
             answerColor = ResourcesCompat.getColor(App.resourses!!, R.color.blue, null)

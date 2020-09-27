@@ -5,10 +5,9 @@ import android.graphics.Point
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import com.example.jowoan.R
-import com.example.jowoan.custom.App
+import com.example.jowoan.config.ImageConfig
 import com.example.jowoan.custom.GlideApp
 import com.example.jowoan.models.Avatar
 import com.google.gson.Gson
@@ -52,9 +51,8 @@ class TokoDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val placeholder =
-            ResourcesCompat.getDrawable(App.resourses!!, R.drawable.image_not_found, null)
-        GlideApp.with(view.context).load(avatar.URL).placeholder(placeholder).centerCrop()
+        GlideApp.with(view.context).load("http://${avatar.URL}")
+            .placeholder(ImageConfig.defaultAvatar).centerCrop()
             .into(imageView_image)
 
         if (!avatar.name.isNullOrEmpty()) {

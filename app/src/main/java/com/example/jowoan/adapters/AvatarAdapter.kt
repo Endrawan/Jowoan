@@ -40,7 +40,8 @@ class AvatarAdapter(val avatars: List<Avatar>, val action: Action) :
 
             val placeholder =
                 ResourcesCompat.getDrawable(App.resourses!!, R.drawable.image_not_found, null)
-            GlideApp.with(view.context).load(avatar.URL).centerCrop().placeholder(placeholder)
+            GlideApp.with(view.context).load("http://${avatar.URL}").centerCrop()
+                .placeholder(placeholder)
                 .into(image)
 
             category.text = "Avatar"
