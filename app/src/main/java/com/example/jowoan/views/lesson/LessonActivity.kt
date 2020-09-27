@@ -235,7 +235,7 @@ class LessonActivity : AppCompatActivity() {
             totalQuestion, totalQuestion, subpracticeID, user.ID
         )
         val activity = Activity(
-            subpracticeID, user.ID, pointsGot
+            subpracticeID, user.ID, pointsGot, null, null, null
         )
 
         jowoanService.userUpdate(user.token, user.ID, user)
