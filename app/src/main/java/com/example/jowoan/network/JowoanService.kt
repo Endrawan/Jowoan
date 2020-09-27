@@ -61,4 +61,12 @@ interface JowoanService {
         @Header("Token") token: String,
         @Body activity: Activity
     ): Call<APIResponse<Activity>>
+
+    @GET("search-user")
+    fun searchUserByName(
+        @Header("Token") token: String,
+        @Query("keyword") keyword: String
+    ): Call<APIResponse<List<User>>>
+
+
 }

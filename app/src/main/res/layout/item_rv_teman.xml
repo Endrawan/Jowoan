@@ -4,34 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="4dp"
-    android:layout_marginTop="20dp"
-    android:background="@android:color/transparent"
-    android:layout_marginEnd="4dp"
+    android:padding="@dimen/small"
     app:cardCornerRadius="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/avatar_basic" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/normal"
-            android:paddingEnd="@dimen/normal"
-            android:paddingBottom="8dp">
-
-            <ImageView
-                android:id="@+id/img_avatar"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/avatar_basic" />
-
-            <LinearLayout
-                android:layout_width="0dp"
+            android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/normal"
@@ -39,33 +28,34 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    tools:text="Nama Pengguna" />
+            <TextView
+                android:id="@+id/fullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/xsmall"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="Nama Pengguna" />
 
                 <TextView
-                    android:id="@+id/point_pts"
+                    android:id="@+id/points"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="7.500 pts" />
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/btn_addfriend"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_add_friend" />
+        <ImageView
+            android:id="@+id/btn_addfriend"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_add_friend" />
 
         </LinearLayout>
 
-
-    </LinearLayout>
 
 </LinearLayout>

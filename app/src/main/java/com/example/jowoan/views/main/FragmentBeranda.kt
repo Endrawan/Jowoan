@@ -148,7 +148,6 @@ class FragmentBeranda : Fragment() {
         btn_lonceng.setOnClickListener {
             Intent(context, NotificationActivity::class.java).also {
                 startActivity(it)
-
             }
 
         }
