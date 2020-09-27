@@ -34,6 +34,10 @@ class SubpracticeAdapter(
         private val name = view.name
         private val title = view.title
         private val indicator = view.indicator
+        private val indicatoractive = view.indicatoractive
+        private val indicator2 = view.indicatorlayout2
+        private val indicator2active = view.indicatorlayout2active
+
         private val duration = view.duration
         private val checklist = view.checklist
         private val layout1 = view.layout_1garis
@@ -44,10 +48,6 @@ class SubpracticeAdapter(
             if (position == 0) {
                 layout1.visibility = View.VISIBLE
                 layout2.visibility = View.GONE
-            } else if (position == size) {
-                layout1.visibility = View.GONE
-                layout2.visibility = View.GONE
-                linelayout2.visibility = View.GONE
             } else {
                 layout1.visibility = View.GONE
                 layout2.visibility = View.VISIBLE
@@ -60,6 +60,13 @@ class SubpracticeAdapter(
             if (subpractice.completionStatus) {
                 checklist.visibility = View.VISIBLE
                 duration.visibility = View.INVISIBLE
+                if (layout1.visibility==View.VISIBLE){
+                    indicator.visibility =View.GONE
+                    indicatoractive.visibility=View.VISIBLE
+                }else{
+                    indicator2.visibility = View.GONE
+                    indicator2active.visibility= View.VISIBLE
+                }
             } else {
                 checklist.visibility = View.INVISIBLE
                 duration.visibility = View.VISIBLE
