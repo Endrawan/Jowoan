@@ -241,7 +241,6 @@ class LessonActivity : AppCompatActivity() {
         jowoanService.userUpdate(user.token, user.ID, user)
             .enqueue(APICallback(object : APICallback.Action<User> {
                 override fun responseSuccess(data: User) {
-                    toast("Berhasil mengupdate user")
                     saveUser(data)
                     user_update_done = true
                     handleResponsesDone()
@@ -278,7 +277,6 @@ class LessonActivity : AppCompatActivity() {
         jowoanService.completionUpsert(user.token, completion)
             .enqueue(APICallback(object : APICallback.Action<Completion> {
                 override fun responseSuccess(data: Completion) {
-                    toast("Berhasil mengupdate completion")
                     completion_update_done = true
                     handleResponsesDone()
                 }
@@ -315,7 +313,6 @@ class LessonActivity : AppCompatActivity() {
         jowoanService.activityCreate(user.token, activity)
             .enqueue(APICallback(object : APICallback.Action<Activity> {
                 override fun responseSuccess(data: Activity) {
-                    toast("Berhasil mengupdate activity")
                     activity_update_done = true
                     handleResponsesDone()
                 }
