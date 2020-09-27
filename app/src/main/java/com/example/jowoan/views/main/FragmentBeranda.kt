@@ -50,13 +50,19 @@ class FragmentBeranda : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         showLoading("Mengambil data practice...")
-        textView_fullName.text = activity.user.fullName
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = this@FragmentBeranda.adapter
         }
         loadPractice()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        val act = activity as MainActivity
+        act.loadActivities()
+        act.loadCompletions()
+        textView_fullName.text = activity.user.fullName
         GlideApp.with(activity).load("http://${activity.user.avatar?.URL}")
             .placeholder(ImageConfig.defaultAvatar).centerCrop()
             .into(imageView)

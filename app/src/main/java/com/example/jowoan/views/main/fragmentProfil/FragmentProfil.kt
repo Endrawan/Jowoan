@@ -41,7 +41,10 @@ class FragmentProfil : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
 
+    override fun onResume() {
+        super.onResume()
         textView_fullName.text = activity.user.fullName
         tv_poin_user.text = "${activity.user.points} Poin"
 

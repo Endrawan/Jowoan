@@ -48,12 +48,16 @@ class FragmentToko : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         showLoading("Mengambil data avatar...")
-        poinUser.text = "${activity.user.points} Poin"
         recyclerView.apply {
             layoutManager = GridLayoutManager(activity, 2)
             adapter = this@FragmentToko.adapter
         }
         loadAvatars()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        poinUser.text = "${activity.user.points} Poin"
     }
 
     private fun showDialogFilter() {

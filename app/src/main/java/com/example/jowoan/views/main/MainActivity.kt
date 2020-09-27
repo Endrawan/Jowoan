@@ -10,6 +10,7 @@ import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.databinding.ActivityMainBinding
 import com.example.jowoan.models.Activity
 import com.example.jowoan.models.Completion
+import com.example.jowoan.models.User
 import com.example.jowoan.network.APICallback
 import com.example.jowoan.views.auth.LoginActivity
 import com.example.jowoan.views.main.fragmentProfil.FragmentProfil
@@ -126,6 +127,34 @@ class MainActivity : AppCompatActivity() {
 
                 override fun networkFailed(t: Throwable) {
                     toast("Request activities gagal. error:${t.message}")
+                }
+
+                override fun tokenExpired() {
+                    toast("Token telah expired, silahkan login ulang")
+                    logout()
+                    Intent(this@MainActivity, LoginActivity::class.java).also {
+                        startActivity(it)
+                        finishAffinity()
+                    }
+                }
+
+            }))
+    }
+
+    fun refreshUser() {
+        jowoanService.userGet(user.token, user.ID)
+            .enqueue(APICallback(object : APICallback.Action<User> {
+                override fun responseSuccess(data: User) {
+                    saveUser(data)
+                }
+
+                override fun dataNotFound(message: String) {
+                }
+
+                override fun responseFailed(status: String, message: String) {
+                }
+
+                override fun networkFailed(t: Throwable) {
                 }
 
                 override fun tokenExpired() {

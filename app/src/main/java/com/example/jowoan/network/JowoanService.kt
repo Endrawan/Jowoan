@@ -31,6 +31,12 @@ interface JowoanService {
         @Body user: User
     ): Call<APIResponse<User>>
 
+    @GET("user/{id}")
+    fun userGet(
+        @Header("Token") token: String,
+        @Path("id") id: Int
+    ): Call<APIResponse<User>>
+
     @GET("lesson")
     fun lessonGet(
         @Header("Token") token: String,
