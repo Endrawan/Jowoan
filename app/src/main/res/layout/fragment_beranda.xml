@@ -68,7 +68,7 @@
                     android:background="@drawable/box_notif">
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/btn_lonceng"
                         android:layout_width="28dp"
                         android:layout_height="37dp"
                         android:layout_gravity="center"

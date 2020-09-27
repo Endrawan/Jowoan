@@ -20,6 +20,8 @@
         <activity android:name=".views.lesson.LessonActivity" />
         <activity android:name=".CobaActivity" />
         <activity android:name=".Activity_P1_2" />
+        <activity android:name=".views.main.NotificationActivity"></activity>
+        <activity android:name=".views.main.AddFriendActivity" />
         <activity android:name=".views.pengaturan.PengaturanActivity" />
         <activity android:name=".views.auth.SignUpActivity" />
         <activity android:name=".views.auth.LoginActivity" />

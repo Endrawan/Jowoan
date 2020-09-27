@@ -142,4 +142,15 @@ class FragmentBeranda : Fragment() {
         progressBar?.visibility = View.INVISIBLE
         progressMessage.text = ""
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        btn_lonceng.setOnClickListener {
+            Intent(context, NotificationActivity::class.java).also {
+                startActivity(it)
+
+            }
+
+        }
+    }
 }
