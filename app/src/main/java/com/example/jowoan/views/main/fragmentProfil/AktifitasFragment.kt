@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.example.jowoan.R
 import com.example.jowoan.R.layout.fragment_aktifitas
 import com.example.jowoan.config.LevelConfig
@@ -24,21 +25,30 @@ import org.threeten.bp.temporal.TemporalAdjusters.previousOrSame
 
 class AktifitasFragment : Fragment() {
 
+    private lateinit var act: MainActivity
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        act = activity as MainActivity
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(fragment_aktifitas, container, false)
-    }
+    ): View? = inflater.inflate(fragment_aktifitas, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUserLevel()
-        setStreaksView()
+
+        act.completionsRequestStatus.observe(act, Observer {
+            if (it) {
+                setUserLevel()
+                setStreaksView()
+            }
+        })
     }
 
-    fun setUserLevel() {
+    private fun setUserLevel() {
         val act = activity as MainActivity
         var completionsGained = act.completions.size
         var idx = 0

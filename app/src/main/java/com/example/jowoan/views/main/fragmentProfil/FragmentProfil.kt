@@ -41,24 +41,14 @@ class FragmentProfil : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun onResume() {
-        super.onResume()
         textView_fullName.text = activity.user.fullName
         tv_poin_user.text = "${activity.user.points} Poin"
 
         GlideApp.with(activity).load("http://${activity.user.avatar?.URL}")
             .placeholder(ImageConfig.defaultAvatar).centerCrop()
             .into(imageView_avatar)
-    }
 
-    //Call onActivity Create method
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         setUpViewPager(ViewPagerProfil)
-
-        //tablayout
         tabLayoutProfil.setupWithViewPager(ViewPagerProfil)
         tabLayoutProfil.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {}
@@ -66,13 +56,11 @@ class FragmentProfil : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
     }
+
     private fun setUpViewPager(viewPager: ViewPager) {
-
         val adapter = SectionPageAdapter(childFragmentManager)
-
         adapter.addFragment(AktifitasFragment(), "Aktifitas")
         adapter.addFragment(TemanFragment(), "Teman")
-
         viewPager.adapter = adapter
     }
 
