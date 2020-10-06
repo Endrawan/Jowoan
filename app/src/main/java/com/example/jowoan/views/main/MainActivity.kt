@@ -9,7 +9,10 @@ import androidx.lifecycle.MutableLiveData
 import com.example.jowoan.R
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.databinding.ActivityMainBinding
-import com.example.jowoan.models.*
+import com.example.jowoan.models.Activity
+import com.example.jowoan.models.Avatar
+import com.example.jowoan.models.Completion
+import com.example.jowoan.models.Practice
 import com.example.jowoan.network.APICallback
 import com.example.jowoan.views.auth.LoginActivity
 import com.example.jowoan.views.main.fragmentProfil.FragmentProfil
@@ -17,6 +20,9 @@ import com.example.jowoan.views.main.fragmentToko.FragmentToko
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    val ADD_FRIEND_REQUEST = 200
+    val SETTINGS_REQUEST = 100
 
     val completions = mutableListOf<Completion>()
     val activities = mutableListOf<Activity>()
@@ -72,6 +78,10 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.ic_profil_inactive
             )
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun setFragment(fragment: Fragment) {
@@ -210,31 +220,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun refreshUser() {
-        jowoanService.userGet(user.token, user.ID)
-            .enqueue(APICallback(object : APICallback.Action<User> {
-                override fun responseSuccess(data: User) {
-                    saveUser(data)
-                }
-
-                override fun dataNotFound(message: String) {
-                }
-
-                override fun responseFailed(status: String, message: String) {
-                }
-
-                override fun networkFailed(t: Throwable) {
-                }
-
-                override fun tokenExpired() {
-                    toast("Token telah expired, silahkan login ulang")
-                    logout()
-                    Intent(this@MainActivity, LoginActivity::class.java).also {
-                        startActivity(it)
-                        finishAffinity()
-                    }
-                }
-
-            }))
+//        jowoanService.userGet(user.token, user.ID)
+//            .enqueue(APICallback(object : APICallback.Action<User> {
+//                override fun responseSuccess(data: User) {
+//                    saveUser(data)
+//                }
+//
+//                override fun dataNotFound(message: String) {
+//                }
+//
+//                override fun responseFailed(status: String, message: String) {
+//                }
+//
+//                override fun networkFailed(t: Throwable) {
+//                }
+//
+//                override fun tokenExpired() {
+//                    toast("Token telah expired, silahkan login ulang")
+//                    logout()
+//                    Intent(this@MainActivity, LoginActivity::class.java).also {
+//                        startActivity(it)
+//                        finishAffinity()
+//                    }
+//                }
+//
+//            }))
     }
 
     fun syncSubpracticeWithCompletion() {
