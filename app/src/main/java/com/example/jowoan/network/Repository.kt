@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object Repository {
 
-    val API_URL = "http://jowoan.herokuapp.com/"
+    val API_URL = "http://jowoan-develop.herokuapp.com/"
     val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
 
     fun create(): JowoanService {

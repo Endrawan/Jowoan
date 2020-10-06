@@ -4,12 +4,13 @@ import android.Manifest
 import android.R.drawable.ic_media_pause
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.AudioAttributes
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
-import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -21,7 +22,6 @@ import com.example.jowoan.config.LessonConfig
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.models.lesson.Lesson
 import kotlinx.android.synthetic.main.item_berbicara.view.*
-import java.util.*
 
 class BerbicaraViewHolder(
     view: View,
@@ -36,7 +36,7 @@ class BerbicaraViewHolder(
     private val speak = view.speak
     private val skip = view.skip
     private val note = view.note
-    private lateinit var tts: TextToSpeech
+    private var mediaPlayer: MediaPlayer? = null
     private lateinit var lesson: Lesson
 
     private val RecordAudioRequestCode = 1
@@ -45,7 +45,6 @@ class BerbicaraViewHolder(
         this.lesson = lesson
         val berbicara = lesson.berbicara
         if (berbicara != null) {
-            initTTS()
             title.text = berbicara.title
             jowoLang.text = berbicara.jowoLang
             indoLang.text = berbicara.indoLang
@@ -56,8 +55,10 @@ class BerbicaraViewHolder(
                 checkAnswer(berbicara.jowoLang, berbicara.jowoLang)
             }
 
+            loadVoice("http://${berbicara.voice}")
+
             listen.setOnClickListener {
-                tts.speak(berbicara.jowoLang, TextToSpeech.QUEUE_FLUSH, null, null)
+                mediaPlayer?.start()
             }
 
             if (ContextCompat.checkSelfPermission(
@@ -142,10 +143,17 @@ class BerbicaraViewHolder(
         enableAnswerOption()
     }
 
-    private fun initTTS() {
-        tts = TextToSpeech(activity,
-            TextToSpeech.OnInitListener {})
-        tts.language = Locale("id", "ID")
+    private fun loadVoice(url: String) {
+        mediaPlayer = MediaPlayer().apply {
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .build()
+            )
+            setDataSource(url)
+            prepareAsync()
+        }
     }
 
     private fun checkPermission() {
@@ -195,6 +203,8 @@ class BerbicaraViewHolder(
         speak.isEnabled = false
         listen.isEnabled = false
         skip.isEnabled = false
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
 }

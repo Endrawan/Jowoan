@@ -62,7 +62,8 @@ object LessonConfig {
                 1,
                 "Dengar dan ucapkan pelafalan berikut ini",
                 "Mangga Pak",
-                "Mari Pak"
+                "Mari Pak",
+                "jowoan-develop.herokuapp.com/assets/lesson/audios/1_5.m4a"
             ),
             null, null, 1, LessonConfig.BERBICARA_TYPE
         ),

@@ -6,5 +6,6 @@ data class Berbicara(
     val ID: Int,
     val title: String,
     @SerializedName("jowo_lang") val jowoLang: String,
-    @SerializedName("indo_lang") val indoLang: String
+    @SerializedName("indo_lang") val indoLang: String,
+    val voice: String
 )
