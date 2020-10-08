@@ -3,11 +3,9 @@ package com.example.jowoan.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.jowoan.R
 import com.example.jowoan.R.layout.item_avatar
-import com.example.jowoan.custom.App
+import com.example.jowoan.config.ImageConfig
 import com.example.jowoan.custom.GlideApp
 import com.example.jowoan.models.Avatar
 import kotlinx.android.synthetic.main.item_avatar.view.*
@@ -38,10 +36,8 @@ class AvatarAdapter(val avatars: List<Avatar>, val action: Action) :
                 name.text = avatar.name
             else name.text = "Lorem Ipsum"
 
-            val placeholder =
-                ResourcesCompat.getDrawable(App.resourses!!, R.drawable.image_not_found, null)
             GlideApp.with(view.context).load("http://${avatar.URL}").centerCrop()
-                .placeholder(placeholder)
+                .placeholder(ImageConfig.imageNotFound)
                 .into(image)
 
             category.text = "Avatar"

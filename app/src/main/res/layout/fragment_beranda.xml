@@ -93,6 +93,7 @@
                         android:textColor="#ffffff"
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="@id/btn_lonceng"
+                        android:visibility="invisible"
                         app:layout_constraintTop_toTopOf="@id/btn_lonceng" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

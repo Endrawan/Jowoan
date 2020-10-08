@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/small"
+    android:paddingBottom="@dimen/small"
+    app:cardCornerRadius="15dp">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center_vertical"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar_basic" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/normal"
+        android:layout_marginEnd="@dimen/normal"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="13sp"
+            tools:text="Nama Pengguna" />
+
+        <TextView
+            android:id="@+id/request_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ingin berteman dengan kamu"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_accept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="@dimen/small"
+        android:background="@drawable/box_biru_kotak"
+        android:minWidth="@dimen/small"
+        android:minHeight="@dimen/small"
+        android:padding="@dimen/small"
+        android:text="Terima"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/button_reject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/box_border_kotak"
+        android:minWidth="@dimen/small"
+        android:minHeight="@dimen/small"
+        android:padding="@dimen/small"
+        android:text="Tolak"
+        android:textAllCaps="false"
+        android:textSize="13sp" />
+
+</LinearLayout>

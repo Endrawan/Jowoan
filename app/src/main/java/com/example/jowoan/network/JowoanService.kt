@@ -80,4 +80,35 @@ interface JowoanService {
         @Path("user_id") userID: Int,
         @Path("avatar_id") avatarID: Int
     ): Call<APIResponse<String>>
+
+    // Friends
+    @GET("friendship/{user_id}")
+    fun friendGetAll(
+        @Header("Token") token: String,
+        @Path("user_id") userID: Int
+    ): Call<APIResponse<List<User>>>
+
+    @GET("friendship/{user_id}/requests")
+    fun friendGetAllRequests(
+        @Header("Token") token: String,
+        @Path("user_id") userID: Int
+    ): Call<APIResponse<List<User>>>
+
+    @POST("friendship")
+    fun friendRequest(
+        @Header("Token") token: String,
+        @Body friendship: Friendship
+    ): Call<APIResponse<Friendship>>
+
+    @PUT("friendship")
+    fun friendAccept(
+        @Header("Token") token: String,
+        @Body friendship: Friendship
+    ): Call<APIResponse<Friendship>>
+
+    @HTTP(method = "DELETE", path = "friendship", hasBody = true)
+    fun friendReject(
+        @Header("Token") token: String,
+        @Body friendship: Friendship
+    ): Call<APIResponse<Friendship>>
 }

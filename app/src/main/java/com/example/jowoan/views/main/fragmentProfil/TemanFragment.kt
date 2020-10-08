@@ -32,9 +32,6 @@ class TemanFragment : Fragment() {
                 Intent(activity, AddFriendActivity::class.java),
                 act.ADD_FRIEND_REQUEST
             )
-            Intent(context, AddFriendActivity::class.java).also {
-                startActivity(it)
-            }
         }
     }
 

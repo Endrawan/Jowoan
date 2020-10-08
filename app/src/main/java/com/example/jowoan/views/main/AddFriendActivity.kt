@@ -11,6 +11,7 @@ import com.example.jowoan.R
 import com.example.jowoan.adapters.AddFriendAdapter
 import com.example.jowoan.custom.AppCompatActivity
 import com.example.jowoan.internal.Utils
+import com.example.jowoan.models.Friendship
 import com.example.jowoan.models.User
 import com.example.jowoan.network.APICallback
 import com.example.jowoan.views.auth.LoginActivity
@@ -32,7 +33,13 @@ class AddFriendActivity : AppCompatActivity() {
 
         hideLoading()
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = AddFriendAdapter(friends)
+        adapter = AddFriendAdapter(friends, object : AddFriendAdapter.Action {
+            override fun addClicked(friend: User) {
+                toast("Permintaan pertemanan sedang dikirim...")
+                sendRequest(friend.ID)
+            }
+
+        })
         recyclerView.adapter = adapter
 
         searchBox.setOnEditorActionListener(object : TextView.OnEditorActionListener {
@@ -88,6 +95,32 @@ class AddFriendActivity : AppCompatActivity() {
                         startActivity(it)
                         finishAffinity()
                     }
+                }
+
+            }))
+    }
+
+    fun sendRequest(friendID: Int) {
+        jowoanService.friendRequest(user.token, Friendship(user.ID, friendID, ""))
+            .enqueue(APICallback(object : APICallback.Action<Friendship> {
+                override fun responseSuccess(data: Friendship) {
+                    toast(data.result)
+                }
+
+                override fun dataNotFound(message: String) {
+                    toast(message)
+                }
+
+                override fun responseFailed(status: String, message: String) {
+                    toast("Request gagal. status:$status, message:$message")
+                }
+
+                override fun networkFailed(t: Throwable) {
+                    toast("Request gagal. error:${t.message}")
+                }
+
+                override fun tokenExpired() {
+                    handleTokenExpired()
                 }
 
             }))

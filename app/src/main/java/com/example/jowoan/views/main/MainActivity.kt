@@ -3,18 +3,15 @@ package com.example.jowoan.views.main
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.example.jowoan.R
 import com.example.jowoan.custom.AppCompatActivity
-import com.example.jowoan.databinding.ActivityMainBinding
 import com.example.jowoan.models.Activity
 import com.example.jowoan.models.Avatar
 import com.example.jowoan.models.Completion
 import com.example.jowoan.models.Practice
 import com.example.jowoan.network.APICallback
-import com.example.jowoan.views.auth.LoginActivity
 import com.example.jowoan.views.main.fragmentProfil.FragmentProfil
 import com.example.jowoan.views.main.fragmentToko.FragmentToko
 import kotlinx.android.synthetic.main.activity_main.*
@@ -39,11 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(
-            this,
-            R.layout.activity_main
-        )
-//        val navCtrl = this.findNavController(R.id.navhost_fragment)
+        setContentView(R.layout.activity_main)
 
         setFragment(fragmentBeranda)
 
@@ -254,14 +247,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
         fragmentBeranda.requestsDone.value = true
-    }
-
-    private fun handleTokenExpired() {
-        toast("Token telah expired, silahkan login ulang")
-        logout()
-        Intent(this@MainActivity, LoginActivity::class.java).also {
-            startActivity(it)
-            finishAffinity()
-        }
     }
 }

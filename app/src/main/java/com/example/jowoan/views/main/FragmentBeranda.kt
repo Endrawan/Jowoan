@@ -58,6 +58,11 @@ class FragmentBeranda : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             adapter = this@FragmentBeranda.adapter
         }
+        btn_lonceng.setOnClickListener {
+            Intent(context, NotificationActivity::class.java).also {
+                startActivity(it)
+            }
+        }
         setUserLevel()
         requestsDone.observe(act, Observer {
             if (it && isVisible) {
@@ -114,14 +119,5 @@ class FragmentBeranda : Fragment() {
     private fun hideLoading() {
         progressBar?.visibility = View.INVISIBLE
         progressMessage.text = ""
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        btn_lonceng.setOnClickListener {
-            Intent(context, NotificationActivity::class.java).also {
-                startActivity(it)
-            }
-        }
     }
 }

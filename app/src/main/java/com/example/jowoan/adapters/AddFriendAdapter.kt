@@ -10,13 +10,13 @@ import com.example.jowoan.custom.GlideApp
 import com.example.jowoan.models.User
 import kotlinx.android.synthetic.main.item_rv_teman.view.*
 
-class AddFriendAdapter(private val friends: List<User>) :
+class AddFriendAdapter(private val friends: List<User>, private val action: Action) :
     RecyclerView.Adapter<AddFriendAdapter.AddFriendViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddFriendViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.item_rv_teman, parent, false)
-        return AddFriendViewHolder(view)
+        return AddFriendViewHolder(view, action)
     }
 
     override fun onBindViewHolder(holder: AddFriendViewHolder, position: Int) {
@@ -25,10 +25,12 @@ class AddFriendAdapter(private val friends: List<User>) :
 
     override fun getItemCount() = friends.size
 
-    inner class AddFriendViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class AddFriendViewHolder(val view: View, val action: Action) :
+        RecyclerView.ViewHolder(view) {
         val image = view.img_avatar
         val fullName = view.fullName
         val points = view.points
+        val addFriend = view.btn_addfriend
 
         fun bind(friend: User) {
             GlideApp.with(view.context).load("http://${friend.avatar?.URL}")
@@ -36,7 +38,14 @@ class AddFriendAdapter(private val friends: List<User>) :
                 .into(image)
             fullName.text = friend.fullName
             points.text = "${friend.points} poin"
+            addFriend.setOnClickListener {
+                action.addClicked(friend)
+            }
         }
+    }
+
+    interface Action {
+        fun addClicked(friend: User)
     }
 
 }

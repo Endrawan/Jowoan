@@ -1,6 +1,7 @@
 package com.example.jowoan.custom
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.jowoan.R
 import com.example.jowoan.models.User
 import com.example.jowoan.network.Repository
+import com.example.jowoan.views.auth.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -40,10 +42,8 @@ open class AppCompatActivity : AppCompatActivity() {
     fun checkUser() {
         if (user.fullName.isNotEmpty()) {
             Log.d(TAG, "User logged in! ${user.fullName}")
-//            Utils.toast(this, "User logged in! ${user.fullName}")
         } else {
             Log.d(TAG, "User logged in! ${user.fullName}")
-//            Utils.toast(this, "User not logged in!")
         }
     }
 
@@ -82,5 +82,14 @@ open class AppCompatActivity : AppCompatActivity() {
 
     fun toast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun handleTokenExpired() {
+        toast("Token telah expired, silahkan login ulang")
+        logout()
+        Intent(this, LoginActivity::class.java).also {
+            startActivity(it)
+            finishAffinity()
+        }
     }
 }
