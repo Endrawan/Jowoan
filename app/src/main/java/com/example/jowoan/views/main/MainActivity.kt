@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     val ADD_FRIEND_REQUEST = 200
     val SETTINGS_REQUEST = 100
+    val LESSON_REQUEST = 300
 
     val completions = mutableListOf<Completion>()
     val activities = mutableListOf<Activity>()
@@ -96,6 +97,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loadCompletions() {
+        completionsRequestStatus.value = false
         jowoanService.completionGetAll(user.token, user.ID)
             .enqueue(APICallback(object : APICallback.Action<List<Completion>> {
                 override fun responseSuccess(data: List<Completion>) {
@@ -127,6 +129,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loadActivities() {
+        activitiesRequestStatus.value = false
         jowoanService.activityGetAll(user.token, user.ID)
             .enqueue(APICallback(object : APICallback.Action<List<Activity>> {
                 override fun responseSuccess(data: List<Activity>) {
@@ -158,6 +161,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loadPractice() {
+        practicesRequestStatus.value = false
         jowoanService.practiceGetAll(user.token)
             .enqueue(APICallback(object : APICallback.Action<List<Practice>> {
                 override fun responseSuccess(data: List<Practice>) {
@@ -189,6 +193,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadAvatars() {
+        avatarsRequestStatus.value = false
         jowoanService.avatarGetAll(user.token)
             .enqueue(APICallback(object : APICallback.Action<List<Avatar>> {
                 override fun responseSuccess(data: List<Avatar>) {
@@ -219,32 +224,21 @@ class MainActivity : AppCompatActivity() {
             }))
     }
 
-    fun refreshUser() {
-//        jowoanService.userGet(user.token, user.ID)
-//            .enqueue(APICallback(object : APICallback.Action<User> {
-//                override fun responseSuccess(data: User) {
-//                    saveUser(data)
-//                }
-//
-//                override fun dataNotFound(message: String) {
-//                }
-//
-//                override fun responseFailed(status: String, message: String) {
-//                }
-//
-//                override fun networkFailed(t: Throwable) {
-//                }
-//
-//                override fun tokenExpired() {
-//                    toast("Token telah expired, silahkan login ulang")
-//                    logout()
-//                    Intent(this@MainActivity, LoginActivity::class.java).also {
-//                        startActivity(it)
-//                        finishAffinity()
-//                    }
-//                }
-//
-//            }))
+    fun upsertCompletions(newCompletion: Completion) {
+        completionsRequestStatus.value = false
+        var exist = false
+        for (i in completions.indices) {
+            if (completions[i].userID == newCompletion.userID && completions[i].subpracticeID == newCompletion.subpracticeID) {
+                completions[i] = newCompletion
+                exist = true
+                break
+            }
+        }
+        if (!exist) {
+            completions.add(newCompletion)
+        }
+        completionsRequestStatus.value = true
+        syncSubpracticeWithCompletion()
     }
 
     fun syncSubpracticeWithCompletion() {

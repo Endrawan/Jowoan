@@ -41,7 +41,7 @@ class AktifitasFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         act.completionsRequestStatus.observe(act, Observer {
-            if (it) {
+            if (it && isVisible) {
                 setUserLevel()
                 setStreaksView()
             }

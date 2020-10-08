@@ -24,6 +24,7 @@ class LessonActivity : AppCompatActivity() {
 
     private val TAG = "LessonActivity"
     val lessons = mutableListOf<Lesson>()
+    private lateinit var completionResult: Completion
     private lateinit var adapter: LessonAdapter
     private var subpracticeID = 0
     private var totalQuestion = 0
@@ -277,6 +278,7 @@ class LessonActivity : AppCompatActivity() {
         jowoanService.completionUpsert(user.token, completion)
             .enqueue(APICallback(object : APICallback.Action<Completion> {
                 override fun responseSuccess(data: Completion) {
+                    completionResult = data
                     completion_update_done = true
                     handleResponsesDone()
                 }
@@ -355,6 +357,11 @@ class LessonActivity : AppCompatActivity() {
 
     private fun handleResponsesDone() {
         if (user_update_done && completion_update_done && activity_update_done) {
+            val completionJSON = gson.toJson(completionResult)
+            val resultIntent = Intent().apply {
+                putExtra("COMPLETION", completionJSON)
+            }
+            setResult(android.app.Activity.RESULT_OK, resultIntent)
             finish()
         }
     }

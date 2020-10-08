@@ -51,7 +51,7 @@ class FragmentToko : Fragment() {
         }
         poinUser.text = "${activity.user.points} Poin"
         act.avatarsRequestStatus.observe(act, Observer {
-            if (it) {
+            if (it && isVisible) {
                 hideLoading()
                 adapter.notifyDataSetChanged()
             }

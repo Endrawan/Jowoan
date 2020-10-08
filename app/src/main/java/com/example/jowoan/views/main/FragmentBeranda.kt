@@ -1,5 +1,6 @@
 package com.example.jowoan.views.main
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.example.jowoan.config.ImageConfig
 import com.example.jowoan.config.LevelConfig
 import com.example.jowoan.custom.Fragment
 import com.example.jowoan.custom.GlideApp
+import com.example.jowoan.models.Completion
 import com.example.jowoan.models.Level
 import com.example.jowoan.models.Subpractice
 import com.example.jowoan.views.lesson.LessonActivity
@@ -38,7 +40,7 @@ class FragmentBeranda : Fragment() {
             override fun subpracticeClicked(subpractice: Subpractice) {
                 val intent = Intent(activity, LessonActivity::class.java)
                 intent.putExtra("SubpracticeID", subpractice.ID)
-                startActivity(intent)
+                startActivityForResult(intent, act.LESSON_REQUEST)
             }
         })
     }
@@ -58,12 +60,24 @@ class FragmentBeranda : Fragment() {
         }
         setUserLevel()
         requestsDone.observe(act, Observer {
-            if (it) {
+            if (it && isVisible) {
                 hideLoading()
                 adapter.notifyDataSetChanged()
                 setUserLevel()
             }
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == act.LESSON_REQUEST && resultCode == RESULT_OK) {
+            activity.loadUser()
+            requestsDone.value = false
+            val newCompletion = data?.getStringExtra("COMPLETION")
+            val completion = act.gson.fromJson(newCompletion, Completion::class.java)
+            act.upsertCompletions(completion)
+            act.loadActivities()
+        }
     }
 
     private fun setUserLevel() {
