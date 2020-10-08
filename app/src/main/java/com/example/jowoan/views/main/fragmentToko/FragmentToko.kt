@@ -1,5 +1,7 @@
 package com.example.jowoan.views.main.fragmentToko
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +21,7 @@ import kotlinx.android.synthetic.main.view_progress.*
  */
 class FragmentToko : Fragment() {
 
+    val DIALOG_REQUEST_CODE = 100;
     private lateinit var adapter: AvatarAdapter
     private lateinit var act: MainActivity
 
@@ -30,6 +33,7 @@ class FragmentToko : Fragment() {
             override fun clicked(avatar: Avatar) {
                 val fm = activity.supportFragmentManager
                 val dialogFragment = TokoDialogFragment.newInstance(avatar)
+                dialogFragment.setTargetFragment(this@FragmentToko, DIALOG_REQUEST_CODE)
                 dialogFragment.show(fm, "fragment_avatar_detail")
             }
 
@@ -58,7 +62,12 @@ class FragmentToko : Fragment() {
         })
     }
 
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == DIALOG_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            poinUser.text = "${activity.user.points} Poin"
+        }
+    }
 
     private fun showLoading(message: String) {
         progressBar?.visibility = View.VISIBLE

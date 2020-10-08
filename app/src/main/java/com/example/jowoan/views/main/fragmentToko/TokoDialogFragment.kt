@@ -1,5 +1,6 @@
 package com.example.jowoan.views.main.fragmentToko
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Point
@@ -95,6 +96,11 @@ class TokoDialogFragment : DialogFragment() {
         super.onResume()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, null)
+    }
+
     private fun buyAndEquip() {
         user.points -= avatar.price
         user.ownedAvatars.add(avatar)
@@ -142,6 +148,7 @@ class TokoDialogFragment : DialogFragment() {
                     hideProgress()
                     act.toast("Berhasil mengganti avatar!")
                     act.saveUser(data)
+                    act.loadUser()
                 }
 
                 override fun dataNotFound(message: String) {
