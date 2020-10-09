@@ -33,7 +33,7 @@
                 android:layout_marginBottom="@dimen/normal"
                 android:background="@drawable/photobackground">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageView_avatar"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
