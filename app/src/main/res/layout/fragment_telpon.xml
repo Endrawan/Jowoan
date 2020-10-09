@@ -74,6 +74,7 @@
                     android:layout_height="24dp"
                     android:background="@drawable/boxputih"
                     android:text="81225273320"
+                    android:inputType="phone"
                     android:textColor="#666666" />
             </com.google.android.material.textfield.TextInputLayout>
 

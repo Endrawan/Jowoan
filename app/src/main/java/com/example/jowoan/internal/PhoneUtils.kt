@@ -2,7 +2,9 @@ package com.example.jowoan.internal
 
 object PhoneUtils {
     fun toInternationalStandard(phone: String): String {
-        return phone.takeLast(phone.length - 1)
+        return if (phone.isEmpty()) {
+            ""
+        } else phone.takeLast(phone.length - 1)
     }
 
     fun toLocalStandard(phone: String): String {

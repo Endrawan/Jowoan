@@ -43,6 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/boxputih"
+                android:inputType="textPersonName"
                 android:hint="Nama Pengguna" />
 
         </com.google.android.material.textfield.TextInputLayout>
